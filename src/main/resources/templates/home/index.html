@@ -6,7 +6,7 @@
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Story by HTML5 UP</title>
+		<title>원숭이도 나무에서 떨어질 때가 있다</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
@@ -20,58 +20,39 @@
 				<!-- One -->
 					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
 						<div class="content">
-							<h1>Story</h1>
-							<p class="major">A (modular, highly tweakable) responsive one-page template designed by <a href="https://html5up.net">HTML5 UP</a> and released for free under the <a href="https://html5up.net/license">Creative Commons</a>.</p>
+							<h1>원숭이도 나무에서 <br>
+								떨어질 때가 있다</h1>
+							<p class="major">
+								어렸을 적 동물원에 가면 나무를 마치 땅에 있는 것마냥 자유자재로 움직여 다니던 원숭이의 모습을 보며 신기해하곤 했다.
+								<br>긴 팔로 성큼성큼 나아가는 모습이 무섭지도 않은지, 떨어지면 아프진 않을지 등의 생각을 떠올리게 만들었다.
+								<br>하지만 이런 원숭이조차 나무에서 떨어질 때가 있다는 것이다.
+								<br>태어나길 나무에서 태어난 원숭이도 나무에서 떨어지는데, 어떻게 인간이라고 하여 삶 속에서 작은 실수 하나 만들지 않을 수가 있을까.
+								<br>원숭이가 나무에서 떨어지는 실수를 하는 것을 우리가 실수하는 것에 비유하여 우리는 모두 실수를 하는 존재임을 전달한다.
+							</p>
 							<ul class="actions stacked">
-								<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
+								<li><a href="#first" class="button big wide smooth-scroll-middle">전시 시작하기</a></li>
 							</ul>
 						</div>
 						<div class="image">
-							<img src="/images/banner.jpg" alt="" />
+							<img src="/images/mainPoster.png" alt="" />
 						</div>
 					</section>
 
-				<!-- Two -->
+				<th:block th:if="${not #lists.isEmpty(workList)}" th:each="work : ${workList}">
+					<!-- Two -->
 					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
 						<div class="content">
-							<h2>Magna etiam feugiat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
+							<h2 th:text="${work.getTitle()}"></h2>
+							<p th:text="${work.getContents()}"></p>
 							<ul class="actions stacked">
-								<li><a href="#" class="button">Learn More</a></li>
+								<li><a href="#" class="button" th:text="${work.getMember().getName()}"></a></li>
 							</ul>
 						</div>
 						<div class="image">
-							<img src="/images/spotlight01.jpg" alt="" />
+							<img th:src="${work.getImgUrl()}" alt="" />
 						</div>
 					</section>
-
-				<!-- Three -->
-					<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
-						<div class="content">
-							<h2>Tempus adipiscing</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
-							<ul class="actions stacked">
-								<li><a href="#" class="button">Learn More</a></li>
-							</ul>
-						</div>
-						<div class="image">
-							<img src="/images/spotlight02.jpg" alt="" />
-						</div>
-					</section>
-
-				<!-- Four -->
-					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
-						<div class="content">
-							<h2>Pharetra etiam nulla</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
-							<ul class="actions stacked">
-								<li><a href="#" class="button">Learn More</a></li>
-							</ul>
-						</div>
-						<div class="image">
-							<img src="/images/spotlight03.jpg" alt="" />
-						</div>
-					</section>
+				</th:block>
 
 				<!-- Five -->
 					<section class="wrapper style1 align-center">
@@ -233,13 +214,13 @@
 				<!-- Six -->
 					<section class="wrapper style1 align-center">
 						<div class="inner">
-							<h2>Ipsum sed consequat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
+							<h2>당신의 실수를 남겨주세요</h2>
+							<p>예상치 못한 실수로부터 당신의 이야기는 시작됩니다.</p>
 							<div class="items style1 medium onscroll-fade-in">
-								<section th:if="${not #lists.isEmpty(requestDto)}" th:each="dto : ${responseDto}">
+								<section th:if="${not #lists.isEmpty(requestDto)}" th:each="record : ${recordList}">
 									<span class="icon style2 major fa-gem"></span>
-									<h3 th:text="${dto.getWriter()}"></h3>
-									<p th:text="${dto.getContent()}"></p>
+									<h3 th:text="${record.getWriter()}"></h3>
+									<p th:text="${record.getContent()}"></p>
 								</section>
 							</div>
 						</div>
@@ -248,7 +229,7 @@
 				<!-- Seven -->
 					<section class="wrapper style1 align-center">
 						<div class="inner medium">
-							<h2>Get in touch</h2>
+							<h2>실수</h2>
 							<form th:action="@{/record}"  th:object="${requestDto}" method="post">
 								<div class="fields">
 									<div class="field">

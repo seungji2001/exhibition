@@ -13,9 +13,8 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Work {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private Long sequence;
 
     private String title;
 
