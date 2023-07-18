@@ -12,11 +12,12 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "Member")
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="member_id")
     private Long id;
 
     private String name;
@@ -25,4 +26,13 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Work> workList;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "main_work_id", referencedColumnName = "work_id")
+    private Work mainWork;
+
+    private String introduction;
+
+    @OneToMany(mappedBy = "receiver")
+    private List<Message> messageList;
 }

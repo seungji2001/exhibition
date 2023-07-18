@@ -45,7 +45,7 @@
 							<h2 th:text="${work.getTitle()}"></h2>
 							<p th:text="${work.getContents()}"></p>
 							<ul class="actions stacked">
-								<li><a href="#" class="button" th:text="${work.getMember().getName()}"></a></li>
+								<li><a th:href="@{/test}" class="button" th:text="${work.getMember().getName()}"></a></li>
 							</ul>
 						</div>
 						<div class="image">
