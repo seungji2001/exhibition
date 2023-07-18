@@ -10,15 +10,37 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="c/assets/css/noscript.css" /></noscript>
+		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script>
+
+			$(document).ready(function() {
+				document.getElementById("image").style.display = 'block';
+				document.getElementById("map").style.display = 'none';
+				document.getElementById("toggletext").innerText = "위치 확인하기"
+			});
+
+			function toggle(text) {
+				if(text == "위치 확인하기"){
+					document.getElementById("image").style.display = 'none'
+					document.getElementById("map").style.display = 'block'
+					document.getElementById("toggletext").innerText = "전시 보러가기"
+				}
+				else{
+					document.getElementById("image").style.display = 'block';
+					document.getElementById("map").style.display = 'none';
+					document.getElementById("toggletext").innerText = "위치 확인하기"
+				}
+			}
+		</script>
 	</head>
+
 	<body class="is-preload">
 
 		<!-- Wrapper -->
 			<div id="wrapper" class="divided">
 
 				<!-- One -->
-					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+				<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
 						<div class="content">
 							<h1>원숭이도 나무에서 <br>
 								떨어질 때가 있다</h1>
@@ -30,17 +52,61 @@
 								<br>원숭이가 나무에서 떨어지는 실수를 하는 것을 우리가 실수하는 것에 비유하여 우리는 모두 실수를 하는 존재임을 전달한다.
 							</p>
 							<ul class="actions stacked">
-								<li><a href="#first" class="button big wide smooth-scroll-middle">전시 시작하기</a></li>
+								<li><a href="#" onclick="toggle(this.innerText)" class="button big wide smooth-scroll-middle" id="toggletext"></a></li>
 							</ul>
 						</div>
-						<div class="image">
+						<div id="image" class="image">
 							<img src="/images/mainPoster.png" alt="" />
 						</div>
-					</section>
+							<div id="map" class="image"></div>
+							<script>
+							var map;
+							var button = document.getElementById('map_button');
+							button.addEventListener('click', changeCenter);
 
+							function initMap() {
+								var gyeongbokgung = { lat: 37.57979553563185, lng: 126.97706245552442 };
+								map = new google.maps.Map( document.getElementById('map'), {
+									zoom: 15,
+									center: gyeongbokgung,
+									mapTypeControl: false,
+									zoomControl: false,
+									fullscreenControl: false
+								});
+
+								var mainMarker = new google.maps.Marker({
+									position: gyeongbokgung,
+									map: map,
+									label: {
+										text: "경복궁",
+										color: "#C70E20"
+									}
+								});
+
+								var subMarkerPoint = { lat: 37.57956596361732, lng: 126.9803240214433};
+								var subMarker = new google.maps.Marker({
+									position: subMarkerPoint,
+									map: map,
+									label: "국립현대미술관",
+									icon: {
+										url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+										labelOrigin: new google.maps.Point(20, 47),
+										anchor: new google.maps.Point(50,32)
+									}
+								});
+							}
+
+							function changeCenter() {
+								var gyeongbokgung = { lat: 37.57979553563185, lng: 126.97706245552442 };
+								map.panTo(gyeongbokgung);
+								map.setZoom(15);
+							}
+						</script>
+						<script async defer th:src="@{'https://maps.googleapis.com/maps/api/js?key=' + ${@environment.getProperty('api.key')} + '&callback=initMap&amp;region=kr'}"></script><!--						</div>-->
+					</section>
 				<th:block th:if="${not #lists.isEmpty(workList)}" th:each="work : ${workList}">
 					<!-- Two -->
-					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
+					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
 						<div class="content">
 							<h2 th:text="${work.getTitle()}"></h2>
 							<p th:text="${work.getContents()}"></p>
@@ -218,7 +284,6 @@
 							<p>예상치 못한 실수로부터 당신의 이야기는 시작됩니다.</p>
 							<div class="items style1 medium onscroll-fade-in">
 								<section th:if="${not #lists.isEmpty(requestDto)}" th:each="record : ${recordList}">
-									<span class="icon style2 major fa-gem"></span>
 									<h3 th:text="${record.getWriter()}"></h3>
 									<p th:text="${record.getContent()}"></p>
 								</section>
@@ -229,7 +294,7 @@
 				<!-- Seven -->
 					<section class="wrapper style1 align-center">
 						<div class="inner medium">
-							<h2>실수</h2>
+							<h2>당신의 실수</h2>
 							<form th:action="@{/record}"  th:object="${requestDto}" method="post">
 								<div class="fields">
 									<div class="field">
@@ -263,7 +328,6 @@
 								<li><a href="#" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
 							</ul>
-							<p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 						</div>
 					</footer>
 
