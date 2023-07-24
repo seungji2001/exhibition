@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.Member;
 import com.example.demo.domain.Record;
 import com.example.demo.dto.RequestDto;
 import com.example.demo.dto.ResponseDto;
+import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.RecordRepository;
 import com.example.demo.repository.WorkRepository;
 import jakarta.transaction.Transactional;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RecordService {
@@ -19,6 +22,8 @@ public class RecordService {
     RecordRepository recordRepository;
     @Autowired
     WorkRepository workRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Transactional
     public List<ResponseDto.getParticipantsRecords> getRecordList(){
@@ -39,19 +44,5 @@ public class RecordService {
                 .build();
         recordRepository.save(record);
 
-    }
-
-    @Transactional
-    public List<ResponseDto.getWorks> getWorksList(){
-        return workRepository.findAll().stream()
-                .map(work -> {
-                    return ResponseDto.getWorks.builder()
-                            .ImgUrl(work.getImgUrl())
-                            .title(work.getTitle())
-                            .contents(work.getContents())
-                            .member(work.getMember())
-                            .build();
-                })
-                .toList();
     }
 }

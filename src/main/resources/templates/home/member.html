@@ -12,6 +12,24 @@
 		<link rel="stylesheet" href="/member/assets-member/css/main.css" />
 		<noscript><link rel="stylesheet" href="/member/assets-member/css/noscript.css" /></noscript>
 	</head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		function getWorks() {
+			$.ajax({
+				type: "GET",    // GET 또는 POST
+				url: "/member/" + [[${memberInformation.getId()}]] + "/works",
+				dataType : "html" ,
+				success: function (data) {
+					// 요청, 통신이 성공했을 때 실행할 함수
+					document.getElementById("work").innerHTML = data
+				}
+			})
+		}
+
+		function contact(){
+
+		}
+	</script>
 	<body class="is-preload">
 
 		<!-- Wrapper-->
@@ -20,7 +38,7 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<a href="#" class="icon solid fa-home"><span>Home</span></a>
-						<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
+						<a href="#work" onclick="getWorks()" class="icon solid fa-folder"><span>Work</span></a>
 						<a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
 						<a href="https://twitter.com/ajlkn" class="icon brands fa-twitter"><span>Twitter</span></a>
 					</nav>
@@ -31,65 +49,18 @@
 						<!-- Me -->
 							<article id="home" class="panel intro">
 								<header>
-									<h1>Jane Doe</h1>
-									<p>Senior Astral Projectionist</p>
+									<h1 th:text="${memberInformation.getName()}"></h1>
+									<p th:text="${memberInformation.getIntroduction()}"></p>
 								</header>
-								<a href="#work" class="jumplink pic">
+								<a href="#work" onclick="getWorks()" class="jumplink pic">
 									<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
-									<img src="/member/images-member/me.jpg" alt="" />
+									<img th:src="${memberInformation.getMainWork().getImgUrl()}" alt="" />
 								</a>
 							</article>
 
 						<!-- Work -->
 							<article id="work" class="panel">
-								<header>
-									<h2>Work</h2>
-								</header>
-								<p>
-									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
-									Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-									luctus elit eget interdum.
-								</p>
-								<section>
-									<div class="row">
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic01.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic02.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic03.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic04.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic05.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic06.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic07.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic08.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic09.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic10.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic11.jpg" alt=""></a>
-										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="/member/images-member/pic12.jpg" alt=""></a>
-										</div>
-									</div>
-								</section>
+
 							</article>
 
 						<!-- Contact -->
@@ -97,20 +68,20 @@
 								<header>
 									<h2>Contact Me</h2>
 								</header>
-								<form action="#" method="post">
+								<form id="messageForm" th:action="@{'/message/' + ${memberInformation.getId()}}"  th:object="${sendMessage}" method="post">
 									<div>
 										<div class="row">
 											<div class="col-6 col-12-medium">
-												<input type="text" name="name" placeholder="Name" />
+												<input type="text" name="name" th:field="*{sender}" placeholder="Name" />
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="email" placeholder="Email" />
+												<input type="text" name="email"th:field="*{email}" placeholder="Email" />
 											</div>
 											<div class="col-12">
-												<input type="text" name="subject" placeholder="Subject" />
+												<input type="text" name="title" th:field="*{title}" placeholder="Title" />
 											</div>
 											<div class="col-12">
-												<textarea name="message" placeholder="Message" rows="6"></textarea>
+												<textarea name="message" th:field="*{contents}" placeholder="Message" rows="6"></textarea>
 											</div>
 											<div class="col-12">
 												<input type="submit" value="Send Message" />
