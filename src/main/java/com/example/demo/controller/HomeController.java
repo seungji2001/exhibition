@@ -6,6 +6,7 @@ import com.example.demo.service.RecordService;
 import com.example.demo.service.WorkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +24,15 @@ public class HomeController {
     @Autowired
     WorkService workService;
 
+    @Value("${api.key}")
+    private String getKey;
+
     @GetMapping(value = "/")
     public String home(Model model, RequestDto requestDto) {
         model.addAttribute("requestDto",requestDto);
         model.addAttribute("getWorksListByViewCounts",workService.getWorksListByViewCounts());
         model.addAttribute("recordList", recordService.getRecordList());
+        model.addAttribute("APPKEY",getKey);
         model.addAttribute("workList", workService.getmainWorksList());
 //        model.addAttribute("workList", memberService.getMemberList());
         return "home/index";
