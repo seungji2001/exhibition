@@ -26,8 +26,9 @@ public class HomeController {
     @GetMapping(value = "/")
     public String home(Model model, RequestDto requestDto) {
         model.addAttribute("requestDto",requestDto);
+        model.addAttribute("getWorksListByViewCounts",workService.getWorksListByViewCounts());
         model.addAttribute("recordList", recordService.getRecordList());
-        model.addAttribute("workList", workService.getWorksList());
+        model.addAttribute("workList", workService.getmainWorksList());
 //        model.addAttribute("workList", memberService.getMemberList());
         return "home/index";
     }

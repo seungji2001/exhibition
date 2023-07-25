@@ -15,6 +15,16 @@ public class WorkResponseDto {
         private String title;
         private String imgUrl;
         private String contents;
-        private String name;
+        private String name; //작품을 창작한 멤버의 이름
+    }
+
+    @Builder
+    @Data
+    public static class getWorkThumbnail{
+        private String title;
+        private String imgUrl;
+        private String contents;
+        private String name; //작품을 창작한 멤버의 이름
+        private Long viewCount;
     }
 }

@@ -3,6 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.messageDto.MessageRequestDto;
 import com.example.demo.service.MemberService;
+import com.example.demo.service.WorkService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ public class MemberController {
 
     @Autowired
     MemberService memberService;
+    @Autowired
+    WorkService workService;
 
     @GetMapping(value = "/test")
     public String test() {
@@ -24,8 +29,14 @@ public class MemberController {
         return "home/member";
     }
 
+    //멤버를 조회 하였을때
     @GetMapping(value = "/member/{id}")
-    public String getMember(Model model, @PathVariable("id") Long id, MessageRequestDto.sendMessage sendMessage){
+    public String getMember(
+            Model model,
+            @PathVariable("id") Long id,
+            MessageRequestDto.sendMessage sendMessage
+    ){
+        workService.countView(id);
         model.addAttribute("memberInformation", memberService.getMember(id).getBody());
         model.addAttribute("sendMessage", sendMessage);
         return "home/member";

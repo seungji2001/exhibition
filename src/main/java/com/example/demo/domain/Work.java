@@ -26,4 +26,11 @@ public class Work {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @Column(columnDefinition = "integer default 0")
+    private Long view;
+
+    public void updateView(){
+        view += 1;
+    }
 }
