@@ -32,9 +32,8 @@ public class HomeController {
         model.addAttribute("requestDto",requestDto);
         model.addAttribute("getWorksListByViewCounts",workService.getWorksListByViewCounts());
         model.addAttribute("recordList", recordService.getRecordList());
-        model.addAttribute("APPKEY",getKey);
         model.addAttribute("workList", workService.getmainWorksList());
-//        model.addAttribute("workList", memberService.getMemberList());
+        model.addAttribute("APPKEY",getKey);
         return "home/index";
     }
 
