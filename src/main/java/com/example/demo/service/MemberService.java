@@ -19,6 +19,7 @@ public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
+    @Transactional
     //한 멤버에 대한 정보 가져오기
     public ResponseEntity<MemberResponseDto.getMember> getMember(Long id){
         Member member = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당하는 유저가 존재하지 않습니다."));

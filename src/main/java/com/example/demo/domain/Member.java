@@ -35,4 +35,9 @@ public class Member {
 
     @OneToMany(mappedBy = "receiver")
     private List<Message> messageList;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exhibition_id")
+    private Exhibition exhibition;
+
 }

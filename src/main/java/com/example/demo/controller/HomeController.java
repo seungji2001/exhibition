@@ -17,10 +17,8 @@ public class HomeController {
 
     @Autowired
     RecordService recordService;
-
     @Autowired
     MemberService memberService;
-
     @Autowired
     WorkService workService;
 
