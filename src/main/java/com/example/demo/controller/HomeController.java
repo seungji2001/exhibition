@@ -34,6 +34,7 @@ public class HomeController {
         model.addAttribute("recordList", recordService.getRecordList());
         model.addAttribute("workList", workService.getmainWorksList());
         model.addAttribute("APPKEY",getKey);
+
         return "home/index";
     }
 

@@ -35,4 +35,8 @@ public class Member {
 
     @OneToMany(mappedBy = "receiver")
     private List<Message> messageList;
+
+    public void setMainWork(Work work){
+        this.mainWork = work;
+    }
 }

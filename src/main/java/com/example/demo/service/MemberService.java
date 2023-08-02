@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Member;
 import com.example.demo.dto.ResponseDto;
+import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
 import com.example.demo.repository.MemberRepository;
@@ -48,11 +49,24 @@ public class MemberService {
                                 }
                         )
                         .collect(Collectors.toList());
-        return MemberResponseDto.getWorksByMember.builder()
+        return MemberResponseDto.getWorksByMember
+                .builder()
                 .mainWorkTitle(member.getMainWork().getTitle())
                 .mainWorkContents(member.getMainWork().getContents())
                 .getWorkList(getWorkList)
                 .build();
+    }
+
+    //한 멤버에 대한 정보 집어넣기
+    @Transactional
+    public Long registNewMemebr(MemberRequestDto.registNewMember memberRequest){
+        Member member = Member.builder()
+                .name(memberRequest.getName())
+                .major(memberRequest.getMajor())
+                .introduction(memberRequest.getIntroduction())
+                .build();
+
+        return memberRepository.save(member).getId();
     }
 
 }

@@ -4,6 +4,7 @@ import com.example.demo.domain.Member;
 import com.example.demo.domain.Work;
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
+import com.example.demo.dto.workDto.WorkRequestDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.WorkRepository;
@@ -24,11 +25,34 @@ public class WorkService {
     @Autowired
     WorkRepository workRepository;
 
+    //새로운 작품 등록하기
+    @Transactional
+    public void registrationNewWork(WorkRequestDto.registNewWork newWork){
+        //이름으로 멤버 찾기
+        Member member = memberRepository.findMemberByName(newWork.getName()).orElseThrow();
+        Work work = Work.builder()
+                .title(newWork.getTitle())
+                .contents(newWork.getContents())
+                .member(member)
+                .view(0l)
+                .build();
+        workRepository.save(work); //작업 저장
+
+        //만약 멤버의 메인 작품이 없다면 등록한 작품을 메인 작품으로 넣기
+        if(member.getMainWork() != null){
+            member.setMainWork(work);
+        }
+    }
+
+    //특정 작품을 메인작품으로 넣기
+
     //모든 메인 작품들 가져오기
     @Transactional
     public List<ResponseDto.getmainWorks> getmainWorksList(){
         return memberRepository.findAll()
-                .stream().map(member -> {
+                .stream()
+                .filter(member -> member.getMainWork() != null)
+                .map(member -> {
                     return ResponseDto.getmainWorks.builder()
                             .title(member.getMainWork().getTitle())
                             .imgUrl(member.getMainWork().getImgUrl())
@@ -51,6 +75,7 @@ public class WorkService {
         List<WorkResponseDto.getWorkThumbnail> getWorkList =
                 memberRepository.findAll()
                 .stream()
+                        .filter(member -> member.getMainWork()!=null)
                 .map(member -> {
                     return WorkResponseDto.getWorkThumbnail.builder()
                             .name(member.getMainWork().getMember().getName())

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.messageDto.MessageRequestDto;
 import com.example.demo.service.MemberService;
@@ -42,8 +43,16 @@ public class MemberController {
         return "home/member";
     }
 
+    //세로운 멤버 등록
+    @PostMapping(value = "/member")
+    public String registrationMemebr(MemberRequestDto.registNewMember memberRequest){
+        ResponseEntity.ok().body(memberService.registNewMemebr(memberRequest));
+        return "redirect:/member";
+    }
+
+    //한 멤버의 모든 작품들을 조회
     @GetMapping(value = "/member/{id}/works")
-    public String getWorksByMemberId(Model model, @PathVariable("id") Long id){
+    public String getWorksByMemberId(Model model, @PathVariable("id") Long id) {
         model.addAttribute("memberWork", memberService.getWorksByMember(id));
         return "member_works :: works";
     }
