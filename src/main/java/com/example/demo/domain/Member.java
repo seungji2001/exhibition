@@ -39,4 +39,9 @@ public class Member {
     public void setMainWork(Work work){
         this.mainWork = work;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exhibition_id")
+    private Exhibition exhibition;
+
 }
