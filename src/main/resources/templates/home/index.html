@@ -49,7 +49,7 @@
 								어렸을 적 동물원에 가면 나무를 마치 땅에 있는 것마냥 자유자재로 움직여 다니던 원숭이의 모습을 보며 신기해하곤 했다.
 								<br>긴 팔로 성큼성큼 나아가는 모습이 무섭지도 않은지, 떨어지면 아프진 않을지 등의 생각을 떠올리게 만들었다.
 								<br>하지만 이런 원숭이조차 나무에서 떨어질 때가 있다는 것이다.
-								<br>태어나길 나무에서 태어난 원숭이도 나무에서 떨어지는데, 어떻게 인간이라고 하여 삶 속에서 작은 실수 하나 만들지 않을 수가 있을까.
+								<br>태어나길 나무에서 태어난 원숭이도 나무에서 떨어지는데, 어ㅋ게 인간이라고 하여 삶 속에서 작은 실수 하나 만들지 않을 수가 있을까.
 								<br>원숭이가 나무에서 떨어지는 실수를 하는 것을 우리가 실수하는 것에 비유하여 우리는 모두 실수를 하는 존재임을 전달한다.
 							</p>
 							<ul class="actions stacked">
@@ -57,7 +57,7 @@
 							</ul>
 						</div>
 						<div id="image" class="image">
-							<img src="/images/mainPoster.png" alt="" />
+							<img src="/images/mainPoster.jpg" alt="" />
 						</div>
 							<div id="map" class="image"></div>
 							<script>
@@ -66,7 +66,7 @@
 							button.addEventListener('click', changeCenter);
 
 							function initMap() {
-								var gyeongbokgung = { lat: 37.57979553563185, lng: 126.97706245552442 };
+								var gyeongbokgung = { lat: 37.5379009, lng: 127.0848651 };
 								map = new google.maps.Map( document.getElementById('map'), {
 									zoom: 15,
 									center: gyeongbokgung,
@@ -79,16 +79,16 @@
 									position: gyeongbokgung,
 									map: map,
 									label: {
-										text: "경복궁",
+										text: "구의 플레이스 라운드",
 										color: "#C70E20"
 									}
 								});
 
-								var subMarkerPoint = { lat: 37.57956596361732, lng: 126.9803240214433};
+								var subMarkerPoint = { lat: 37.5379009, lng: 127.0848651 };
 								var subMarker = new google.maps.Marker({
 									position: subMarkerPoint,
 									map: map,
-									label: "국립현대미술관",
+									label: "구의 플레이스 라운드",
 									icon: {
 										url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
 										labelOrigin: new google.maps.Point(20, 47),
@@ -98,7 +98,7 @@
 							}
 
 							function changeCenter() {
-								var gyeongbokgung = { lat: 37.57979553563185, lng: 126.97706245552442 };
+								var gyeongbokgung = { lat: 37.5379009, lng: 127.0848651 };
 								map.panTo(gyeongbokgung);
 								map.setZoom(15);
 							}
@@ -131,7 +131,7 @@
 
 						<!-- Gallery -->
 							<div class="gallery style2 medium lightbox onscroll-fade-in">
-								<th:block th:each="work : ${getWorksListByViewCounts}">
+								<th:block th:each="work : ${getWorksListByViewCounts}"  th:if="${not #lists.isEmpty(getWorksListByViewCounts)}">
 								<article>
 									<a th:href="${work.getImgUrl()}" class="image">
 										<img th:src="${work.getImgUrl()}" alt="" />

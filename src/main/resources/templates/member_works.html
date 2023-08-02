@@ -1,17 +1,17 @@
 <div th:fragment="works">
   <!-- Fragment content goes here -->
+  <th:block th:each="work : ${memberWork.getWorkList}">
   <header>
-    <h2 th:text="${memberWork.mainWorkTitle}"></h2>
+    <h2 th:text="${work.title}"></h2>
   </header>
-  <p th:text="${memberWork.mainWorkContents}">
+  <p th:text="${work.contents}">
   </p>
   <section>
     <div class="row">
-      <th:block th:each="work : ${memberWork.getWorkList}">
         <div class="col-4 col-6-medium col-12-small">
           <a href="#" class="image fit"><img th:src="${work.imgUrl}" alt=""></a>
         </div>
-      </th:block>
     </div>
   </section>
+  </th:block>
 </div>

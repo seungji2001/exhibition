@@ -1,10 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<!--
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Astral by HTML5 UP</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="/member/assets-member/css/main.css" />
+  <noscript><link rel="stylesheet" href="/member/assets-member/css/noscript.css" /></noscript>
 </head>
-<body>
-$END$
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+</script>
+<body class="is-preload">
+
+<!-- Wrapper-->
+<div id="wrapper">
+
+  <!-- Nav -->
+  <nav id="nav">
+    <a href="#" class="icon solid fa-home"><span>멤버 등록</span></a>
+    <a href="#work" class="icon solid fa-folder"><span>작업 등록</span></a>
+    <a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
+    <!--						<a href="https://twitter.com/ajlkn" class="icon brands fa-twitter"><span>Twitter</span></a>-->
+  </nav>
+
+  <!-- Main -->
+  <div id="main">
+
+    <!-- Me -->
+    <!-- Contact -->
+    <article class="panel">
+      <header>
+        <h2>멤버 등록하기</h2>
+      </header>
+      <form id="messageForm" th:action="@{'/member'}"  th:object="${registMember}" method="post">
+        <div>
+          <div class="row">
+            <div class="col-6 col-12-medium">
+              <input type="text" name="name" th:field="*{name}" placeholder="Name" />
+            </div>
+            <div class="col-6 col-12-medium">
+              <input type="text" name="email" th:field="*{major}" placeholder="Major" />
+            </div>
+            <div class="col-12">
+              <textarea name="message" th:field="*{introduction}" placeholder="Introduction" rows="6"></textarea>
+            </div>
+            <div class="col-12">
+              <input type="submit" value="등록하기" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </article>
+
+    <article id="work" class="panel">
+      <header>
+        <h2>작업 등록하기</h2>
+      </header>
+      <form th:action="@{'/work'}"  th:object="${registWork}" method="post">
+        <div>
+          <div class="row">
+            <div class="col-6 col-12-medium">
+              <input type="text" name="name" th:field="*{name}" placeholder="Member Name" />
+            </div>
+            <div class="col-6 col-12-medium">
+              <input type="text" name="email" th:field="*{title}" placeholder="Title" />
+            </div>
+            <div class="col-12">
+              <textarea name="message" th:field="*{contents}" placeholder="content" rows="6"></textarea>
+            </div>
+            <div class="col-12">
+              <input type="submit" value="등록하기" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </article>
+  </div>
+
+
+  <!-- Footer -->
+  <!--					<div id="footer">-->
+  <!--						<ul class="copyright">-->
+  <!--							<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>-->
+  <!--						</ul>-->
+  <!--					</div>-->
+
+</div>
+
+<!-- Scripts -->
+<script src="/member/assets-member/js/jquery.min.js"></script>
+<script src="/member/assets-member/js/browser.min.js"></script>
+<script src="/member/assets-member/js/breakpoints.min.js"></script>
+<script src="/member/assets-member/js/util.js"></script>
+<script src="/member/assets-member/js/main.js"></script>
+
 </body>
 </html>
