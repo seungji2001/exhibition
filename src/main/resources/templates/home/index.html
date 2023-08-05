@@ -49,7 +49,7 @@
 								어렸을 적 동물원에 가면 나무를 마치 땅에 있는 것마냥 자유자재로 움직여 다니던 원숭이의 모습을 보며 신기해하곤 했다.
 								<br>긴 팔로 성큼성큼 나아가는 모습이 무섭지도 않은지, 떨어지면 아프진 않을지 등의 생각을 떠올리게 만들었다.
 								<br>하지만 이런 원숭이조차 나무에서 떨어질 때가 있다는 것이다.
-								<br>태어나길 나무에서 태어난 원숭이도 나무에서 떨어지는데, 어ㅋ게 인간이라고 하여 삶 속에서 작은 실수 하나 만들지 않을 수가 있을까.
+								<br>태어나길 나무에서 태어난 원숭이도 나무에서 떨어지는데, 어떻게 인간이라고 하여 삶 속에서 작은 실수 하나 만들지 않을 수가 있을까.
 								<br>원숭이가 나무에서 떨어지는 실수를 하는 것을 우리가 실수하는 것에 비유하여 우리는 모두 실수를 하는 존재임을 전달한다.
 							</p>
 							<ul class="actions stacked">
@@ -125,8 +125,9 @@
 				<!-- Five -->
 					<section class="wrapper style1 align-center">
 						<div class="inner">
-							<h2>Massa sed condimentum</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
+							<h2>원숭이도 나무에서
+								떨어질 때가 있다</h2>
+							<p>...</p>
 						</div>
 
 						<!-- Gallery -->
@@ -152,7 +153,7 @@
 				<!-- Six -->
 					<section class="wrapper style1 align-center">
 						<div class="inner">
-							<h2>당신의 실수를 남겨주세요</h2>
+							<h2>우리의 실수</h2>
 							<p>예상치 못한 실수로부터 당신의 이야기는 시작됩니다.</p>
 							<div class="items style1 medium onscroll-fade-in">
 								<section th:if="${not #lists.isEmpty(requestDto)}" th:each="record : ${recordList}">
@@ -167,11 +168,11 @@
 				<!-- Seven -->
 					<section class="wrapper style1 align-center">
 						<div class="inner medium">
-							<h2>당신의 실수</h2>
+							<h2>당신의 실수를 남겨주세요</h2>
 							<form th:action="@{/record}"  th:object="${requestDto}" method="post">
 								<div class="fields">
 									<div class="field">
-										<label for="name">Name</label>
+										<label for="name">이름</label>
 										<input type="text" th:field="*{writer}" name="name" id="name"/>
 									</div>
 <!--									<div class="field half">-->
@@ -179,12 +180,12 @@
 <!--										<input type="email" name="email" id="email" value="" />-->
 <!--									</div>-->
 									<div class="field">
-										<label for="message">Message</label>
+										<label for="message">메세지</label>
 										<textarea th:field="*{content}" name="message" id="message" rows="6"></textarea>
 									</div>
 								</div>
 								<ul class="actions special">
-									<li><input type="submit" name="submit" id="submit" value="Send Message" /></li>
+									<li><input type="submit" name="submit" id="submit" value="보내기" /></li>
 								</ul>
 							</form>
 

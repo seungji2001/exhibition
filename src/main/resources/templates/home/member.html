@@ -66,25 +66,25 @@
 						<!-- Contact -->
 							<article id="contact" class="panel">
 								<header>
-									<h2>Contact Me</h2>
+									<h2>작가에게 하고싶은 말</h2>
 								</header>
 								<form id="messageForm" th:action="@{'/message/' + ${memberInformation.getId()}}"  th:object="${sendMessage}" method="post">
 									<div>
 										<div class="row">
 											<div class="col-6 col-12-medium">
-												<input type="text" name="name" th:field="*{sender}" placeholder="Name" />
+												<input type="text" name="name" th:field="*{sender}" placeholder="이름" />
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="email"th:field="*{email}" placeholder="Email" />
+												<input type="text" name="email"th:field="*{email}" placeholder="이메일" />
 											</div>
 											<div class="col-12">
-												<input type="text" name="title" th:field="*{title}" placeholder="Title" />
+												<input type="text" name="title" th:field="*{title}" placeholder="제목" />
 											</div>
 											<div class="col-12">
-												<textarea name="message" th:field="*{contents}" placeholder="Message" rows="6"></textarea>
+												<textarea name="message" th:field="*{contents}" placeholder="메세지" rows="6"></textarea>
 											</div>
 											<div class="col-12">
-												<input type="submit" value="Send Message" />
+												<input type="submit" value="메세지 보내기" />
 											</div>
 										</div>
 									</div>
