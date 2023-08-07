@@ -1,14 +1,12 @@
-package com.example.demo.dto.adminDto;
+package com.example.demo.dto.exhibitionDto;
 
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
-public class AdminRequestDto {
+public class ExhibitionRequestDto {
     @Builder
     @Data
-    public static class registExhibition{
+    public static class registrationExhibition {
         private Long exhibitionId;
         private String title;
         private String introduction;
