@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Member;
 import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.messageDto.MessageRequestDto;
+import com.example.demo.dto.workDto.WorkRequestDto;
 import com.example.demo.service.MemberService;
 import com.example.demo.service.WorkService;
 import jakarta.servlet.http.Cookie;
@@ -30,6 +32,23 @@ public class MemberController {
         return "home/member";
     }
 
+    //세로운 멤버 등록페이지로 넘어가기
+    @GetMapping(value = "/member")
+    public String registrationMemebr(Model model
+            , MemberRequestDto.registNewMember registNewMember
+            , WorkRequestDto.registNewWork registNewWork){
+        model.addAttribute("registMember", registNewMember);
+        model.addAttribute("registWork", registNewWork);
+        return "home/admin";
+    }
+
+    //세로운 멤버 등록
+    @PostMapping(value = "/member")
+    public String registrationMemebr(MemberRequestDto.registNewMember memberRequest){
+        ResponseEntity.ok().body(memberService.registNewMemebr(memberRequest));
+        return "redirect:/member";
+    }
+
     //멤버를 조회 하였을때
     @GetMapping(value = "/member/{id}")
     public String getMember(
@@ -43,17 +62,20 @@ public class MemberController {
         return "home/member";
     }
 
-    //세로운 멤버 등록
-    @PostMapping(value = "/member")
-    public String registrationMemebr(MemberRequestDto.registNewMember memberRequest){
-        ResponseEntity.ok().body(memberService.registNewMemebr(memberRequest));
-        return "redirect:/member";
-    }
-
     //한 멤버의 모든 작품들을 조회
     @GetMapping(value = "/member/{id}/works")
     public String getWorksByMemberId(Model model, @PathVariable("id") Long id) {
         model.addAttribute("memberWork", memberService.getWorksByMember(id));
         return "member_works :: works";
     }
+
+    //한 멤버의 메인 작품으로 등록하기
+    @PostMapping(value = "/member/{member_id}/mainWork/{work_id}")
+    public ResponseEntity registrationMainWorkToMember(@PathVariable("member_id")Long member_id, @PathVariable("work_id")Long work_id){
+        memberService.registrationMainWorkToMember(member_id, work_id);
+
+        return ResponseEntity.ok().build();
+    }
+
+
 }

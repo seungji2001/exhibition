@@ -1,11 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Member;
+import com.example.demo.domain.Work;
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
 import com.example.demo.repository.MemberRepository;
+import com.example.demo.repository.WorkRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,9 @@ public class MemberService {
 
     @Autowired
     MemberRepository memberRepository;
+
+    @Autowired
+    WorkRepository workRepository;
 
     @Transactional
     //한 멤버에 대한 정보 가져오기
@@ -70,4 +75,11 @@ public class MemberService {
         return memberRepository.save(member).getId();
     }
 
+    @Transactional
+    public ResponseEntity registrationMainWorkToMember(Long member_id,Long work_id){
+        Member member = memberRepository.findById(member_id).orElseThrow(()-> new IllegalArgumentException("해당하는 유저가 없습니다"));
+        Work work = workRepository.findById(work_id).orElseThrow(()-> new IllegalArgumentException("해당하는 작품이 없습니다."));
+        member.setMainWork(work);
+        return ResponseEntity.ok().build();
+    }
 }
