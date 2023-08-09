@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import com.example.demo.dto.exhibitionDto.ExhibitionRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,4 +39,17 @@ public class Exhibition {
 
     @OneToMany(mappedBy = "exhibition")
     private List<Tag> tagList;
+
+    public Exhibition updateExhibition(ExhibitionRequestDto.updateExhibition updateExhibition){
+        return Exhibition.builder()
+                .id(this.id)
+                .title(updateExhibition.getTitle() != null ? updateExhibition.getTitle():this.title)
+                .introduction(updateExhibition.getIntroduction() != null? updateExhibition.getIntroduction():this.introduction)
+                .location_x(updateExhibition.getLocation_x() != null ? updateExhibition.getLocation_x() : this.location_x)
+                .location_y(updateExhibition.getLocation_y() != null ? updateExhibition.getLocation_y() : this.location_y)
+                .startDate(updateExhibition.getStartDate() != null? updateExhibition.getStartDate() : this.getStartDate())
+                .endDate(updateExhibition.getEndDate()!= null? updateExhibition.getEndDate() : this.getEndDate())
+                .viewCounts(this.viewCounts)
+                .build();
+    }
 }

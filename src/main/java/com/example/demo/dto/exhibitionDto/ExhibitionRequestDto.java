@@ -15,4 +15,15 @@ public class ExhibitionRequestDto {
         private String startDate;
         private String endDate;
     }
+
+    @Builder
+    @Data
+    public static class updateExhibition {
+        private String title;
+        private String introduction;
+        private String location_x;
+        private String location_y;
+        private String startDate;
+        private String endDate;
+    }
 }
