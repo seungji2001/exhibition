@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AdminController {
     //세로운 멤버 등록페이지로 넘어가기
-    @GetMapping(value = "/member")
-    public String registrationMemebr(Model model
-            , MemberRequestDto.registNewMember registNewMember
-            , WorkRequestDto.registNewWork registNewWork){
-        model.addAttribute("registMember", registNewMember);
-        model.addAttribute("registWork", registNewWork);
-        return "home/admin";
+    @GetMapping(value = "/admin")
+    public String registrationMemebr(){
+        return "admin/NiceAdmin/users-profile.html";
     }
 }

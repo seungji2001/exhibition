@@ -1,3 +1,5 @@
+package com.example.demo.dto.exhibitionDto;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;

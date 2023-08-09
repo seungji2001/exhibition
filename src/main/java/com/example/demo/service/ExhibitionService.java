@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Exhibition;
 import com.example.demo.dto.exhibitionDto.ExhibitionRequestDto;
+import com.example.demo.dto.exhibitionDto.ExhibitionResponseDto;
 import com.example.demo.repository.ExhibitionRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
