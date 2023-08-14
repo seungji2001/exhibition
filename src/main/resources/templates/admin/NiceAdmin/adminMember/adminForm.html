@@ -1,24 +1,24 @@
-<div th:fragment="editMyProfileFragment" th:action="@{'/message/' + ${memberInformation.getId()}}"  th:object="${sendMessage}" method="post">
+<div th:fragment="registrationMember" method="post">
   <!-- Profile Edit Form -->
   <form>
     <div class="row mb-3">
       <label for="name" class="col-md-4 col-lg-3 col-form-label">이름</label>
       <div class="col-md-8 col-lg-9">
-        <input name="name" type="text" class="form-control" id="name" th:if="${not #strings.isEmpty(myProfile)}" th:value="${myProfile.name}">
-      </div>
-    </div>
-
-    <div class="row mb-3">
-      <label for="introduction" class="col-md-4 col-lg-3 col-form-label">소개</label>
-      <div class="col-md-8 col-lg-9">
-        <textarea name="introduction" class="form-control" id="introduction" style="height: 100px" th:if="${not #strings.isEmpty(myProfile.introduction)}" th:text="${myProfile.introduction}"></textarea>
+        <input name="name" type="text" class="form-control" id="name">
       </div>
     </div>
 
     <div class="row mb-3">
       <label for="major" class="col-md-4 col-lg-3 col-form-label">major</label>
       <div class="col-md-8 col-lg-9">
-        <input name="major" type="text" class="form-control" id="major" th:value="${myProfile.major}">
+        <input name="major" type="text" class="form-control" id="major">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="introduction" class="col-md-4 col-lg-3 col-form-label">소개</label>
+      <div class="col-md-8 col-lg-9">
+        <textarea name="introduction" class="form-control" id="introduction" style="height: 100px"></textarea>
       </div>
     </div>
 
