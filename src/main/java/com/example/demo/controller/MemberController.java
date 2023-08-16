@@ -19,6 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Controller
 public class MemberController {
@@ -38,21 +40,21 @@ public class MemberController {
         return ResponseEntity.ok().body(adminService.registration(adminMember));
     }
 
-    //supporter로 멤버 등록
+    //서포터로 멤버 등록
     @PostMapping(value = "/supporter/member/{exhibition_id}")
     public ResponseEntity<Long> registrationSupporterMember(MemberRequestDto.supporterMember supporterMember, @PathVariable("exhibition_id") Long exhibitionId){
         return ResponseEntity.ok().body(supporterService.registration(supporterMember, exhibitionId));
     }
 
-    //세로운 멤버 등록
+    //새로운 멤버 등록
     @PostMapping(value = "/member/{exhibition_id}")
     public ResponseEntity<Long> registrationMemebr(MemberRequestDto.participantsMember participantsMember, @PathVariable("exhibition_id") Long exhibitionId){
         return ResponseEntity.ok().body(memberService.registNewMemebr(participantsMember, exhibitionId));
     }
 
-    //서포터를 조회하였을때
+    //멤버 조회하였을때 -- v1
     @GetMapping(value = "/member/{id}")
-    public String getSupporter(
+    public String getMember(
             Model model,
             @PathVariable("id") Long id,
             MessageRequestDto.sendMessage sendMessage
@@ -61,6 +63,18 @@ public class MemberController {
         model.addAttribute("memberInformation", memberService.getMember(id).getBody());
         model.addAttribute("sendMessage", sendMessage);
         return "home/member";
+    }
+
+    //서포터를 조회하였을때
+    @GetMapping(value = "/supporter/member/{member_id}/exhibition/{exhibition_id}")
+    public ResponseEntity<MemberResponseDto.getSupporterMember> getSupporter(@PathVariable("member_id")Long member_id,@PathVariable("exhibition_id")Long exhibition_id){
+        return ResponseEntity.ok().body(supporterService.getSupporterMember(member_id, exhibition_id));
+    }
+
+    //모든 서포터를 조회하였을때
+    @GetMapping(value = "/supporter/exhibition/{exhibition_id}")
+    public ResponseEntity<List<MemberResponseDto.getSupporterMember>> getAllSupporters(@PathVariable("exhibition_id")Long exhibition_id){
+        return ResponseEntity.ok().body(supporterService.getAllSupporterMember(exhibition_id));
     }
 
     //한 멤버의 모든 작품들을 조회

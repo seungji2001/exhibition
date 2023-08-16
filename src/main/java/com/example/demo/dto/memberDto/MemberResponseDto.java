@@ -12,6 +12,7 @@ import lombok.Getter;
 import java.util.List;
 
 public class MemberResponseDto {
+
     @Builder
     @Data
     public static class getMember{
@@ -31,4 +32,14 @@ public class MemberResponseDto {
         private List<WorkResponseDto.getWork> getWorkList;
     }
 
+    @Builder
+    @Data
+    public static class getSupporterMember{
+        private Long id;
+        private String loginId;
+        private String name;
+        private String introduction;
+        private String cellphone;
+        private String major;
+    }
 }
