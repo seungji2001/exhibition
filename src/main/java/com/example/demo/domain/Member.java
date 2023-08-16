@@ -1,10 +1,8 @@
 package com.example.demo.domain;
 
+import com.example.demo.Enum.MemberRole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -32,6 +30,15 @@ public class Member {
     private Work mainWork;
 
     private String introduction;
+    //추가된곳
+    private String loginId;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private MemberRole memberRole;
+
+    private String registerDate;
+
+    private String cellphone;
 
     @OneToMany(mappedBy = "receiver")
     private List<Message> messageList;

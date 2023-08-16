@@ -37,4 +37,6 @@ public class ExhibitionController {
     public ResponseEntity updateExhibition(@PathVariable("exhibition_id")Long exhibition_id,@RequestBody ExhibitionRequestDto.updateExhibition updateExhibition){
         return ResponseEntity.ok().body(exhibitionService.updateExhibition(exhibition_id, updateExhibition));
     }
+
+    //exhibition 삭제하기
 }

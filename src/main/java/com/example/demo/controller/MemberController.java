@@ -5,7 +5,9 @@ import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.messageDto.MessageRequestDto;
 import com.example.demo.dto.workDto.WorkRequestDto;
+import com.example.demo.service.AdminService;
 import com.example.demo.service.MemberService;
+import com.example.demo.service.SupporterService;
 import com.example.demo.service.WorkService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,33 +27,32 @@ public class MemberController {
     MemberService memberService;
     @Autowired
     WorkService workService;
+    @Autowired
+    AdminService adminService;
+    @Autowired
+    SupporterService supporterService;
 
-    @GetMapping(value = "/test")
-    public String test() {
-
-        return "home/member";
+    //관리자로 멤버 등록
+    @PostMapping(value = "/admin/member")
+    public ResponseEntity<Long> registrationAdminMember(MemberRequestDto.adminMember adminMember){
+        return ResponseEntity.ok().body(adminService.registration(adminMember));
     }
 
-    //세로운 멤버 등록페이지로 넘어가기
-    @GetMapping(value = "/member")
-    public String registrationMemebr(Model model
-            , MemberRequestDto.registNewMember registNewMember
-            , WorkRequestDto.registNewWork registNewWork){
-        model.addAttribute("registMember", registNewMember);
-        model.addAttribute("registWork", registNewWork);
-        return "home/admin";
+    //supporter로 멤버 등록
+    @PostMapping(value = "/supporter/member/{exhibition_id}")
+    public ResponseEntity<Long> registrationSupporterMember(MemberRequestDto.supporterMember supporterMember, @PathVariable("exhibition_id") Long exhibitionId){
+        return ResponseEntity.ok().body(supporterService.registration(supporterMember, exhibitionId));
     }
 
     //세로운 멤버 등록
-    @PostMapping(value = "/member")
-    public String registrationMemebr(MemberRequestDto.registNewMember memberRequest){
-        ResponseEntity.ok().body(memberService.registNewMemebr(memberRequest));
-        return "redirect:/member";
+    @PostMapping(value = "/member/{exhibition_id}")
+    public ResponseEntity<Long> registrationMemebr(MemberRequestDto.participantsMember participantsMember, @PathVariable("exhibition_id") Long exhibitionId){
+        return ResponseEntity.ok().body(memberService.registNewMemebr(participantsMember, exhibitionId));
     }
 
-    //멤버를 조회 하였을때
+    //서포터를 조회하였을때
     @GetMapping(value = "/member/{id}")
-    public String getMember(
+    public String getSupporter(
             Model model,
             @PathVariable("id") Long id,
             MessageRequestDto.sendMessage sendMessage

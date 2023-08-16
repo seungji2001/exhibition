@@ -1,13 +1,17 @@
 package com.example.demo.service;
 
+import com.example.demo.Enum.MemberRole;
+import com.example.demo.domain.Exhibition;
 import com.example.demo.domain.Member;
 import com.example.demo.domain.Work;
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
+import com.example.demo.repository.ExhibitionRepository;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.WorkRepository;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +25,10 @@ public class MemberService {
 
     @Autowired
     MemberRepository memberRepository;
-
     @Autowired
     WorkRepository workRepository;
+    @Autowired
+    ExhibitionRepository exhibitionRepository;
 
     @Transactional
     //한 멤버에 대한 정보 가져오기
@@ -65,11 +70,12 @@ public class MemberService {
 
     //한 멤버에 대한 정보 집어넣기
     @Transactional
-    public Long registNewMemebr(MemberRequestDto.registNewMember memberRequest){
+    public Long registNewMemebr(MemberRequestDto.participantsMember participantsMember, Long exhibitionId){
+        Exhibition exhibition = exhibitionRepository.findById(exhibitionId).orElseThrow(()-> new IllegalArgumentException("해당하는 전시가 없습니다."));
         Member member = Member.builder()
-                .name(memberRequest.getName())
-                .major(memberRequest.getMajor())
-                .introduction(memberRequest.getIntroduction())
+                .name(participantsMember.getName())
+                .memberRole(MemberRole.PARTICIPANTS)
+                .exhibition(exhibition)
                 .build();
 
         return memberRepository.save(member).getId();
@@ -82,4 +88,12 @@ public class MemberService {
         member.setMainWork(work);
         return ResponseEntity.ok().build();
     }
+
+    @Transactional
+    public void loginMember(MemberRequestDto.loginMember loginMember, HttpSession session){
+        Member member = memberRepository.findMemberByLoginIdAndPassword(loginMember.getLoginId(), loginMember.getPassword()).orElseThrow(()-> new IllegalArgumentException("아이디, 비번을 잘못 입력하셨습니다."));
+        session.setAttribute("loginMember", member);
+    }
+
+    //TODO 새로 추가한 멤버 필드에 맞춰 변경하고 정리해두기
 }
