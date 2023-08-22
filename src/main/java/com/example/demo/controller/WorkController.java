@@ -20,10 +20,25 @@ public class WorkController {
     @Autowired
     WorkService workService;
 
-    //멤버별 작품 등록하기
+    //멤버별 작품 등록하기 -v1
     @PostMapping(value = "/work")
     public String registrationWork (WorkRequestDto.registNewWork newWork){
         workService.registrationNewWork(newWork);
         return "redirect:/member#work";
     }
+
+    //서포터 작품 등록하기, 만약 작품이 하나도 없는 경우 메인 작품으로
+
+    //서포터 메인 작품 변경하기
+
+    //서포터 작품 삭제하기
+
+    //서포터 작품 수정하기
+
+    //서포터 작품 클릭시 조회수와 누가 클릭했는지 기록남기기(만약 참가자로 등록이 되어있다면, 참가자 이름도,남기기)
+
+    //서포터 작품 좋아요 수 추가하기
+
+    //서포터 작품에 대한 감상평 보기
+
 }
