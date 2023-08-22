@@ -98,4 +98,8 @@ public class MemberController {
 
         return ResponseEntity.ok().build();
     }
+
+    //서포터 삭제
+
+    //개발자 삭제
 }
