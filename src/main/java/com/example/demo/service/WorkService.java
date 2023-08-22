@@ -129,13 +129,21 @@ public class WorkService {
        return workRepository.save(work).getId();
     }
 
-    public  Long registrationWorkToMember(WorkRequestDto.registSupporterWork registSupporterWork, Long exhibition_id, Long participants_id){
-        Long id = registrationWork(registSupporterWork, exhibition_id, participants_id);
-        Member member = memberRepository.findById(participants_id).orElseThrow(()-> new IllegalArgumentException("존재하지 않는 멤버입니다."));
+    @Transactional
+    public  Long registrationWorkToMember(WorkRequestDto.registSupporterWork registSupporterWork, Long exhibition_id, Long supporter_id){
+        Long id = registrationWork(registSupporterWork, exhibition_id, supporter_id);
+        Member member = memberRepository.findById(supporter_id).orElseThrow(()-> new IllegalArgumentException("존재하지 않는 멤버입니다."));
         if(member.getMainWork() == null){
             Work work = workRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("존재하지 않는 작품입니다."));
             member.setMainWork(work);
         }
         return id;
+    }
+
+    @Transactional
+    public void changeMainWork(Long supporter_id,Long work_id){
+        Member member = memberRepository.findById(supporter_id).orElseThrow(()-> new IllegalArgumentException("존재하지 않는 멤버입니다."));
+        Work work = workRepository.findById(work_id).orElseThrow(()-> new IllegalArgumentException("존재하지 않는 작품입니다."));
+        member.setMainWork(work);
     }
 }

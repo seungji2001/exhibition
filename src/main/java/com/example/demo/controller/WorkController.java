@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,12 +25,17 @@ public class WorkController {
     }
 
     //서포터 작품 등록하기, 만약 작품이 하나도 없는 경우 메인 작품으로
-    @PostMapping(value = "/exhibition/{exhibition_id}/participants/{participants_id}/work")
-    public ResponseEntity<Long> registrationWork (WorkRequestDto.registSupporterWork work, @PathVariable("exhibition_id")Long exhibition_id, @PathVariable("participants_id")Long participants_id){
-        return ResponseEntity.ok().body(workService.registrationWorkToMember(work, exhibition_id, participants_id));
+    @PostMapping(value = "/exhibition/{exhibition_id}/supporter/{supporter_id}/work")
+    public ResponseEntity<Long> registrationWork (WorkRequestDto.registSupporterWork work, @PathVariable("exhibition_id")Long exhibition_id, @PathVariable("supporter_id")Long supporter_id){
+        return ResponseEntity.ok().body(workService.registrationWorkToMember(work, exhibition_id, supporter_id));
     }
 
     //서포터 메인 작품 변경하기
+    @PutMapping(value = "/supporter/{supporter_id}/changeMainWork/{work_id}")
+    public ResponseEntity changeMainWork(@PathVariable("supporter_id")Long supporter_id, @PathVariable("work_id")Long work_id){
+        workService.changeMainWork(supporter_id, work_id);
+        return ResponseEntity.ok().build();
+    }
 
     //서포터 작품 삭제하기
 
