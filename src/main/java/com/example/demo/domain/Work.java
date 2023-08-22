@@ -30,6 +30,10 @@ public class Work {
     @Column(columnDefinition = "integer default 0")
     private Long view;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exhibition_id")
+    private Exhibition exhibition;
+
     public void updateView(){
         view += 1;
     }

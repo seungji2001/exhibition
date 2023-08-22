@@ -21,13 +21,17 @@ public class WorkController {
     WorkService workService;
 
     //멤버별 작품 등록하기 -v1
-    @PostMapping(value = "/work")
+    @PostMapping(value = "/work/version1")
     public String registrationWork (WorkRequestDto.registNewWork newWork){
         workService.registrationNewWork(newWork);
         return "redirect:/member#work";
     }
 
     //서포터 작품 등록하기, 만약 작품이 하나도 없는 경우 메인 작품으로
+    @PostMapping(value = "/exhibition/{exhibition_id}/participants/{participants_id}/work")
+    public ResponseEntity<Long> registrationWork (WorkRequestDto.registSupporterWork work, @PathVariable("exhibition_id")Long exhibition_id, @PathVariable("participants_id")Long participants_id){
+        return ResponseEntity.ok().body(workService.registrationWorkToMember(work, exhibition_id, participants_id));
+    }
 
     //서포터 메인 작품 변경하기
 

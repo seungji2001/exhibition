@@ -5,6 +5,7 @@ import lombok.Data;
 
 public class WorkRequestDto {
 
+    //version 1
     @Builder
     @Data
     public static class registNewWork{
@@ -12,5 +13,14 @@ public class WorkRequestDto {
         private String title;
         private String contents;
     }
+
+    @Builder
+    @Data
+    public static class registSupporterWork{
+        private String img_url;
+        private String content;
+        private String title;
+    }
+
 
 }

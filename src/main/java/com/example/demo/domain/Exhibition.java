@@ -40,6 +40,9 @@ public class Exhibition {
     @OneToMany(mappedBy = "exhibition")
     private List<Tag> tagList;
 
+    @OneToMany(mappedBy = "exhibition")
+    private List<Work> workList;
+
     public Exhibition updateExhibition(ExhibitionRequestDto.updateExhibition updateExhibition){
         return Exhibition.builder()
                 .id(this.id)

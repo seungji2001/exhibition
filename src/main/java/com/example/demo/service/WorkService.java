@@ -1,11 +1,13 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.Exhibition;
 import com.example.demo.domain.Member;
 import com.example.demo.domain.Work;
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.workDto.WorkRequestDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
+import com.example.demo.repository.ExhibitionRepository;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.WorkRepository;
 import jakarta.transaction.Transactional;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +27,8 @@ public class WorkService {
     MemberRepository memberRepository;
     @Autowired
     WorkRepository workRepository;
+    @Autowired
+    ExhibitionRepository exhibitionRepository;
 
     //새로운 작품 등록하기
     @Transactional
@@ -108,5 +113,29 @@ public class WorkService {
         return getWorkList.stream()
                 .sorted(Comparator.comparing(WorkResponseDto.getWorkThumbnail::getViewCount).reversed())
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public Long registrationWork(WorkRequestDto.registSupporterWork registSupporterWork, Long exhibition_id, Long participants_id){
+        Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()->new IllegalArgumentException("해당하는 전시가 없습니다."));
+        Member member = memberRepository.findMemberByIdAndExhibition(participants_id, exhibition).orElseThrow(()-> new IllegalArgumentException("해당하는 전시에 멤버가 없습니다."));
+        Work work = Work.builder()
+                .ImgUrl(registSupporterWork.getImg_url())
+                .title(registSupporterWork.getTitle())
+                .contents(registSupporterWork.getContent())
+                .member(member)
+                .exhibition(exhibition)
+                .build();
+       return workRepository.save(work).getId();
+    }
+
+    public  Long registrationWorkToMember(WorkRequestDto.registSupporterWork registSupporterWork, Long exhibition_id, Long participants_id){
+        Long id = registrationWork(registSupporterWork, exhibition_id, participants_id);
+        Member member = memberRepository.findById(participants_id).orElseThrow(()-> new IllegalArgumentException("존재하지 않는 멤버입니다."));
+        if(member.getMainWork() == null){
+            Work work = workRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("존재하지 않는 작품입니다."));
+            member.setMainWork(work);
+        }
+        return id;
     }
 }
