@@ -1,10 +1,7 @@
 package com.example.demo.dto.memberDto;
 
-import com.example.demo.domain.Member;
-import com.example.demo.domain.Message;
 import com.example.demo.domain.Work;
 import com.example.demo.dto.workDto.WorkResponseDto;
-import com.example.demo.service.MemberService;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -41,5 +38,12 @@ public class MemberResponseDto {
         private String introduction;
         private String cellphone;
         private String major;
+    }
+
+    @Builder
+    @Data
+    public static class getParticipants{
+        private Long id;
+        private String name;
     }
 }

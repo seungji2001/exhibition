@@ -4,7 +4,6 @@ import com.example.demo.Enum.MemberRole;
 import com.example.demo.domain.Exhibition;
 import com.example.demo.domain.Member;
 import com.example.demo.domain.Work;
-import com.example.demo.dto.ResponseDto;
 import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
@@ -21,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MemberService {
+public class ParticipantService {
 
     @Autowired
     MemberRepository memberRepository;
@@ -96,4 +95,31 @@ public class MemberService {
     }
 
     //TODO 새로 추가한 멤버 필드에 맞춰 변경하고 정리해두기
+    //참가자들 모두 가져오기(일반 멤버)
+    @Transactional
+    public List<MemberResponseDto.getParticipants> getAllParticipants(Long exhibition_id){
+        Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()->new IllegalArgumentException("해당하는 전시가 없습니다."));
+        List<Member> members = memberRepository.findAllByExhibitionAndMemberRole(exhibition, MemberRole.PARTICIPANTS);
+        return members.stream()
+                .map(
+                member -> {
+                    return MemberResponseDto.getParticipants.builder()
+                            .id(member.getId())
+                            .name(member.getName())
+                            .build();
+                }
+                )
+                .collect(Collectors.toList());
+
+    }
+
+    @Transactional
+    public MemberResponseDto.getParticipants getParticipant(Long participant_id, Long exhibition_id){
+        Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(() -> new IllegalArgumentException("해당하는 전시가 없습니다."));
+        Member member = memberRepository.findMemberByIdAndExhibition(participant_id, exhibition).orElseThrow(()-> new IllegalArgumentException("해당하는 멤버가 없습니다."));
+        return MemberResponseDto.getParticipants.builder()
+                .id(member.getId())
+                .name(member.getName())
+                .build();
+    }
 }

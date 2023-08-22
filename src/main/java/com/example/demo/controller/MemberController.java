@@ -1,17 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.Member;
 import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
 import com.example.demo.dto.messageDto.MessageRequestDto;
-import com.example.demo.dto.workDto.WorkRequestDto;
 import com.example.demo.service.AdminService;
-import com.example.demo.service.MemberService;
+import com.example.demo.service.ParticipantService;
 import com.example.demo.service.SupporterService;
 import com.example.demo.service.WorkService;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +21,7 @@ import java.util.List;
 public class MemberController {
 
     @Autowired
-    MemberService memberService;
+    ParticipantService participantService;
     @Autowired
     WorkService workService;
     @Autowired
@@ -49,7 +44,7 @@ public class MemberController {
     //새로운 멤버 등록
     @PostMapping(value = "/member/{exhibition_id}")
     public ResponseEntity<Long> registrationMemebr(MemberRequestDto.participantsMember participantsMember, @PathVariable("exhibition_id") Long exhibitionId){
-        return ResponseEntity.ok().body(memberService.registNewMemebr(participantsMember, exhibitionId));
+        return ResponseEntity.ok().body(participantService.registNewMemebr(participantsMember, exhibitionId));
     }
 
     //멤버 조회하였을때 -- v1
@@ -60,15 +55,15 @@ public class MemberController {
             MessageRequestDto.sendMessage sendMessage
     ){
         workService.countView(id);
-        model.addAttribute("memberInformation", memberService.getMember(id).getBody());
+        model.addAttribute("memberInformation", participantService.getMember(id).getBody());
         model.addAttribute("sendMessage", sendMessage);
         return "home/member";
     }
 
     //서포터를 조회하였을때
-    @GetMapping(value = "/supporter/member/{member_id}/exhibition/{exhibition_id}")
-    public ResponseEntity<MemberResponseDto.getSupporterMember> getSupporter(@PathVariable("member_id")Long member_id,@PathVariable("exhibition_id")Long exhibition_id){
-        return ResponseEntity.ok().body(supporterService.getSupporterMember(member_id, exhibition_id));
+    @GetMapping(value = "/supporter/{supporter_id}/exhibition/{exhibition_id}")
+    public ResponseEntity<MemberResponseDto.getSupporterMember> getSupporter(@PathVariable("supporter_id")Long supporter_id,@PathVariable("exhibition_id")Long exhibition_id){
+        return ResponseEntity.ok().body(supporterService.getSupporterMember(supporter_id, exhibition_id));
     }
 
     //모든 서포터를 조회하였을때
@@ -77,20 +72,30 @@ public class MemberController {
         return ResponseEntity.ok().body(supporterService.getAllSupporterMember(exhibition_id));
     }
 
-    //한 멤버의 모든 작품들을 조회
+    //한 멤버를 조회하였을때
+    @GetMapping(value = "/participants/{participant_id}/exhibition/{exhibition_id}")
+    public ResponseEntity<MemberResponseDto.getParticipants> getParticipants(@PathVariable("participants_id")Long participant_id, @PathVariable("exhibition_id")Long exhibition_id){
+        return ResponseEntity.ok().body(participantService.getParticipant(participant_id, exhibition_id));
+    }
+
+    //모든 참가자(전시 관람자) 조회하였을때
+    @GetMapping(value = "/participants/exhibition/{exhibition_id}")
+    public ResponseEntity<List<MemberResponseDto.getParticipants>> getAllParticipants(@PathVariable("exhibition_id")Long exhibition_id){
+        return ResponseEntity.ok().body(participantService.getAllParticipants(exhibition_id));
+    }
+
+    //한 멤버의 모든 작품들을 조회 --v1
     @GetMapping(value = "/member/{id}/works")
     public String getWorksByMemberId(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("memberWork", memberService.getWorksByMember(id));
+        model.addAttribute("memberWork", participantService.getWorksByMember(id));
         return "member_works :: works";
     }
 
-    //한 멤버의 메인 작품으로 등록하기
+    //한 멤버의 메인 작품으로 등록하기 --v1
     @PostMapping(value = "/member/{member_id}/mainWork/{work_id}")
     public ResponseEntity registrationMainWorkToMember(@PathVariable("member_id")Long member_id, @PathVariable("work_id")Long work_id){
-        memberService.registrationMainWorkToMember(member_id, work_id);
+        participantService.registrationMainWorkToMember(member_id, work_id);
 
         return ResponseEntity.ok().build();
     }
-
-
 }

@@ -29,7 +29,7 @@ public class WorkService {
     @Transactional
     public void registrationNewWork(WorkRequestDto.registNewWork newWork){
         //이름으로 멤버 찾기
-        Member member = memberRepository.findMemberByName(newWork.getName()).orElseThrow();
+        Member member = memberRepository.findMemberByName(newWork.getName()).orElseThrow(()-> new IllegalArgumentException("해당하는 멤버가 없습니다"));
         Work work = Work.builder()
                 .title(newWork.getTitle())
                 .contents(newWork.getContents())

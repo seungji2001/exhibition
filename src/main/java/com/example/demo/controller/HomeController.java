@@ -1,14 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.Member;
 import com.example.demo.dto.RequestDto;
 import com.example.demo.dto.memberDto.MemberRequestDto;
-import com.example.demo.service.MemberService;
+import com.example.demo.service.ParticipantService;
 import com.example.demo.service.RecordService;
 import com.example.demo.service.WorkService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +21,7 @@ public class HomeController {
     @Autowired
     RecordService recordService;
     @Autowired
-    MemberService memberService;
+    ParticipantService memberService;
     @Autowired
     WorkService workService;
 

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SupporterService {
@@ -39,9 +40,9 @@ public class SupporterService {
     }
 
     @Transactional
-    public MemberResponseDto.getSupporterMember getSupporterMember(Long memberId, Long exhibitionId){
+    public MemberResponseDto.getSupporterMember getSupporterMember(Long supporter_id, Long exhibitionId){
         Exhibition exhibition = exhibitionRepository.findById(exhibitionId).orElseThrow(()-> new IllegalArgumentException("존재하는 전시가 없습니다."));
-        Member member = memberRepository.findMemberByIdAndExhibition(memberId, exhibition).orElseThrow(()-> new IllegalArgumentException("해당하는 유저가 없습니다."));
+        Member member = memberRepository.findMemberByIdAndExhibition(supporter_id, exhibition).orElseThrow(()-> new IllegalArgumentException("해당하는 유저가 없습니다."));
         return MemberResponseDto.getSupporterMember.builder()
                 .id(member.getId())
                 .loginId(member.getLoginId())
@@ -52,22 +53,23 @@ public class SupporterService {
                 .build();
     }
 
-    private Long id;
-    private String loginId;
-    private String name;
-    private String introduction;
-    private String cellphone;
-    private String major;
-
+    //모든 서포터들 리턴
     @Transactional
-    public List<MemberResponseDto.getSupporterMember> getAllSupporterMember(Long exhibitionId){
-        Exhibition exhibition = exhibitionRepository.findById(exhibitionId).orElseThrow(()-> new IllegalArgumentException("존재하는 전시가 없습니다."));
+    public List<MemberResponseDto.getSupporterMember> getAllSupporterMember(Long exhibitionId) {
+        Exhibition exhibition = exhibitionRepository.findById(exhibitionId).orElseThrow(() -> new IllegalArgumentException("존재하는 전시가 없습니다."));
         List<Member> members = memberRepository.findAllByExhibitionAndMemberRole(exhibition, MemberRole.SUPPORTER);
-        members.stream()
-                .map( member -> {
-                    MemberResponseDto.getSupporterMember.builder()
-                            .id()
+        return members.stream()
+                .map(member -> {
+                    return MemberResponseDto.getSupporterMember.builder()
+                            .id(member.getId())
+                            .loginId(member.getLoginId())
+                            .name(member.getName())
+                            .introduction(member.getIntroduction())
+                            .cellphone(member.getCellphone())
+                            .major(member.getMajor())
+                            .build();
                         }
                 )
+                .collect(Collectors.toList());
     }
 }

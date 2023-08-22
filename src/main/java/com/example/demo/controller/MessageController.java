@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.http.HttpResponse;
 
 @RequiredArgsConstructor
 @Controller
