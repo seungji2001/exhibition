@@ -146,4 +146,18 @@ public class WorkService {
         Work work = workRepository.findById(work_id).orElseThrow(()-> new IllegalArgumentException("존재하지 않는 작품입니다."));
         member.setMainWork(work);
     }
+
+    @Transactional
+    public void changeWork(Long supporter_id,Long work_id,WorkRequestDto.changeSupporterWork changeSupporterWork) {
+        Member member = memberRepository.findById(supporter_id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 멤버입니다."));
+        Work work = workRepository.findById(work_id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 작품입니다."));
+
+        //조금 다른 식으로 변경 필요 -> 들어온 값이 null이면 원래의 값 유지, 들어온 값이 null 이 아니면 새로운 값으로 업데이트 치기
+        if(changeSupporterWork.getTitle().isEmpty())
+            changeSupporterWork.setTitle(work.getTitle());
+        if(changeSupporterWork.getContent().isEmpty())
+            changeSupporterWork.setContent(work.getContents());
+
+        work.updateWork(changeSupporterWork);
+    }
 }

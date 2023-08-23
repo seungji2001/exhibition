@@ -40,7 +40,11 @@ public class WorkController {
     //서포터 작품 삭제하기
 
     //서포터 작품 수정하기
-
+    @PutMapping(value = "/supporter/{supporter_id}/changeWork/{work_id}")
+    public ResponseEntity changeWork(@PathVariable("supporter_id")Long supporter_id, @PathVariable("work_id")Long work_id, WorkRequestDto.changeSupporterWork changeSupporterWork){
+        workService.changeWork(supporter_id, work_id, changeSupporterWork);
+        return ResponseEntity.ok().build();
+    }
     //서포터 작품 클릭시 조회수와 누가 클릭했는지 기록남기기(만약 참가자로 등록이 되어있다면, 참가자 이름도,남기기)
 
     //서포터 작품 좋아요 수 추가하기

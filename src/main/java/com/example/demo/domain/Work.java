@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import com.example.demo.dto.workDto.WorkRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,5 +37,10 @@ public class Work {
 
     public void updateView(){
         view += 1;
+    }
+
+    public void updateWork(WorkRequestDto.changeSupporterWork changeSupporterWork){
+        this.title = changeSupporterWork.getTitle();
+        this.contents = changeSupporterWork.getContent();
     }
 }

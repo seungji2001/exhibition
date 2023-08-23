@@ -22,5 +22,12 @@ public class WorkRequestDto {
         private String title;
     }
 
+    @Builder
+    @Data
+    public static class changeSupporterWork{
+        private String content;
+        private String title;
+    }
+
 
 }
