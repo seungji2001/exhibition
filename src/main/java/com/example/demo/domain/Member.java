@@ -40,6 +40,8 @@ public class Member {
 
     private String cellphone;
 
+    private Long likeCount;
+
     @OneToMany(mappedBy = "receiver")
     private List<Message> messageList;
 
