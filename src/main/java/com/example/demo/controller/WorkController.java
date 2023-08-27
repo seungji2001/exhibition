@@ -45,10 +45,12 @@ public class WorkController {
         workService.changeWork(supporter_id, work_id, changeSupporterWork);
         return ResponseEntity.ok().build();
     }
-    //서포터 작품 클릭시 조회수와 누가 클릭했는지 기록남기기(만약 참가자로 등록이 되어있다면, 참가자 이름도,남기기)
 
-    //서포터 작품 좋아요 수 추가하기
+    //서포터 작품 클릭시 조회수와 누가 클릭했는지 기록남기기(만약 참가자로 등록이 되어있다면, 참가자 이름도,남기기) -> 테이블 추가 필요
 
-    //서포터 작품에 대한 감상평 보기
+
+    //서포터 작품 좋아요 수 추가하기 -> 테이블에 칼람 추가 필요
+
+    //서포터 작품에 대한 감상평 보기 -> 테이블에 칼람 추가 필요
 
 }
