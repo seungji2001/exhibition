@@ -7,6 +7,7 @@ import com.example.demo.domain.Record;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,5 +18,6 @@ public interface MemberRepository  extends JpaRepository<Member, Long> {
     Optional<Member> findMemberByLoginIdAndPassword(String loginId, String password);
     Optional<Member> findMemberByIdAndExhibition(Long memberId, Exhibition exhibition);
     List<Member> findAllByExhibitionAndMemberRole(Exhibition exhibition, MemberRole memberRole);
+    Optional<Member> findMemberByIdAndMemberRole(Long memberId, MemberRole memberRole);
 
 }

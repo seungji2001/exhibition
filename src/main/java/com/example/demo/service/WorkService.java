@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Exhibition;
 import com.example.demo.domain.Member;
+import com.example.demo.domain.ViewRecord;
 import com.example.demo.domain.Work;
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
@@ -9,11 +10,13 @@ import com.example.demo.dto.workDto.WorkRequestDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
 import com.example.demo.repository.ExhibitionRepository;
 import com.example.demo.repository.MemberRepository;
+import com.example.demo.repository.ViewRecordRepository;
 import com.example.demo.repository.WorkRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -29,6 +32,8 @@ public class WorkService {
     WorkRepository workRepository;
     @Autowired
     ExhibitionRepository exhibitionRepository;
+    @Autowired
+    ViewRecordRepository viewRecordRepository;
 
     //새로운 작품 등록하기
     @Transactional
@@ -159,5 +164,17 @@ public class WorkService {
             changeSupporterWork.setContent(work.getContents());
 
         work.updateWork(changeSupporterWork);
+    }
+
+    @Transactional
+    public void clickSupporterWork(Long work_id,Long participant_id){
+        Work work = workRepository.findById(work_id).orElseThrow(()-> new IllegalArgumentException("해당하는 작품이 없습니다."));
+        Member member = memberRepository.findById(participant_id).orElseThrow(()-> new IllegalArgumentException("해당하는 멤버가 없습니다."));
+        work.updateView();
+        ViewRecord viewRecord = ViewRecord.builder()
+                .work(work)
+                .member(member)
+                .build();
+        viewRecordRepository.save(viewRecord);
     }
 }
