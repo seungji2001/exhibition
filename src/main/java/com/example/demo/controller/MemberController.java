@@ -85,11 +85,11 @@ public class MemberController {
     }
 
     //한 멤버의 모든 작품들을 조회 --v1
-    @GetMapping(value = "/member/{id}/works")
-    public String getWorksByMemberId(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("memberWork", participantService.getWorksByMember(id));
-        return "member_works :: works";
-    }
+//    @GetMapping(value = "/member/{id}/works")
+//    public String getWorksByMemberId(Model model, @PathVariable("id") Long id) {
+//        model.addAttribute("memberWork", participantService.getWorksByMember(id));
+//        return "member_works :: works";
+//    }
 
     //한 멤버의 메인 작품으로 등록하기 --v1
     @PostMapping(value = "/member/{member_id}/mainWork/{work_id}")

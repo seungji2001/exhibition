@@ -8,15 +8,18 @@ import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 public class WorkResponseDto {
-    @Builder
-    @Data
-    public static class getWork{
-        private String title;
-        private String imgUrl;
-        private String contents;
-        private String name; //작품을 창작한 멤버의 이름
-    }
+
+//    @Builder --v1
+//    @Data
+//    public static class getWork{
+//        private String title;
+//        private String imgUrl;
+//        private String contents;
+//        private String name; //작품을 창작한 멤버의 이름
+//    }
 
     @Builder
     @Data
@@ -26,5 +29,17 @@ public class WorkResponseDto {
         private String contents;
         private String name; //작품을 창작한 멤버의 이름
         private Long viewCount;
+    }
+
+    @Builder
+    @Data
+    public static class getWork{
+        private String title;
+        private String imgUrl;
+        private String contents;
+        private String supporter_name;
+        private Long view;
+        private List<Member> viewList;
+        private int likeCount;
     }
 }

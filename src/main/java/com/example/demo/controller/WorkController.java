@@ -53,7 +53,11 @@ public class WorkController {
         return ResponseEntity.ok().build();
     }
 
-    //서포터 작품 본 사람 조회하기
+    //서포터 작품 조회하기
+    @GetMapping(value = "/work/{work_id}")
+    public ResponseEntity<WorkResponseDto.getWork> getWork(@PathVariable("work_id")Long work_id){
+        return ResponseEntity.ok().body(workService.getWork(work_id));
+    }
 
     //서포터 작품 좋아요 수 추가하기 -> 테이블에 칼람 추가 필요
 

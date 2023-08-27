@@ -44,28 +44,28 @@ public class ParticipantService {
     }
 
     //한 멤버가 창작한 work들 가져오기
-    @Transactional
-    public MemberResponseDto.getWorksByMember getWorksByMember(Long id){
-        Member member = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("존재하지 않는 유저입니다."));
-        List<WorkResponseDto.getWork> getWorkList =
-                member.getWorkList().stream()
-                        .map(work -> {
-                            return WorkResponseDto.getWork.builder()
-                                    .title(work.getTitle())
-                                    .imgUrl(work.getImgUrl())
-                                    .contents(work.getContents())
-                                    .name(work.getMember().getName())
-                                    .build();
-                                }
-                        )
-                        .collect(Collectors.toList());
-        return MemberResponseDto.getWorksByMember
-                .builder()
-                .mainWorkTitle(member.getMainWork().getTitle())
-                .mainWorkContents(member.getMainWork().getContents())
-                .getWorkList(getWorkList)
-                .build();
-    }
+//    @Transactional --v1
+//    public MemberResponseDto.getWorksByMember getWorksByMember(Long id){
+//        Member member = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("존재하지 않는 유저입니다."));
+//        List<WorkResponseDto.getWork> getWorkList =
+//                member.getWorkList().stream()
+//                        .map(work -> {
+//                            return WorkResponseDto.getWork.builder()
+//                                    .title(work.getTitle())
+//                                    .imgUrl(work.getImgUrl())
+//                                    .contents(work.getContents())
+//                                    .name(work.getMember().getName())
+//                                    .build();
+//                                }
+//                        )
+//                        .collect(Collectors.toList());
+//        return MemberResponseDto.getWorksByMember
+//                .builder()
+//                .mainWorkTitle(member.getMainWork().getTitle())
+//                .mainWorkContents(member.getMainWork().getContents())
+//                .getWorkList(getWorkList)
+//                .build();
+//    }
 
     //한 멤버에 대한 정보 집어넣기
     @Transactional

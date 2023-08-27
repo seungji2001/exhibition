@@ -130,6 +130,8 @@ public class WorkService {
                 .contents(registSupporterWork.getContent())
                 .member(member)
                 .exhibition(exhibition)
+                .view(0l)
+                .likeCount(0)
                 .build();
        return workRepository.save(work).getId();
     }
@@ -176,5 +178,24 @@ public class WorkService {
                 .member(member)
                 .build();
         viewRecordRepository.save(viewRecord);
+    }
+
+    @Transactional
+    public WorkResponseDto.getWork getWork(Long work_id){
+        Work work = workRepository.findById(work_id).orElseThrow(()-> new IllegalArgumentException("해당하는 작품이 없습니다."));
+        List<ViewRecord> viewRecordList = viewRecordRepository.findAllByWork(work);
+        List<Member> memberViewList = viewRecordList.stream()
+                        .map(ViewRecord::getMember)
+                        .collect(Collectors.toList());
+
+        return WorkResponseDto.getWork.builder()
+                .title(work.getTitle())
+                .imgUrl(work.getImgUrl())
+                .contents(work.getContents())
+                .supporter_name(work.getMember().getName())
+                .view(work.getView())
+                .viewList(memberViewList)
+                .likeCount(work.getLikeCount())
+                .build();
     }
 }
