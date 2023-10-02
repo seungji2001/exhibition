@@ -28,7 +28,6 @@ public class LikeService {
 
     public Long createLike(LikeRequestDto.createLike createLikeDTO) {
         Optional<Member> member = memberRepository.findById(createLikeDTO.getMemberId());
-
         Optional<Work> work = workRepository.findById(createLikeDTO.getWorkId());
 
         LikeEntity like = LikeEntity.builder()
@@ -42,5 +41,16 @@ public class LikeService {
         eventPublisher.publishEvent(event);
 
         return likeRepository.save(like).getLikeId();
+    }
+
+    public String deleteLike(Long member_id, Long work_id){
+
+        Optional<Member> member = memberRepository.findById(member_id);
+        Optional<Work> work = workRepository.findById(work_id);
+
+
+        Optional<LikeEntity> like = likeRepository.findByMemberIdAndWorkId(member.get(), work.get());
+
+        return "success";
     }
 }
