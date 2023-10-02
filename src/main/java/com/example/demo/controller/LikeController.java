@@ -20,11 +20,15 @@ public class LikeController {
         return ResponseEntity.ok().body(likeService.createLike(createLikeDTO));
     }
 
-    @DeleteMapping("/delete/{member_Id}/{work_Id}")
+    @DeleteMapping("/delete/{member_id}/{work_id}")
     public String deleteLike(@PathVariable("member_id") Long member_id, @PathVariable("work_id") Long work_id){
         String deleteLike = likeService.deleteLike(member_id, work_id);
         return deleteLike;
     }
 
+    @GetMapping("/count/{work_id}")
+    public ResponseEntity<Long> countLike(@PathVariable("work_id") Long work_id){
+        return ResponseEntity.ok().body(likeService.countLike(work_id));
+    }
 
 }

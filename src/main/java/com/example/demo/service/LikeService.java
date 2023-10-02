@@ -53,4 +53,14 @@ public class LikeService {
 
         return "success";
     }
+
+    public Long countLike(Long work_id){
+
+        Optional<Work> work = workRepository.findById(work_id);
+
+        Long like = likeRepository.countByWorkId(work.get());
+
+        return like;
+
+    }
 }
