@@ -15,5 +15,6 @@ public class ExhibitionResponseDto {
         private String location_y;
         private String startDate;
         private String endDate;
+        private String main_poster;
     }
 }

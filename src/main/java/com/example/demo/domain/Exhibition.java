@@ -26,10 +26,10 @@ public class Exhibition {
     private String location_x;
 
     private String location_y;
-
     private String introduction;
     private String startDate;
     private String endDate;
+    private String main_poster;
 
     @Column(columnDefinition = "integer default 0")
     private long viewCounts;
