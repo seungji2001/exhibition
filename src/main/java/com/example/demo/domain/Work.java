@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import com.example.demo.dto.workDto.WorkRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class Work {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "work_id")
     private Long id;
 
     private String title;
@@ -22,7 +24,25 @@ public class Work {
 
     private String contents;
 
-    @ManyToOne
+    private int likeCount;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @Column(columnDefinition = "integer default 0")
+    private Long view;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exhibition_id")
+    private Exhibition exhibition;
+
+    public void updateView(){
+        view += 1;
+    }
+
+    public void updateWork(WorkRequestDto.changeSupporterWork changeSupporterWork){
+        this.title = changeSupporterWork.getTitle();
+        this.contents = changeSupporterWork.getContent();
+    }
 }
