@@ -11,7 +11,6 @@ public class LikeRequestDto {
     @Getter
     public static class createLike{
         private Long memberId; // 멤버 id
-
         private Long workId; // 작품 id
     }
 }

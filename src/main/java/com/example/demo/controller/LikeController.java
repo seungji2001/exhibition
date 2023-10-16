@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.likeDto.LikeRequestDto;
-import com.example.demo.service.LikeService;
+import com.example.demo.service.WorkLikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/like")
 public class LikeController {
 
-    private final LikeService likeService;
+    private final WorkLikeService likeService;
 
     // 좋아요 달기
     @PostMapping("/create")

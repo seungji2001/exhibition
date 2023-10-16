@@ -11,12 +11,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "LikeEntity")
+@Entity(name = "worklike")
 @EntityListeners(AuditingEntityListener.class)
-public class LikeEntity {
+public class WorkLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long likeId; // 좋아요 id
+    @Column(name="work_like_id")
+    private Long id; // 좋아요 id
 
     @OneToOne
     private Member memberId;

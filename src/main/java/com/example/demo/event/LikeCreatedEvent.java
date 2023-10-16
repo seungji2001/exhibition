@@ -1,18 +1,19 @@
 package com.example.demo.event;
 
-import com.example.demo.domain.LikeEntity;
+import com.example.demo.domain.WorkLike;
+import com.example.demo.domain.WorkLike;
 import org.springframework.context.ApplicationEvent;
 
 public class LikeCreatedEvent extends ApplicationEvent {
 
-    private LikeEntity like;
+    private WorkLike like;
 
-    public LikeCreatedEvent(Object source, LikeEntity like) {
+    public LikeCreatedEvent(Object source, WorkLike like) {
         super(source);
         this.like = like;
     }
 
-    public LikeEntity getLike() {
+    public WorkLike getLike() {
         return like;
     }
 
