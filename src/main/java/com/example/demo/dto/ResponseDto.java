@@ -1,10 +1,13 @@
 package com.example.demo.dto;
 
 import com.example.demo.domain.Member;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.example.demo.domain.Message;
+import com.example.demo.domain.Work;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
 
 
 public class ResponseDto {
@@ -19,9 +22,9 @@ public class ResponseDto {
 
     @Builder
     @Data
-    public static class getWorks{
+    public static class getmainWorks{
         private String title;
-        private String ImgUrl;
+        private String imgUrl;
         private String contents;
         private Member member;
     }

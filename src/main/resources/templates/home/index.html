@@ -10,15 +10,38 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="c/assets/css/noscript.css" /></noscript>
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script>
+
+			$(document).ready(function() {
+				document.getElementById("image").style.display = 'block';
+				document.getElementById("map").style.display = 'none';
+				document.getElementById("toggletext").innerText = "위치 확인하기"
+			});
+
+			function toggle(text) {
+				if(text == "위치 확인하기"){
+					document.getElementById("image").style.display = 'none'
+					document.getElementById("map").style.display = 'block'
+					document.getElementById("toggletext").innerText = "전시 보러가기"
+				}
+				else{
+					document.getElementById("image").style.display = 'block';
+					document.getElementById("map").style.display = 'none';
+					document.getElementById("toggletext").innerText = "위치 확인하기"
+				}
+			}
+		</script>
 	</head>
+
 	<body class="is-preload">
 
 		<!-- Wrapper -->
 			<div id="wrapper" class="divided">
 
 				<!-- One -->
-					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+				<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
 						<div class="content">
 							<h1>원숭이도 나무에서 <br>
 								떨어질 때가 있다</h1>
@@ -30,22 +53,67 @@
 								<br>원숭이가 나무에서 떨어지는 실수를 하는 것을 우리가 실수하는 것에 비유하여 우리는 모두 실수를 하는 존재임을 전달한다.
 							</p>
 							<ul class="actions stacked">
-								<li><a href="#first" class="button big wide smooth-scroll-middle">전시 시작하기</a></li>
+								<li><a href="#" onclick="toggle(this.innerText)" class="button big wide smooth-scroll-middle" id="toggletext"></a></li>
 							</ul>
 						</div>
-						<div class="image">
-							<img src="/images/mainPoster.png" alt="" />
+						<div id="image" class="image">
+							<img src="/images/mainPoster.jpg" alt="" />
 						</div>
+							<div id="map" class="image"></div>
+							<script>
+							var map;
+							var button = document.getElementById('map_button');
+							button.addEventListener('click', changeCenter);
+
+							function initMap() {
+								var gyeongbokgung = { lat: 37.5379009, lng: 127.0848651 };
+								map = new google.maps.Map( document.getElementById('map'), {
+									zoom: 15,
+									center: gyeongbokgung,
+									mapTypeControl: false,
+									zoomControl: false,
+									fullscreenControl: false
+								});
+
+								var mainMarker = new google.maps.Marker({
+									position: gyeongbokgung,
+									map: map,
+									label: {
+										text: "구의 플레이스 라운드",
+										color: "#C70E20"
+									}
+								});
+
+								var subMarkerPoint = { lat: 37.5379009, lng: 127.0848651 };
+								var subMarker = new google.maps.Marker({
+									position: subMarkerPoint,
+									map: map,
+									label: "구의 플레이스 라운드",
+									icon: {
+										url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+										labelOrigin: new google.maps.Point(20, 47),
+										anchor: new google.maps.Point(50,32)
+									}
+								});
+							}
+
+							function changeCenter() {
+								var gyeongbokgung = { lat: 37.5379009, lng: 127.0848651 };
+								map.panTo(gyeongbokgung);
+								map.setZoom(15);
+							}
+						</script>
+						<script async defer th:src="@{'https://maps.googleapis.com/maps/api/js?key=' + ${@environment.getProperty('api.key')} + '&callback=initMap&amp;region=kr'}"></script><!--						</div>-->
 					</section>
 
 				<th:block th:if="${not #lists.isEmpty(workList)}" th:each="work : ${workList}">
 					<!-- Two -->
-					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
+					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
 						<div class="content">
 							<h2 th:text="${work.getTitle()}"></h2>
 							<p th:text="${work.getContents()}"></p>
 							<ul class="actions stacked">
-								<li><a href="#" class="button" th:text="${work.getMember().getName()}"></a></li>
+								<li><a th:href="@{/member/{id}(id=${work.getMember().getId()})}" class="button" th:text="${work.getMember().getName()}"></a></li>
 							</ul>
 						</div>
 						<div class="image">
@@ -57,156 +125,26 @@
 				<!-- Five -->
 					<section class="wrapper style1 align-center">
 						<div class="inner">
-							<h2>Massa sed condimentum</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
+							<h2>불완전함과의 조우</h2>
+							<p>10인의 작가 개개인이 자신의 실수를 되돌아 보고 이를 새로운 관점으로 바라봅니다. 그의 이면에 존재하는 아름다움을 꺼내옴으로써 관람객 여러분들에게도 실수를 조우할 새로운 기회를 제공하고자 합니다. </p>
 						</div>
 
 						<!-- Gallery -->
 							<div class="gallery style2 medium lightbox onscroll-fade-in">
+								<th:block th:each="work : ${getWorksListByViewCounts}"  th:if="${not #lists.isEmpty(getWorksListByViewCounts)}">
 								<article>
-									<a href="/images/gallery/fulls/01.jpg" class="image">
-										<img src="/images/gallery/thumbs/01.jpg" alt="" />
+									<a th:href="${work.getImgUrl()}" class="image">
+										<img th:src="${work.getImgUrl()}" alt="" />
 									</a>
 									<div class="caption">
-										<h3>Ipsum Dolor</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
+										<h3 th:text="${work.getTitle()}"></h3>
+										<p th:text="${work.getContents()}"></p>
 										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
+											<li><span class="button small" th:text="${work.getName()}">Details</span></li>
 										</ul>
 									</div>
 								</article>
-								<article>
-									<a href="/images/gallery/fulls/02.jpg" class="image">
-										<img src="/images/gallery/thumbs/02.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Feugiat Lorem</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/03.jpg" class="image">
-										<img src="/images/gallery/thumbs/03.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Magna Amet</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/04.jpg" class="image">
-										<img src="/images/gallery/thumbs/04.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Sed Tempus</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/05.jpg" class="image">
-										<img src="/images/gallery/thumbs/05.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Ultrices Magna</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/06.jpg" class="image">
-										<img src="/images/gallery/thumbs/06.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Sed Tempus</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/07.jpg" class="image">
-										<img src="/images/gallery/thumbs/07.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Ipsum Lorem</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/08.jpg" class="image">
-										<img src="/images/gallery/thumbs/08.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Magna Risus</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/09.jpg" class="image">
-										<img src="/images/gallery/thumbs/09.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Tempus Dolor</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/10.jpg" class="image">
-										<img src="/images/gallery/thumbs/10.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Sed Etiam</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/11.jpg" class="image">
-										<img src="/images/gallery/thumbs/11.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Magna Lorem</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
-								<article>
-									<a href="/images/gallery/fulls/12.jpg" class="image">
-										<img src="/images/gallery/thumbs/12.jpg" alt="" />
-									</a>
-									<div class="caption">
-										<h3>Ipsum Dolor</h3>
-										<p>Lorem ipsum dolor amet, consectetur magna etiam elit. Etiam sed ultrices.</p>
-										<ul class="actions fixed">
-											<li><span class="button small">Details</span></li>
-										</ul>
-									</div>
-								</article>
+								</th:block>
 							</div>
 
 					</section>
@@ -214,7 +152,7 @@
 				<!-- Six -->
 					<section class="wrapper style1 align-center">
 						<div class="inner">
-							<h2>당신의 실수를 남겨주세요</h2>
+							<h2>우리의 실수</h2>
 							<p>예상치 못한 실수로부터 당신의 이야기는 시작됩니다.</p>
 							<div class="items style1 medium onscroll-fade-in">
 								<section th:if="${not #lists.isEmpty(requestDto)}" th:each="record : ${recordList}">
@@ -229,11 +167,11 @@
 				<!-- Seven -->
 					<section class="wrapper style1 align-center">
 						<div class="inner medium">
-							<h2>실수</h2>
+							<h2>당신의 실수를 남겨주세요</h2>
 							<form th:action="@{/record}"  th:object="${requestDto}" method="post">
 								<div class="fields">
 									<div class="field">
-										<label for="name">Name</label>
+										<label for="name">이름</label>
 										<input type="text" th:field="*{writer}" name="name" id="name"/>
 									</div>
 <!--									<div class="field half">-->
@@ -241,12 +179,12 @@
 <!--										<input type="email" name="email" id="email" value="" />-->
 <!--									</div>-->
 									<div class="field">
-										<label for="message">Message</label>
+										<label for="message">메세지</label>
 										<textarea th:field="*{content}" name="message" id="message" rows="6"></textarea>
 									</div>
 								</div>
 								<ul class="actions special">
-									<li><input type="submit" name="submit" id="submit" value="Send Message" /></li>
+									<li><input type="submit" name="submit" id="submit" value="보내기" /></li>
 								</ul>
 							</form>
 
@@ -254,18 +192,18 @@
 					</section>
 
 				<!-- Footer -->
-					<footer class="wrapper style1 align-center">
-						<div class="inner">
-							<ul class="icons">
-								<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
-							</ul>
-							<p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-						</div>
-					</footer>
+<!--					<footer class="wrapper style1 align-center">-->
+<!--						<div class="inner">-->
+<!--							<ul class="icons">-->
+<!--								<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>-->
+<!--								<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>-->
+<!--								<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>-->
+<!--								<li><a href="#" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>-->
+<!--								<li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>-->
+<!--							</ul>-->
+<!--							<p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>-->
+<!--						</div>-->
+<!--					</footer>-->
 
 			</div>
 
