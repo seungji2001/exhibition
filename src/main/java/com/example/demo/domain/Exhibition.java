@@ -49,8 +49,10 @@ public class Exhibition {
                 .introduction(updateExhibition.getIntroduction() != null? updateExhibition.getIntroduction():this.introduction)
                 .location_x(updateExhibition.getLocation_x() != null ? updateExhibition.getLocation_x() : this.location_x)
                 .location_y(updateExhibition.getLocation_y() != null ? updateExhibition.getLocation_y() : this.location_y)
-                .startDate(updateExhibition.getStartDate() != null? updateExhibition.getStartDate() : this.getStartDate())
-                .endDate(updateExhibition.getEndDate()!= null? updateExhibition.getEndDate() : this.getEndDate())
+                .address(updateExhibition.getAddress() != null ? updateExhibition.getAddress() : this.location_y)
+                .startDate(updateExhibition.getStartDate() != null? updateExhibition.getStartDate() : this.startDate)
+                .endDate(updateExhibition.getEndDate() != null? updateExhibition.getEndDate() : this.endDate)
+                .main_poster(updateExhibition.getMain_poster()!= null? updateExhibition.getMain_poster() : this.main_poster)
                 .viewCounts(this.viewCounts)
                 .build();
     }
