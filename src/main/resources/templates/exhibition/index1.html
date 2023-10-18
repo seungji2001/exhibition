@@ -1,0 +1,36 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+
+  <title>Html Generated</title>
+  <meta name="description" content="Figma htmlGenerator">
+  <meta name="author" content="htmlGenerator">
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/exhibition/assets/styles.css">
+
+  <style>
+    /*
+      Figma Background for illustrative/preview purposes only.
+      You can remove this style tag with no consequence
+    */
+    body {background: #E5E5E5; }
+  </style>
+
+</head>
+
+<body>
+<div class=e47_126>
+  <div  class="e47_134"></div>
+  <span  class="e47_135">전시 포스터 </span>
+  <span  class="e47_140">
+                <p th:text="${getExhibition.title}">전시명</p>
+<p th:text="${getExhibition.address}">전시 위치</p>
+<p th:text="${getExhibition.introduction}">전시 소개글</p>
+<p th:text="${getExhibition.startDate}">전시 시작일</p>
+<p th:text="${getExhibition.endDate}">전시 종료일</p>
+</span>
+  <div  class="e47_141"></div><span  class="e47_142">작가정보 바로보기</span><div  class="e47_143"></div><span  class="e47_144">작품정보 바로보기</span><div  class="e47_145"></div><span  class="e47_146">챗봇</span><span  class="e47_154">조회수 : <th:block th:text="${getExhibition.viewCounts}"></th:block></span></div>
+</body>
+</html>
