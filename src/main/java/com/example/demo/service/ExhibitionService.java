@@ -29,6 +29,8 @@ public class ExhibitionService{
                 .location_y(exhibition.getLocation_y())
                 .location_x(exhibition.getLocation_x())
                 .main_poster(exhibition.getMain_poster())
+                .viewCounts(exhibition.getViewCounts())
+                .address(exhibition.getAddress())
                 .build();
     }
 
