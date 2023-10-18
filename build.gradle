@@ -36,6 +36,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.modulith:spring-modulith-starter-jpa'
+
+    implementation 'junit:junit:4.13.1'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 //    runtimeOnly 'com.h2database:h2'
@@ -44,6 +46,7 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
 //    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 dependencyManagement {
@@ -65,3 +68,6 @@ hibernate {
     }
 }
 
+test {
+    useJUnitPlatform()
+}
