@@ -44,4 +44,9 @@ public class ExhibitionController {
     }
 
     //exhibition 삭제하기
+    @DeleteMapping(value = "/exhibition/{exhibition_id}")
+    public ResponseEntity<Long> deleteExhibition(@PathVariable("exhibition_id")Long exhibition_id){
+        exhibitionService.deleteExhibition(exhibition_id);
+        return ResponseEntity.ok().body(exhibition_id);
+    }
 }

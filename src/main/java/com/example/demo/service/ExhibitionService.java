@@ -92,4 +92,10 @@ public class ExhibitionService{
                 .address(updatedExhibition.getAddress())
                 .build();
     }
+
+    @Transactional
+    public void deleteExhibition(Long exhibition_id){
+        Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()-> new IllegalArgumentException("해당하는 전시가 존재하지 않습니다."));
+        exhibitionRepository.delete(exhibition);
+    }
 }
