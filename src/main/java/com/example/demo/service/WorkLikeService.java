@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.domain.WorkLike;
 import com.example.demo.domain.Member;
 import com.example.demo.domain.Work;
+import com.example.demo.dto.likeDto.CreateLikeDTO;
 import com.example.demo.dto.likeDto.LikeRequestDto;
 import com.example.demo.event.LikeCreatedEvent;
 import com.example.demo.repository.WorkLikeRepository;
@@ -31,10 +32,10 @@ public class WorkLikeService {
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
-    public Long createLike(LikeRequestDto.createLike createLikeDTO) {
+    public Long createLike(CreateLikeDTO createLikeDTO) {
         //null의 경우에만 workLike 객체 생성 가능하도록, member나 work가 없는 경우 예외처리 바로 해주세요
-        Member member = memberRepository.findById(createLikeDTO.getMemberId()).orElseThrow();
-        Work work = workRepository.findById(createLikeDTO.getWorkId()).orElseThrow();
+        Member member = memberRepository.findById(createLikeDTO.getMemberId()).orElseThrow(() -> new IllegalArgumentException("해당하는 유저가 없습니다."));
+        Work work = workRepository.findById(createLikeDTO.getWorkId()).orElseThrow(() -> new IllegalArgumentException("해당하는 작품이 없습니다."));
 
         WorkLike like = WorkLike.builder()
                 .memberId(member)
@@ -52,20 +53,20 @@ public class WorkLikeService {
 
     public String deleteLike(Long member_id, Long work_id){
 
-        Optional<Member> member = memberRepository.findById(member_id);
-        Optional<Work> work = workRepository.findById(work_id);
+        Member member = memberRepository.findById(member_id).orElseThrow(() -> new IllegalArgumentException("해당하는 유저가 없습니다."));
+        Work work = workRepository.findById(work_id).orElseThrow(() -> new IllegalArgumentException("해당하는 작품이 없습니다."));
 
+        WorkLike like = workLikeRepository.findByMemberIdAndWorkId(member, work).orElseThrow(() -> new IllegalArgumentException("해당하는 좋아요가 없습니다."));
 
-        Optional<WorkLike> like = workLikeRepository.findByMemberIdAndWorkId(member.get(), work.get());
+        workLikeRepository.deleteByMemberIdAndWorkId(member, work);
 
         return "success";
     }
 
     public Long countLike(Long work_id){
 
-        Optional<Work> work = workRepository.findById(work_id);
-
-        Long like = workLikeRepository.countByWorkId(work.get());
+        Work work = workRepository.findById(work_id).orElseThrow(() -> new IllegalArgumentException("해당하는 작품이 없습니다."));
+        Long like = workLikeRepository.countByWorkId(work);
 
         return like;
 

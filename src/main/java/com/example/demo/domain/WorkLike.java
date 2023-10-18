@@ -19,10 +19,12 @@ public class WorkLike {
     @Column(name="work_like_id")
     private Long id; // 좋아요 id
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private Member memberId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "work_id")
     private Work workId;
 }
 
