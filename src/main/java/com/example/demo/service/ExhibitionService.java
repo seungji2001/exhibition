@@ -22,6 +22,7 @@ public class ExhibitionService{
     @Transactional
     public ExhibitionResponseDto.getExhibition getExhibition(Long exhibition_id){
         Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()->new IllegalArgumentException("해당하는 전시가 존재하지 않습니다"));
+        exhibition.updateView();
         return ExhibitionResponseDto.getExhibition.builder()
                 .id(exhibition.getId())
                 .title(exhibition.getTitle())
