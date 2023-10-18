@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface WorkLikeRepository extends JpaRepository<WorkLike, Long> {
-    Optional<WorkLike> findByMemberIdAndWorkId(Member member, Work work);
-    Long countByWorkId(Work workId);
+    Optional<WorkLike> findByMemberIdAndWorkId(Long memberId, Long workId);
+    Long countByWorkId(Long workId);
     Optional<WorkLike> deleteByMemberIdAndWorkId(Member member, Work work);
 }
