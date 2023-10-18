@@ -49,23 +49,24 @@ public class ExhibitionService{
 
     @Transactional
     public List<ExhibitionResponseDto.getExhibition> getExhibitions(){
-        List<ExhibitionResponseDto.getExhibition> exhibitions = new ArrayList<>();
-        exhibitions.addAll(
-                exhibitionRepository.findAll().stream()
-                        .map(exhibition -> {
-                            return ExhibitionResponseDto.getExhibition.builder()
-                                    .id(exhibition.getId())
-                                    .title(exhibition.getTitle())
-                                    .introduction(exhibition.getIntroduction())
-                                    .location_x(exhibition.getLocation_x())
-                                    .location_y(exhibition.getLocation_y())
-                                    .startDate(exhibition.getStartDate())
-                                    .endDate(exhibition.getEndDate())
-                                    .build();
-                        })
-                        .collect(Collectors.toList()));
 
-        return exhibitions;
+        return new ArrayList<>(
+                exhibitionRepository.findAll().stream()
+                .map(exhibition -> {
+                    return ExhibitionResponseDto.getExhibition.builder()
+                            .id(exhibition.getId())
+                            .title(exhibition.getTitle())
+                            .introduction(exhibition.getIntroduction())
+                            .location_x(exhibition.getLocation_x())
+                            .location_y(exhibition.getLocation_y())
+                            .address(exhibition.getAddress())
+                            .startDate(exhibition.getStartDate())
+                            .endDate(exhibition.getEndDate())
+                            .main_poster(exhibition.getMain_poster())
+                            .viewCounts(exhibition.getViewCounts())
+                            .build();
+                })
+                .toList());
     }
 
     @Transactional
