@@ -17,6 +17,11 @@ public class ExhibitionController {
     @Autowired
     ExhibitionService exhibitionService;
 
+    @GetMapping(value = "/exhibition")
+    public String getExhi(){
+        return "/exhibition/index1";
+    }
+
     //exhibition 가져오기
     @GetMapping(value = "/exhibition/{exhibition_id}")
     public ResponseEntity<ExhibitionResponseDto.getExhibition> getExhibition(@PathVariable("exhibition_id") Long exhibition_id){
