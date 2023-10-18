@@ -20,16 +20,14 @@ public class Exhibition {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="exhibition_id")
     private Long id;
-
     private String title;
-
     private String location_x;
-
     private String location_y;
     private String introduction;
     private String startDate;
     private String endDate;
     private String main_poster;
+    private String address;
 
     @Column(columnDefinition = "integer default 0")
     private long viewCounts;
