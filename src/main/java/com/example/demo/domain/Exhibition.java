@@ -28,7 +28,6 @@ public class Exhibition {
     private String endDate;
     private String main_poster;
     private String address;
-
     @Column(columnDefinition = "integer default 0")
     private long viewCounts;
 
