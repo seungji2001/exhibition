@@ -75,10 +75,21 @@ public class ExhibitionService{
     }
 
     @Transactional
-    public Long updateExhibition(Long exhibition_id, ExhibitionRequestDto.updateExhibition updateExhibition){
+    public ExhibitionResponseDto.getExhibition updateExhibition(Long exhibition_id, ExhibitionRequestDto.updateExhibition updateExhibition){
         Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()-> new IllegalArgumentException("해당하는 전시가 존재하지 않습니다."));
         Exhibition updatedExhibition = exhibition.updateExhibition(updateExhibition);
-        //변경된 값이 기존의 값과 다를경우 해당 값으로 업데이트 치기
-        return exhibitionRepository.save(updatedExhibition).getId();
+        exhibitionRepository.save(updatedExhibition);
+        return ExhibitionResponseDto.getExhibition.builder()
+                .id(updatedExhibition.getId())
+                .title(updatedExhibition.getTitle())
+                .introduction(updatedExhibition.getIntroduction())
+                .location_x(updatedExhibition.getLocation_x())
+                .location_y(updatedExhibition.getLocation_y())
+                .startDate(updatedExhibition.getStartDate())
+                .endDate(updatedExhibition.getEndDate())
+                .main_poster(updatedExhibition.getMain_poster())
+                .viewCounts(updatedExhibition.getViewCounts())
+                .address(updatedExhibition.getAddress())
+                .build();
     }
 }
