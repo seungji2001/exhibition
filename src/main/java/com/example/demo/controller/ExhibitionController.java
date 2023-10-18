@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +20,9 @@ public class ExhibitionController {
 
     //exhibition 가져오기
     @GetMapping(value = "/exhibition/{exhibition_id}")
-    public ResponseEntity<ExhibitionResponseDto.getExhibition> getExhibition(@PathVariable("exhibition_id") Long exhibition_id){
-        return ResponseEntity.ok().body(exhibitionService.getExhibition(exhibition_id));
+    public String getExhibition(Model model, @PathVariable("exhibition_id") Long exhibition_id){
+        model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
+        return "/exhibition/index1";
     }
 
     //exhibition 등록
