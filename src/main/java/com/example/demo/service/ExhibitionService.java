@@ -43,8 +43,10 @@ public class ExhibitionService{
                 .introduction(registrationExhibition.getIntroduction())
                 .location_x(registrationExhibition.getLocation_x())
                 .location_y(registrationExhibition.getLocation_y())
+                .address(registrationExhibition.getAddress())
                 .startDate(registrationExhibition.getStartDate())
                 .endDate(registrationExhibition.getEndDate())
+                .main_poster(registrationExhibition.getMain_poster())
                 .build();
         return exhibitionRepository.save(exhibition).getId();
     }

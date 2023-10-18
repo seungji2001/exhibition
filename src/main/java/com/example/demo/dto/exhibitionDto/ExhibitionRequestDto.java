@@ -7,13 +7,14 @@ public class ExhibitionRequestDto {
     @Builder
     @Data
     public static class registrationExhibition {
-        private Long exhibitionId;
         private String title;
         private String introduction;
         private String location_x;
         private String location_y;
+        private String address;
         private String startDate;
         private String endDate;
+        private String main_poster;
     }
 
     @Builder
