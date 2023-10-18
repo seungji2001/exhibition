@@ -81,4 +81,10 @@ public class ExhibitionService{
         //변경된 값이 기존의 값과 다를경우 해당 값으로 업데이트 치기
         return exhibitionRepository.save(updatedExhibition).getId();
     }
+
+    @Transactional
+    public void deleteExhibition(Long exhibition_id){
+        Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()-> new IllegalArgumentException("해당하는 전시가 존재하지 않습니다."));
+        exhibitionRepository.delete(exhibition);
+    }
 }
