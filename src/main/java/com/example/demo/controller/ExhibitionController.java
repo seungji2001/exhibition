@@ -39,8 +39,9 @@ public class ExhibitionController {
 
     //exhibition 수정하기
     @PutMapping(value = "/exhibition/{exhibition_id}")
-    public ResponseEntity updateExhibition(@PathVariable("exhibition_id")Long exhibition_id,@RequestBody ExhibitionRequestDto.updateExhibition updateExhibition){
-        return ResponseEntity.ok().body(exhibitionService.updateExhibition(exhibition_id, updateExhibition));
+    public ResponseEntity<ExhibitionResponseDto.getExhibition> updateExhibition(@PathVariable("exhibition_id")Long exhibition_id,@RequestBody ExhibitionRequestDto.updateExhibition updateExhibition){
+         Long updatedExhibitionId = exhibitionService.updateExhibition(exhibition_id, updateExhibition);
+         return ResponseEntity.ok().body(exhibitionService.getExhibition(updatedExhibitionId));
     }
 
     //exhibition 삭제하기
