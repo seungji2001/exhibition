@@ -26,8 +26,10 @@ public class ExhibitionService{
                 .id(exhibition.getId())
                 .title(exhibition.getTitle())
                 .introduction(exhibition.getIntroduction())
-                .location_y(exhibition.getLocation_y())
                 .location_x(exhibition.getLocation_x())
+                .location_y(exhibition.getLocation_y())
+                .startDate(exhibition.getStartDate())
+                .endDate(exhibition.getEndDate())
                 .main_poster(exhibition.getMain_poster())
                 .viewCounts(exhibition.getViewCounts())
                 .address(exhibition.getAddress())
@@ -71,7 +73,8 @@ public class ExhibitionService{
     @Transactional
     public Long updateExhibition(Long exhibition_id, ExhibitionRequestDto.updateExhibition updateExhibition){
         Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()-> new IllegalArgumentException("해당하는 전시가 존재하지 않습니다."));
+        Exhibition updatedExhibition = exhibition.updateExhibition(updateExhibition);
         //변경된 값이 기존의 값과 다를경우 해당 값으로 업데이트 치기
-        return exhibitionRepository.save(exhibition.updateExhibition(updateExhibition)).getId();
+        return exhibitionRepository.save(updatedExhibition).getId();
     }
 }

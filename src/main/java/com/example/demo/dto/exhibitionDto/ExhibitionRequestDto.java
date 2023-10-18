@@ -23,6 +23,8 @@ public class ExhibitionRequestDto {
         private String introduction;
         private String location_x;
         private String location_y;
+        private String address;
+        private String main_poster;
         private String startDate;
         private String endDate;
     }
