@@ -1,6 +1,7 @@
 package com.example.demo.Component;
 
 import com.example.demo.dto.ChatBotDto.ChatBotRequestDto;
+import com.example.demo.dto.ChatBotDto.ChatBotResponseDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,12 +29,11 @@ import java.util.stream.StreamSupport;
 public class OpenAPIManager {
     Gson gson = new Gson();
 
-    public void getWikiQA(String openApiURL, String accessKey, String type, ChatBotRequestDto.RequestQuestion requestQuestion) throws JsonProcessingException, UnsupportedEncodingException {
+    public ChatBotResponseDto.ResponseAnswer getWikiQA(String openApiURL, String accessKey, String type, ChatBotRequestDto.RequestQuestion requestQuestion) throws JsonProcessingException, UnsupportedEncodingException {
 
         Map<String, Object> request = new HashMap<>();
         Map<String, String> argument = new HashMap<>();
 
-        System.out.println(requestQuestion.getQuestion());
         argument.put("question", requestQuestion.getQuestion());
         argument.put("type", type);
 
@@ -51,6 +51,10 @@ public class OpenAPIManager {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(response.getBody());
 
-        System.out.println(jsonNode);
+        JsonNode answer = jsonNode.get("return_object").findValue("AnswerInfo");
+
+        return ChatBotResponseDto.ResponseAnswer.builder()
+                .answer(answer.get(0).get("answer").asText())
+                .build();
     }
 }
