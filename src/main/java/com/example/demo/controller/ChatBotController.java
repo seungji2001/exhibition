@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 
-@RestController
+@Controller
 public class ChatBotController {
 
     @Autowired
@@ -25,5 +25,10 @@ public class ChatBotController {
     @PostMapping(value = "/chatbot")
     public ResponseEntity<ChatBotResponseDto.ResponseAnswer> getWikiQA(@RequestBody ChatBotRequestDto.RequestQuestion chatBotRequestDto) throws UnsupportedEncodingException, JsonProcessingException {
         return ResponseEntity.ok().body(openAPIManager.getWikiQA("http://aiopen.etri.re.kr:8000/WikiQA", wikiKey,"irqa",chatBotRequestDto));
+    }
+
+    @GetMapping(value = "/index3")
+    public String index3(){
+        return "/exhibition/index3";
     }
 }
