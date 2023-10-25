@@ -93,7 +93,7 @@ public class MemberController {
 
     //한 멤버의 메인 작품으로 등록하기 --v1
     @PostMapping(value = "/member/{member_id}/mainWork/{work_id}")
-    public ResponseEntity registrationMainWorkToMember(@PathVariable("member_id")Long member_id, @PathVariable("work_id")Long work_id){
+    public ResponseEntity FregistrationMainWorkToMember(@PathVariable("member_id")Long member_id, @PathVariable("work_id")Long work_id){
         participantService.registrationMainWorkToMember(member_id, work_id);
 
         return ResponseEntity.ok().build();
