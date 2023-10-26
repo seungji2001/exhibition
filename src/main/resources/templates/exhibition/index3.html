@@ -78,7 +78,7 @@
                     '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
                     '  <div>\n' +
                     '    <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">\n' +
-                    '      <p class="text-sm" th:text="${answer.answer}">전시 관련 질문 해주세요.</p>\n' +
+                    '      <p class="text-sm">전시 관련 질문 해주세요.</p>\n' +
                     '    </div>\n' +
                     '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
                     '  </div>\n' +
@@ -91,7 +91,7 @@
                     '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
                     '  <div>\n' +
                     '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
-                    '      <p class="text-sm">운영시간</p>\n' +
+                    '      <p class="time text-sm">운영시간</p>\n' +
                     '    </div>\n' +
                     '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
                     '  </div>\n' +
@@ -105,7 +105,7 @@
                     '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
                     '  <div>\n' +
                     '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
-                    '      <p class="text-sm">전시 기간</p>\n' +
+                    '      <p class="period text-sm">전시 기간</p>\n' +
                     '    </div>\n' +
                     '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
                     '  </div>\n' +
@@ -119,7 +119,7 @@
                     '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
                     '  <div>\n' +
                     '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
-                    '      <p class="text-sm">위치정보</p>\n' +
+                    '      <p class="location text-sm">위치정보</p>\n' +
                     '    </div>\n' +
                     '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
                     '  </div>\n' +
@@ -127,6 +127,57 @@
                     '</div>'
                 // 요청, 통신이 성공했을 때 실행할 함수
                 $('.box').append(temp)
+
+                $('.time').on('click',function(){
+                    $.ajax({
+                        type: "POST",    // GET 또는 POST
+                        url: "/chatbot/exhibition/option/" + 1,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({'question': "time"}),
+                        dataType : "html" ,
+                        success: function (data) {
+                            console.log(data)
+                            let temp = document.createElement("div");
+                            temp.innerHTML = data
+                            // 요청, 통신이 성공했을 때 실행할 함수
+                            $('.box').append(temp)
+                        }
+                    })
+                })
+
+                $('.period').on('click',function(){
+                    $.ajax({
+                        type: "POST",    // GET 또는 POST
+                        url: "/chatbot/exhibition/option/" + 1,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({'question': "period"}),
+                        dataType : "html" ,
+                        success: function (data) {
+                            console.log(data)
+                            let temp = document.createElement("div");
+                            temp.innerHTML = data
+                            // 요청, 통신이 성공했을 때 실행할 함수
+                            $('.box').append(temp)
+                        }
+                    })
+                })
+
+                $('.location').on('click',function(){
+                    $.ajax({
+                        type: "POST",    // GET 또는 POST
+                        url: "/chatbot/exhibition/option/" + 1,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({'question': "location"}),
+                        dataType : "html" ,
+                        success: function (data) {
+                            console.log(data)
+                            let temp = document.createElement("div");
+                            temp.innerHTML = data
+                            // 요청, 통신이 성공했을 때 실행할 함수
+                            $('.box').append(temp)
+                        }
+                    })
+                })
             })
             $('.send').on('click',function(){
                 let temp = document.createElement("div");
