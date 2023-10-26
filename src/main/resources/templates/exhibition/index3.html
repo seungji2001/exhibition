@@ -59,18 +59,66 @@
             })
 
             $('.wiki').on('click',function(){
-                $.ajax({
-                    type: "GET",    // GET 또는 POST
-                    url: "/question",
-                    dataType : "html" ,
-                    success: function (data) {
-                        console.log(data)
-                        // 요청, 통신이 성공했을 때 실행할 함수
-                        let div = document.createElement("div");
-                        div.html(data)
-                        $('.box').append(div)
-                    }
-                })
+                // $.ajax({
+                //     type: "GET",    // GET 또는 POST
+                //     url: "/question",
+                //     dataType : "html" ,
+                //     success: function (data) {
+                        $('.utility').val('wiki')
+                //         console.log(data)
+                //         const temp = document.createElement("div");
+                //         temp.innerHTML = data
+                //         // 요청, 통신이 성공했을 때 실행할 함수
+                //         $('.box').append(temp)
+                //     }
+                // })
+            })
+            // $('.exhibition').on('click',function(){
+                // $.ajax({
+                //     type: "GET",    // GET 또는 POST
+                //     url: "/question",
+                //     dataType : "html" ,
+                //     success: function (data) {
+                //         $('.utility').val('exhibition')
+                //         console.log(data)
+                //         let temp = document.createElement("div");
+                //         temp.innerHTML = data
+                //         // 요청, 통신이 성공했을 때 실행할 함수
+                //         $('.box').append(temp)
+                //     }
+                // })
+            // })
+            $('.send').on('click',function(){
+                if($('.utility').val() === 'wiki'){
+                    let temp = document.createElement("div");
+                    temp.innerHTML =
+                        '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '  <div>\n' +
+                        '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
+                        '      <p class="text-sm">' + $('.text').val() + '</p>\n' +
+                        '    </div>\n' +
+                        '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
+                        '  </div>\n' +
+                        '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
+                        '</div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    $('.box').append(temp)
+
+                    $.ajax({
+                        type: "POST",    // GET 또는 POST
+                        url: "/chatbot/wiki",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({'question': $('.text').val()}),
+                        dataType : "html" ,
+                        success: function (data) {
+                            console.log(data)
+                            let temp = document.createElement("div");
+                            temp.innerHTML = data
+                            // 요청, 통신이 성공했을 때 실행할 함수
+                            $('.box').append(temp)
+                        }
+                    })
+                }
             })
         })
     </script>
@@ -81,6 +129,7 @@
 
 <!-- Component Start -->
 <div class="chat-box flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
+    <input class="utility" type="hidden">
     <div class="box flex flex-col flex-grow h-0 p-4 overflow-auto">
         <div class="flex w-full mt-2 space-x-3 max-w-xs">
             <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
@@ -118,7 +167,8 @@
     </div>
 
     <div class="bg-gray-300 p-4">
-        <input class="flex items-center h-10 w-full rounded px-3 text-sm" type="text" placeholder="Type your message…">
+        <input class="text flex items-center h-10 w-full rounded px-3 text-sm" type="text" placeholder="Type your message…">
+        <button class="send" type="button">button</button>
     </div>
 </div>
 <!-- Component End  -->

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -25,8 +26,9 @@ public class ChatBotController {
     private String wikiKey;
 
     @PostMapping(value = "/chatbot/wiki")
-    public ResponseEntity<ChatBotResponseDto.ResponseAnswer> getWikiQA(@RequestBody ChatBotRequestDto.RequestQuestion chatBotRequestDto) throws UnsupportedEncodingException, JsonProcessingException {
-        return ResponseEntity.ok().body(openAPIManager.getWikiQA("http://aiopen.etri.re.kr:8000/WikiQA", wikiKey,"irqa",chatBotRequestDto));
+    public String getWikiQA(@RequestBody ChatBotRequestDto.RequestQuestion chatBotRequestDto, Model model) throws UnsupportedEncodingException, JsonProcessingException {
+        model.addAttribute("answer", openAPIManager.getWikiQA("http://aiopen.etri.re.kr:8000/WikiQA", wikiKey,"irqa",chatBotRequestDto));
+        return "exhibition/question::wiki";
     }
 
     @GetMapping(value = "/index3")
@@ -34,10 +36,10 @@ public class ChatBotController {
         return "exhibition/index3";
     }
 
-    @GetMapping(value = "/question")
-    public String question(){
-        return "exhibition/question::wiki";
-    }
+//    @GetMapping(value = "/question")
+//    public String question(){
+//        return "exhibition/question::wiki";
+//    }
 
 //    @PostMapping(value = "/chatbot/exhibition")
 //    public ResponseEntity<ChatBotResponseDto.ResponseAnswer> getExhibitionAnswer(@RequestBody ChatBotRequestDto.RequestQuestion chatBotRequestDto){
