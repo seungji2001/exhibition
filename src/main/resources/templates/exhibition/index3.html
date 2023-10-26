@@ -59,19 +59,18 @@
             })
 
             $('.wiki').on('click',function(){
-                // $.ajax({
-                //     type: "GET",    // GET 또는 POST
-                //     url: "/question",
-                //     dataType : "html" ,
-                //     success: function (data) {
-                        $('.utility').val('wiki')
-                //         console.log(data)
-                //         const temp = document.createElement("div");
-                //         temp.innerHTML = data
-                //         // 요청, 통신이 성공했을 때 실행할 함수
-                //         $('.box').append(temp)
-                //     }
-                // })
+                $('.utility').val('wiki')
+                let html = '<div th:fragment="wiki" class="flex w-full mt-2 space-x-3 max-w-xs">\n' +
+                    '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
+                    '  <div>\n' +
+                    '    <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">\n' +
+                    '      <p class="text-sm" th:text="${answer.answer}">위키에게 질문할 수 있습니다.</p>\n' +
+                    '    </div>\n' +
+                    '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
+                    '  </div>\n' +
+                    '</div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').html(html)
             })
             // $('.exhibition').on('click',function(){
                 // $.ajax({
