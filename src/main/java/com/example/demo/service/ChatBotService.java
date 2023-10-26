@@ -22,10 +22,18 @@ public class ChatBotService {
     OpenAPIManager openAPIManager;
 
     @Transactional
-    public void getChatBotExhibition(Long exhibition_id, ChatBotRequestDto.RequestQuestion chatBotRequestDto, String getKey) throws UnsupportedEncodingException, JsonProcessingException {
+    public ChatBotResponseDto.ResponseAnswer getChatBotExhibition(Long exhibition_id, ChatBotRequestDto.RequestQuestion chatBotRequestDto, String getKey) throws UnsupportedEncodingException, JsonProcessingException {
         //질문에 해당되는 답변 만들어 return 하기
         List<String> words = new ArrayList<>();
         //질문 분석 api 붙이기
         words = openAPIManager.getWiseNLU(getKey, chatBotRequestDto);
+
+        if(words.contains("몇시")){
+            return ChatBotResponseDto.ResponseAnswer.builder()
+                    .answer("1시")
+                    .build();
+        }
+
+        return null;
     }
 }
