@@ -1,0 +1,16 @@
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.8.10/tailwind.min.css'>
+<div th:fragment="wiki" class="flex w-full mt-2 space-x-3 max-w-xs">
+  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+  <div>
+    <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+      <p class="text-sm" th:text="${answer.answer}">안녕하십니까.
+        위 챗봇은 위키백과와, 전시관련 챗봇으로
+        이루어졌습니다.
+
+        위키관련 질문은 “위키에게 물어보기”를
+        전시관련 질문은 “전시" 버튼을
+        이용해주세요.</p>
+    </div>
+    <span class="text-xs text-gray-500 leading-none">2 min ago</span>
+  </div>
+</div>
