@@ -57,4 +57,43 @@ public class OpenAPIManager {
                 .answer(answer.get(0).get("answer").asText())
                 .build();
     }
+
+    public List<String> getWiseNLU(String accessKey, ChatBotRequestDto.RequestQuestion requestQuestion) throws JsonProcessingException, UnsupportedEncodingException {
+
+        String openApiURL = "http://aiopen.etri.re.kr:8000/WiseNLU";
+
+        Map<String, Object> request = new HashMap<>();
+        Map<String, String> argument = new HashMap<>();
+
+        String analysisCode = "ner";        // 언어 분석 코드
+        Gson gson = new Gson();
+
+        argument.put("analysis_code", analysisCode);
+        argument.put("text", requestQuestion.getQuestion());
+
+        request.put("argument", argument);
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json; charset=UTF-8");
+        headers.set("Authorization", accessKey);
+
+        HttpEntity<byte[]> entity = new HttpEntity<>(gson.toJson(request).getBytes(StandardCharsets.UTF_8), headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(openApiURL, HttpMethod.POST, entity, String.class);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(response.getBody());
+        List<JsonNode> datasets = StreamSupport
+                .stream(jsonNode.get("return_object").get("sentence").findValue("word").spliterator(), false)
+                .toList();
+
+        List<String> words = new ArrayList<>();
+        for(int i = 0; i<datasets.size(); i++){
+            words.add(datasets.get(i).get("text").asText());
+        }
+
+        return words;
+    }
+
 }
