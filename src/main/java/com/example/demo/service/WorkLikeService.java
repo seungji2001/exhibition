@@ -58,7 +58,7 @@ public class WorkLikeService {
         Member member = memberRepository.findById(member_id).orElseThrow(() -> new IllegalArgumentException("해당하는 유저가 없습니다."));
         Work work = workRepository.findById(work_id).orElseThrow(() -> new IllegalArgumentException("해당하는 작품이 없습니다."));
 
-        WorkLike like = workLikeRepository.findByMemberIdAndWorkId(member.getId(), work.getId()).orElseThrow(() -> new IllegalArgumentException("해당하는 좋아요가 없습니다."));
+        WorkLike like = workLikeRepository.findByMemberIdAndWorkId(member, work).orElseThrow(() -> new IllegalArgumentException("해당하는 좋아요가 없습니다."));
 
         workLikeRepository.deleteById(like.getId());
         work.deleteLikeCount();
@@ -70,7 +70,7 @@ public class WorkLikeService {
     public Long countLike(Long work_id){
 
         Work work = workRepository.findById(work_id).orElseThrow(() -> new IllegalArgumentException("해당하는 작품이 없습니다."));
-        Long like = workLikeRepository.countByWorkId(work.getId());
+        Long like = workLikeRepository.countByWorkId(work);
         if(work.getLikeCount() == like){
             return like;
         }
