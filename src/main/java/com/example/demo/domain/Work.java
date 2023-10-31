@@ -40,6 +40,14 @@ public class Work {
     public void updateView(){
         view += 1;
     }
+    public void updateLikeCount(){
+        likeCount += 1;
+    }
+    public void deleteLikeCount(){
+        if (this.likeCount > 0){
+            likeCount -= 1;
+        }
+    }
 
     public void updateWork(WorkRequestDto.changeSupporterWork changeSupporterWork){
         this.title = changeSupporterWork.getTitle();
