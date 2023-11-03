@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Builder
 @Getter
 @NoArgsConstructor
@@ -36,6 +38,9 @@ public class Work {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exhibition_id")
     private Exhibition exhibition;
+
+    @OneToMany(mappedBy = "work")
+    private List<Comment> comments;
 
     public void updateView(){
         view += 1;
