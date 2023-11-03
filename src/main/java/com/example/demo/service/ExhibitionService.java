@@ -34,6 +34,8 @@ public class ExhibitionService{
                 .main_poster(exhibition.getMain_poster())
                 .viewCounts(exhibition.getViewCounts())
                 .address(exhibition.getAddress())
+                .openTime(exhibition.getOpenTime())
+                .endTime(exhibition.getEndTime())
                 .build();
     }
 

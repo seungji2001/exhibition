@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Builder
@@ -39,6 +40,11 @@ public class Exhibition {
 
     @OneToMany(mappedBy = "exhibition")
     private List<Work> workList;
+
+    private Date openTime;
+
+    private Date endTime;
+
     public void updateView(){
         viewCounts += 1;
     }
