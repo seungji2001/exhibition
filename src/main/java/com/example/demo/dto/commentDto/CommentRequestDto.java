@@ -16,4 +16,13 @@ public class CommentRequestDto {
         private Long member_id;
         private String content;
     }
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class RegistrationReplyComment{
+        private Long member_id;
+        private String content;
+    }
 }

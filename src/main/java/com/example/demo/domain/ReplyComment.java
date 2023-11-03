@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 @Entity(name = "replycomment")
 public class ReplyComment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="reply_comment_id")
     private Long id;
 
@@ -28,13 +29,13 @@ public class ReplyComment {
     private Comment comment;
 
     //대댓글 내용
-    private String replyContent;
+    private String content;
 
     //대댓글 작성자
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @CreatedDate
+    @CreationTimestamp
     private LocalDateTime insertDate;
 }
