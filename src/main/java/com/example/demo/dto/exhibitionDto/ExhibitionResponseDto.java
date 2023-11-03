@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
+
 public class ExhibitionResponseDto {
     @Builder
     @Data
@@ -18,5 +20,7 @@ public class ExhibitionResponseDto {
         private Long viewCounts;
         private String main_poster;
         private String address;
+        private Date openTime;
+        private Date endTime;
     }
 }
