@@ -25,4 +25,14 @@ public class CommentRequestDto {
         private Long member_id;
         private String content;
     }
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class UpdateComment{
+        private Long member_id;
+        private Long comment_id;
+        private String content;
+    }
 }
