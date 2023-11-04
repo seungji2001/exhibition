@@ -45,6 +45,9 @@ public class Member {
     @OneToMany(mappedBy = "receiver")
     private List<Message> messageList;
 
+    @OneToMany(mappedBy = "member")
+    private List<Comment> commentList;
+
     public void setMainWork(Work work){
         this.mainWork = work;
     }
