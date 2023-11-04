@@ -1,21 +1,28 @@
 package com.example.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@DynamicUpdate
+@NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(value={"modifiedDate"}, allowGetters=true)
 @Entity(name = "Comment")
 public class Comment {
     @Id
@@ -47,12 +54,19 @@ public class Comment {
     @OneToMany(mappedBy = "comment")
     private List<ReplyComment> replyCommentList;
 
-    //수정된 경우 true로
-    private Boolean modified;
+    //수정의 경우 1로
+    @ColumnDefault("0")
+    private int modified;
 
-    private void checkModified(){
-        if(insertDate != modifiedDate){
-            modified = true;
+    @PostLoad
+    public void checkModified(){
+        if(!insertDate.equals(modifiedDate)){
+            modified = 1;
         }
     }
+
+    public void updateComment(String content){
+        this.content = content;
+    }
+
 }
