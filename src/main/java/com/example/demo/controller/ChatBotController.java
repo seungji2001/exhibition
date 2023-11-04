@@ -36,6 +36,12 @@ public class ChatBotController {
         return "exhibition/index3";
     }
 
+
+    @GetMapping(value = "/index")
+    public String index3Design(){
+        return "exhibition/index3_design";
+    }
+
     @PostMapping(value = "/chatbot/exhibition/{exhibition_id}")
     public String getChatBotExhibition(@RequestBody ChatBotRequestDto.RequestQuestion chatBotRequestDto, @PathVariable("exhibition_id") Long exhibition_id, Model model) throws UnsupportedEncodingException, JsonProcessingException {
         model.addAttribute("answer", chatBotService.getChatBotExhibition(exhibition_id, chatBotRequestDto, getKey));
