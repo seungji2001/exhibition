@@ -5,13 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 public class CommentResponseDto {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
     @Data
     public static class GetCommentResponse{
-        String comment_id;
+        Long comment_id;
         String content;
     }
 }
