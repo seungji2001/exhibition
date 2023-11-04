@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,6 +40,19 @@ public class Comment {
     @CreationTimestamp
     private LocalDateTime insertDate;
 
+    //수정일자
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
+
     @OneToMany(mappedBy = "comment")
     private List<ReplyComment> replyCommentList;
+
+    //수정된 경우 true로
+    private Boolean modified;
+
+    private void checkModified(){
+        if(insertDate != modifiedDate){
+            modified = true;
+        }
+    }
 }
