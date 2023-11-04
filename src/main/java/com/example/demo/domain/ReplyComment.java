@@ -1,15 +1,18 @@
 package com.example.demo.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,6 +21,8 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(value={"modifiedDate"}, allowGetters=true)
 @Entity(name = "replycomment")
 public class ReplyComment {
     @Id
@@ -46,12 +51,14 @@ public class ReplyComment {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
-    //수정된 경우 true로
-    private Boolean modified;
+    //수정의 경우 1로
+    @ColumnDefault("0")
+    private int modified;
 
-    private void checkModified(){
-        if(insertDate != modifiedDate){
-            modified = true;
+    @PostLoad
+    public void checkModified(){
+        if(!insertDate.equals(modifiedDate)){
+            modified = 1;
         }
     }
 }
