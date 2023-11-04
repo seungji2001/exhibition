@@ -7,7 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,6 +38,20 @@ public class ReplyComment {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    //대댓글 작성일자
     @CreationTimestamp
     private LocalDateTime insertDate;
+
+    //대댓글 수정일자
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
+
+    //수정된 경우 true로
+    private Boolean modified;
+
+    private void checkModified(){
+        if(insertDate != modifiedDate){
+            modified = true;
+        }
+    }
 }
