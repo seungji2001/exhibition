@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class CommentController {
 
@@ -22,9 +24,15 @@ public class CommentController {
         return ResponseEntity.ok().body(commentService.saveComment(registrationComment));
     }
 
+    //댓글 수정
     @PutMapping(value = "/comment")
     public ResponseEntity<CommentResponseDto.GetCommentResponse> updateComment(@RequestBody CommentRequestDto.UpdateComment updateComment) {
         return ResponseEntity.ok().body(commentService.updateComment(updateComment));
+    }
+
+    @GetMapping(value = "/comments/{work_id}")
+    public ResponseEntity<List<CommentResponseDto.GetCommentsResponse>> getComments(@PathVariable("work_id")Long work_id){
+        return ResponseEntity.ok().body(commentService.getComments(work_id));
     }
 
     //대댓글 등록
