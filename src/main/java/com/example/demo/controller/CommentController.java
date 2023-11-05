@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class CommentController {
 
@@ -31,5 +33,11 @@ public class CommentController {
     @PostMapping(value = "/replyComment/{comment_id}")
     public ResponseEntity<Long> saveReplyComment(@PathVariable("comment_id")Long comment_id, @RequestBody CommentRequestDto.RegistrationReplyComment registrationReplyComment) {
         return ResponseEntity.ok().body(commentService.saveReplyComment(comment_id, registrationReplyComment));
+    }
+
+    // 대댓글 불러오기
+    @GetMapping(value = "/replyComments/{comment_id}")
+    public ResponseEntity<List<CommentResponseDto.GetReplyCommentResponse>> getReplyComment(@PathVariable("comment_id")Long comment_id){
+        return ResponseEntity.ok().body(commentService.getReplyComment(comment_id));
     }
 }

@@ -14,6 +14,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class CommentService {
 
@@ -68,5 +71,31 @@ public class CommentService {
                 .member(member)
                 .build();
         return replyCommentRepository.save(replyComment).getId();
+    }
+
+    public List<CommentResponseDto.GetReplyCommentResponse> getReplyComment(Long comment_id){
+        Comment comment = commentRepository.findById(comment_id).orElseThrow();
+        List<ReplyComment> replyComments = replyCommentRepository.findAllByComment(comment);
+
+        List<CommentResponseDto.GetReplyCommentResponse> getReplyCommentsResponses = new ArrayList<>();
+
+        if(replyComments.isEmpty()){
+            return getReplyCommentsResponses;
+        }
+        getReplyCommentsResponses.addAll(
+                replyComments.stream()
+                        .map(replyComment -> {
+                            return CommentResponseDto.GetReplyCommentResponse.builder()
+                                    .comment_id(replyComment.getId())
+                                    .content(replyComment.getContent())
+                                    .writer(replyComment.getMember().getName())
+                                    .insertDate(replyComment.getInsertDate())
+                                    .modifiedDate(replyComment.getModifiedDate())
+                                    .modified(replyComment.getModified())
+                                    .build();
+                        })
+                        .toList()
+        );
+        return getReplyCommentsResponses;
     }
 }

@@ -53,7 +53,7 @@ public class ReplyComment {
 
     //수정의 경우 1로
     @ColumnDefault("0")
-    private int modified;
+    private Integer modified;
 
     @PostLoad
     public void checkModified(){
