@@ -2070,7 +2070,7 @@ input, select, textarea {
 		border-radius: 4px;
 		border: solid 1px;
 		margin-bottom: 2rem;
-		padding: 1.5rem;
+		padding:1.5rem;
 	}
 
 		.box > :last-child,
