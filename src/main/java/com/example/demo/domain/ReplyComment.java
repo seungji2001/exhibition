@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicUpdate
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value={"modifiedDate"}, allowGetters=true)
 @Entity(name = "replycomment")
@@ -61,4 +63,9 @@ public class ReplyComment {
             modified = 1;
         }
     }
+
+    public void updateReplyComment(String content){
+        this.content = content;
+    }
+
 }

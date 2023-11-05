@@ -40,4 +40,17 @@ public class CommentController {
     public ResponseEntity<Long> saveReplyComment(@PathVariable("comment_id")Long comment_id, @RequestBody CommentRequestDto.RegistrationReplyComment registrationReplyComment) {
         return ResponseEntity.ok().body(commentService.saveReplyComment(comment_id, registrationReplyComment));
     }
+
+    // 대댓글 수정
+    @PutMapping(value = "/replyComment")
+    public ResponseEntity<CommentResponseDto.GetReplyCommentResponse> updateReplyComment(@RequestBody CommentRequestDto.UpdateReplyComment updateReplyComment){
+        return ResponseEntity.ok().body(commentService.updateReplyComment(updateReplyComment));
+    }
+
+    // 대댓글 불러오기
+    @GetMapping(value = "/replyComments/{comment_id}")
+    public ResponseEntity<List<CommentResponseDto.GetReplyCommentsResponse>> getReplyComment(@PathVariable("comment_id")Long comment_id){
+        return ResponseEntity.ok().body(commentService.getReplyComment(comment_id));
+    }
+
 }
