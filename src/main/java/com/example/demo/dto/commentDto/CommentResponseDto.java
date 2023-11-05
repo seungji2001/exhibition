@@ -23,7 +23,17 @@ public class CommentResponseDto {
     @AllArgsConstructor
     @Data
     public static class GetReplyCommentResponse{
-        Long comment_id;
+        Long reply_comment_id;
+        String writer;
+        String content;
+    }
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class GetReplyCommentsResponse{
+        Long reply_comment_id;
         String writer;
         String content;
         LocalDateTime insertDate;
