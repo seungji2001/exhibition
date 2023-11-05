@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>CodePen - Lo-fi Chat - with Tailwind CSS</title>
     <style>
+
+        .custom-bg {
+            background-color: rgba(241.00000083446503, 241.00000083446503, 241.00000083446503, 1);
+        }
         .rotate-45 {
             --transform-rotate: 45deg;
             transform: rotate(45deg);
@@ -48,7 +52,113 @@
                 }
             }
         }
+        .custom-shadow {
+            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+        }
+        .custom-height-chatbot-title {
+            height: 63px;
+        }
+        .chatbot-title-text{
+            font-family:Apple SD Gothic Neo,serif;
+            text-align:center;
+            font-size:24px;
+            letter-spacing:0;
+        }
+        .chatbot-title-border {
+                border:4px solid rgba(0, 0, 0, 1);
+            height: 0;
+        }
+        .e320_219 {
+            height:60px;
+            overflow:hidden;
+        }
+        .e319_194 {
+            color: rgba(0, 0, 0, 1);
+            width: 68px;
+            height: 19px;
+            /* left: 236px; */
+            /* top: 20px; */
+            font-family: Apple SD Gothic Neo;
+            text-align: center;
+            font-size: 16px;
+            letter-spacing: 0;
+        }
+        .e319_192 {
+            border: 2px solid rgba(0, 0, 0, 1);
+            width: 190px;
+            height: 0px;
+            margin: 30px;
+        }
+        .e311_180 {
+            height: 63px;
+            overflow: hidden;
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+        }
+        .container-text{
+            position: relative;
+        }
+        .minute-text-l {
+            position: absolute;
+            bottom: 0;
+            left: 100%;
+            padding-left: 5px;
+        }
+        .minute-text-r {
+            position: absolute;
+            bottom: 0;
+            right: 100%;
+            padding-right:5px;
+        }
+        .custom-bg-sendbox{
+            background-color:rgba(214.00000244379044, 132.0000073313713, 46.000001057982445, 1);
+            height:80px;
+            display: flex;
+        }
+        .text-custom-box {
+            height: 100%;
+            width: 90%;
+            border:4px solid black;
+            margin-right: 16px;
+
+        }
+        .text-custom-box::placeholder{
+            color:rgba(154.0625050663948, 154.0625050663948, 154.0625050663948, 1);
+            width:152px;
+            height:17px;
+            font-family:Apple SD Gothic Neo, Sans;
+            text-align:left;
+            font-size:16px;
+            letter-spacing:0;
+        }
+        .e185_115 {
+            background-color:rgba(0, 0, 0, 1);
+            width:10%;
+            height:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .send{
+            display: block;
+            margin: 0 auto;
+        }
+        .e185_118 {
+            color:rgba(154.0625050663948, 154.0625050663948, 154.0625050663948, 1);
+            width:152px;
+            height:17px;
+            position:absolute;
+            left:29px;
+            top:916px;
+            font-family:Apple SD Gothic Neo;
+            text-align:left;
+            font-size:16px;
+            letter-spacing:0;
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css?family=Apple+SD Gothic Neo&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.8.10/tailwind.min.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
@@ -236,13 +346,28 @@
 <body class="flex flex-col items-end justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10">
 
 <!-- Component Start -->
-<div class="chat-box flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
+<div class="chat-box flex flex-col flex-grow w-full max-w-xl custom-bg custom-shadow overflow-hidden">
     <input class="utility" type="hidden">
-    <div class="box flex flex-col flex-grow h-0 p-4 overflow-auto">
-        <div class="flex w-full mt-2 space-x-3 max-w-xs">
-            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-            <div>
-                <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+    <div class="w-full">
+        <div>
+            <div class="custom-height-chatbot-title p-3">
+                <p class="chatbot-title-text">챗봇</p>
+            </div>
+        </div>
+    </div>
+    <div class="chatbot-title-border"></div>
+    <div class="e311_180">
+        <span class="e319_192"></span>
+        <span class="e319_194">오늘 10/31</span>
+        <span class="e319_192"></span>
+    </div>
+    <div class="box elementbox flex flex-col flex-grow h-0 p-4 overflow-auto">
+        <div class="flex w-full space-x-3 max-w-xs">
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">
+                <img src="/chatbotAssets/chatbot1.png"/>
+            </div>
+            <div class="container-text">
+                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black">
                     <p class="text-sm">안녕하십니까.
                         위 챗봇은 위키백과와, 전시관련 챗봇으로
                         이루어졌습니다.
@@ -251,36 +376,46 @@
                         전시관련 질문은 “전시" 버튼을
                         이용해주세요.</p>
                 </div>
-                <span class="text-xs text-gray-500 leading-none">2 min ago</span>
+                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>
             </div>
         </div>
         <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
-            <div>
-                <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+            <div class="container-text">
+                <div class="wiki bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black">
                     <p class="text-sm">위키에게 질문하기</p>
                 </div>
-                <span class="text-xs text-gray-500 leading-none">2 min ago</span>
+                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>
             </div>
-            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">
+                <img src="/chatbotAssets/chatbot2.png"/>
+            </div>
         </div>
         <div class="exhibition flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
-            <div>
-                <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+            <div class="container-text">
+                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black">
                     <p class="text-sm">전시 관련 질문하기</p>
                 </div>
-                <span class="text-xs text-gray-500 leading-none">2 min ago</span>
+                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>
             </div>
-            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">
+                <img src="/chatbotAssets/chatbot2.png"/>
+            </div>
         </div>
     </div>
 
-    <div class="bg-gray-300 p-4">
-        <input class="text flex items-center h-10 w-full rounded px-3 text-sm" type="text" placeholder="Type your message…">
-        <button class="send" type="button">button</button>
+    <div class="chatbot-title-border"></div>
+    <div class="custom-bg-sendbox p-4">
+        <input class="text text-custom-box flex items-center px-3 text-sm" type="text" placeholder="TYPE YOUR MESSAGE">
+        <div class="e185_115">
+            <div class="send">
+                <img src="/chatbotAssets/chatbot_send.png"/>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Component End  -->
 <div class="chat-button"><span></span></div>
+
 
 </body>
 <!-- partial -->
