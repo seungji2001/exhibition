@@ -14,6 +14,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class CommentService {
 
@@ -26,6 +31,7 @@ public class CommentService {
     @Autowired
     ReplyCommentRepository replyCommentRepository;
 
+    @Transactional
     public Long saveComment(CommentRequestDto.RegistrationComment registrationComment){
         Work work = workRepository.findById(registrationComment.getWork_id()).orElseThrow();
         Member member = memberRepository.findById(registrationComment.getMember_id()).orElseThrow();
@@ -55,10 +61,38 @@ public class CommentService {
 
         return CommentResponseDto.GetCommentResponse.builder()
                 .comment_id(updateComment.getComment_id())
+                .writer(member.getName())
                 .content(updateComment.getContent())
                 .build();
     }
 
+    @Transactional
+    public List<CommentResponseDto.GetCommentsResponse> getComments(Long work_id){
+        Work work = workRepository.findById(work_id).orElseThrow();
+        List<Comment> comments = commentRepository.findAllByWork(work);
+        List<CommentResponseDto.GetCommentsResponse> getCommentsResponses = new ArrayList<>();
+
+        if(comments.isEmpty()){
+            return getCommentsResponses;
+        }
+        getCommentsResponses.addAll(
+            comments.stream()
+                    .map(comment -> {
+                        return CommentResponseDto.GetCommentsResponse.builder()
+                                .comment_id(comment.getId())
+                                .content(comment.getContent())
+                                .writer(comment.getMember().getName())
+                                .insertDate(comment.getInsertDate())
+                                .modifiedDate(comment.getModifiedDate())
+                                .modified(comment.getModified())
+                                .build();
+                    })
+                    .toList()
+            );
+        return getCommentsResponses;
+    }
+
+    @Transactional
     public Long  saveReplyComment(Long comment_id, CommentRequestDto.RegistrationReplyComment registrationReplyComment){
         Member member = memberRepository.findById(registrationReplyComment.getMember_id()).orElseThrow();
         Comment comment = commentRepository.findById(comment_id).orElseThrow();
