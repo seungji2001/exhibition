@@ -104,6 +104,7 @@ public class CommentService {
         return replyCommentRepository.save(replyComment).getId();
     }
 
+    @Transactional
     public List<CommentResponseDto.GetReplyCommentsResponse> getReplyComment(Long comment_id){
         Comment comment = commentRepository.findById(comment_id).orElseThrow();
         List<ReplyComment> replyComments = replyCommentRepository.findAllByComment(comment);
@@ -130,7 +131,7 @@ public class CommentService {
         return getReplyCommentsResponses;
     }
 
-
+    @Transactional
     public CommentResponseDto.GetReplyCommentResponse updateReplyComment(CommentRequestDto.UpdateReplyComment updateReplyComment){
         Member member = memberRepository.findById(updateReplyComment.getMember_id()).orElseThrow();
         ReplyComment replyComment = replyCommentRepository.findById(updateReplyComment.getReply_comment_id()).orElseThrow();
