@@ -14,15 +14,16 @@ import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @DynamicUpdate
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value={"modifiedDate"}, allowGetters=true)
 @Entity(name = "replycomment")
@@ -66,6 +67,9 @@ public class ReplyComment {
 
     public void updateReplyComment(String content){
         this.content = content;
+        if (modified!=1){
+            modified=1;
+        }
     }
 
 }
