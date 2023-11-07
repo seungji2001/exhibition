@@ -67,6 +67,9 @@ public class Comment {
 
     public void updateComment(String content){
         this.content = content;
+        if (modified!=1){
+            modified=1;
+        }
     }
 
 }

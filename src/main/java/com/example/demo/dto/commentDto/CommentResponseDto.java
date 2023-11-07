@@ -31,4 +31,27 @@ public class CommentResponseDto {
         LocalDateTime modifiedDate;
         int modified;
     }
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class GetReplyCommentResponse{
+        Long reply_comment_id;
+        String writer;
+        String content;
+    }
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class GetReplyCommentsResponse{
+        Long reply_comment_id;
+        String writer;
+        String content;
+        LocalDateTime insertDate;
+        LocalDateTime modifiedDate;
+        Integer modified;
+    }
 }
