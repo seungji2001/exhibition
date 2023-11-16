@@ -57,11 +57,13 @@
         }
         .custom-height-chatbot-title {
             height: 63px;
+            display: flex;
+            align-items: center;
         }
         .chatbot-title-text{
             font-family:Apple SD Gothic Neo,serif;
-            text-align:center;
             font-size:24px;
+            font-weight: bold;
             letter-spacing:0;
         }
         .chatbot-title-border {
@@ -164,13 +166,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            var svgElement = document.querySelector('svg.goback');
+            svgElement.addEventListener('click', function() {
+                // Your code here
+                // $('.chat-button').css("visibility", "visible");
+                // $('.chat-box').css("visibility", "hidden");
+                window.location.reload()
+            });
+
             function end() {
                 temp = document.createElement("div");
                 temp.innerHTML =
                     ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
                     '            <div class="container-text">\n' +
-                    '                <div class="bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
-                    '                    <p class="text-sm">종료하기</p>\n' +
+                    '                <div class="goback bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm goback">종료하기</p>\n' +
                     '                </div>\n' +
                     '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
                     '            </div>\n' +
@@ -244,6 +254,9 @@
                     wiki()
                     exhibition()
                 });
+                $('.goback').on('click',function () {
+                    window.location.reload()
+                })
             }
             function wiki() {
                 $('.wiki').on('click',function(){
@@ -403,7 +416,7 @@
                 })
             }
             $('.chat-button').on('click', function () {
-                $('.chat-button').css({"display": "none"});
+                $('.chat-button').css({"visibility": "hidden"});
                 $('.chat-box').css({"visibility": "visible"});
             })
 
@@ -470,21 +483,6 @@
                     '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
                     '            </div>\n' +
                     '        </div>'
-                // 요청, 통신이 성공했을 때 실행할 함수
-                $('.box').html(html)
-
-                var temp = document.createElement("div");
-                temp.innerHTML =
-                    '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
-                    '  <div>\n' +
-                    '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
-                    '      <p class="time text-sm">운영시간</p>\n' +
-                    '    </div>\n' +
-                    '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
-                    '  </div>\n' +
-                    '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
-                    '</div>'
->>>>>>> origin/exhibition-3-d
                 // 요청, 통신이 성공했을 때 실행할 함수
                 $('.box').append(temp)
 
@@ -574,16 +572,12 @@
                             temp.innerHTML = data
                             // 요청, 통신이 성공했을 때 실행할 함수
                             $('.box').append(temp)
-<<<<<<< HEAD
                             end()
-=======
->>>>>>> origin/exhibition-3-d
                         }
                     })
                 })
             })
             $('.send').on('click',function(){
-                $(this).off('click');
                 let temp = document.createElement("div");
                 temp.innerHTML =
                     '<div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
@@ -647,7 +641,14 @@
     <div class="w-full">
         <div>
             <div class="custom-height-chatbot-title p-3">
-                <p class="chatbot-title-text">챗봇</p>
+                <img src="chatbotAssets/chatbot_option.png" style="margin-right: auto" class="chatbot_option">
+                <p class="chatbot-title-text">CHATBOT</p>
+                <div style="margin-left: auto">
+                <svg class="goback" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                    <path d="M9 9L18 18L27 27" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M9 27L27 9" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                </div>
             </div>
         </div>
     </div>
