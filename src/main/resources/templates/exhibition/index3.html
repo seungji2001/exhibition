@@ -84,13 +84,13 @@
             letter-spacing: 0;
         }
         .e319_192 {
-            border: 2px solid rgba(0, 0, 0, 1);
-            width: 190px;
-            height: 0px;
-            margin: 30px;
+            /*border: 2px solid rgba(0, 0, 0, 1);*/
+            /*width: 190px;*/
+            /*height: 0px;*/
+            /*margin: 30px;*/
         }
         .e311_180 {
-            height: 63px;
+            height: 50px;
             overflow: hidden;
             text-align: center;
             justify-content: center;
@@ -113,7 +113,8 @@
             padding-right:5px;
         }
         .custom-bg-sendbox{
-            background-color:rgba(214.00000244379044, 132.0000073313713, 46.000001057982445, 1);
+            background: #000;
+            /*filter: blur(2px);*/
             height:80px;
             display: flex;
         }
@@ -122,7 +123,6 @@
             width: 90%;
             border:4px solid black;
             margin-right: 16px;
-
         }
         .text-custom-box::placeholder{
             color:rgba(154.0625050663948, 154.0625050663948, 154.0625050663948, 1);
@@ -132,9 +132,10 @@
             text-align:left;
             font-size:16px;
             letter-spacing:0;
+            backdrop-filter: none;
         }
         .e185_115 {
-            background-color:rgba(0, 0, 0, 1);
+
             width:10%;
             height:100%;
             display: flex;
@@ -163,6 +164,244 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            function end() {
+                temp = document.createElement("div");
+                temp.innerHTML =
+                    ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">종료하기</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').append(temp)
+
+                temp = document.createElement("div");
+                temp.innerHTML =
+                    ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="morequestion bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">더 질문하기.</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').append(temp)
+
+                $('.morequestion').on('click', function () {
+                    // Your code here
+                    let temp = document.createElement("div")
+                    temp.innerHTML =
+                        '        <div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                        '            </div>\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                        '                    <p class="text-sm">안녕하십니까.<br>\n' +
+                        '                        위 챗봇은 위키백과와, 전시관련 챗봇으로\n' +
+                        '                        이루어졌습니다.<br><br>\n' +
+                        '\n' +
+                        '                        위키관련 질문은 “위키에게 물어보기”를\n' +
+                        '                        전시관련 질문은 “전시" 버튼을\n' +
+                        '                        이용해주세요.</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="exhibition bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">전시</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="wiki bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">위키에게 물어보기</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>\n'
+                    $('.box').append(temp)
+                    wiki()
+                    exhibition()
+                });
+            }
+            function wiki() {
+                $('.wiki').on('click',function(){
+                    $('.utility').val('wiki')
+                    $(this).off('click');
+                    let html =
+                        '<div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                        '            </div>\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                        '                    <p class="text-sm">위키에게 물어보기를 클릭하셨습니다.<br><br>\n' +
+                        '                        위키백과사전을 통해 모르는 단어나 궁금한 것들을 자유롭게 물어보세요.' +
+                        '<br><br>\n' +
+                        '\n' +
+                        '                        \n' +
+                        'ex) 양자역학은 무엇인가요</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    let div = document.createElement('div');
+                    div.innerHTML = html;
+                    document.querySelector('.box').appendChild(div);
+                })
+            }
+            function exhibition() {
+                $('.exhibition').on('click',function(){
+                    $('.utility').val('exhibition')
+                    $(this).off('click');
+                    let html =
+                        '<div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                        '            </div>\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                        '                    <p class="text-sm">' +
+                        '전시 관련 물어보기를 클릭하셨습니다.\n' +
+                        '\n' +
+                        '전시 관련하여 궁금한 질문을 선택해주세요.\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    let div = document.createElement('div');
+                    div.innerHTML = html;
+                    document.querySelector('.box').appendChild(div);
+
+                    var temp = document.createElement("div");
+                    temp.innerHTML =
+                        ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="time bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">운영시간</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    $('.box').append(temp)
+
+                    temp = document.createElement("div");
+                    temp.innerHTML =
+                        ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="period bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">전시기간</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    $('.box').append(temp)
+
+                    temp = document.createElement("div");
+                    temp.innerHTML =
+                        ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="location bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">위치정보</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    $('.box').append(temp)
+
+                    $('.time').on('click',function(){
+                        $(this).off('click');
+                        $.ajax({
+                            type: "POST",    // GET 또는 POST
+                            url: "/chatbot/exhibition/option/" + 1,
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({'question': "time"}),
+                            dataType : "html" ,
+                            success: function (data) {
+                                console.log(data)
+                                let temp = document.createElement("div");
+                                temp.innerHTML = data
+                                // 요청, 통신이 성공했을 때 실행할 함수
+                                $('.box').append(temp)
+                                end()
+                            }
+                        })
+                    })
+
+                    $('.period').on('click',function(){
+                        $(this).off('click');
+                        $.ajax({
+                            type: "POST",    // GET 또는 POST
+                            url: "/chatbot/exhibition/option/" + 1,
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({'question': "period"}),
+                            dataType : "html" ,
+                            success: function (data) {
+                                console.log(data)
+                                let temp = document.createElement("div");
+                                temp.innerHTML = data
+                                // 요청, 통신이 성공했을 때 실행할 함수
+                                $('.box').append(temp)
+                                end()
+                            }
+                        })
+                    })
+
+                    $('.location').on('click',function(){
+                        $(this).off('click');
+                        $.ajax({
+                            type: "POST",    // GET 또는 POST
+                            url: "/chatbot/exhibition/option/" + 1,
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({'question': "location"}),
+                            dataType : "html" ,
+                            success: function (data) {
+                                console.log(data)
+                                let temp = document.createElement("div");
+                                temp.innerHTML = data
+                                // 요청, 통신이 성공했을 때 실행할 함수
+                                $('.box').append(temp)
+                                end()
+                            }
+                        })
+                    })
+                })
+            }
             $('.chat-button').on('click', function () {
                 $('.chat-button').css({"display": "none"});
                 $('.chat-box').css({"visibility": "visible"});
@@ -170,75 +409,106 @@
 
             $('.wiki').on('click',function(){
                 $('.utility').val('wiki')
-                let html = '<div th:fragment="wiki" class="flex w-full mt-2 space-x-3 max-w-xs">\n' +
-                    '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
-                    '  <div>\n' +
-                    '    <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">\n' +
-                    '      <p class="text-sm" th:text="${answer.answer}">위키에게 질문할 수 있습니다.</p>\n' +
-                    '    </div>\n' +
-                    '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
-                    '  </div>\n' +
-                    '</div>'
+                $(this).off('click');
+                $('.exhibition').off('click')
+                let html =
+                    '<div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                    '            </div>\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                    '                    <p class="text-sm">위키에게 물어보기를 클릭하셨습니다.<br><br>\n' +
+                    '                        위키백과사전을 통해 모르는 단어나 궁금한 것들을 자유롭게 물어보세요.' +
+                    '<br><br>\n' +
+                    '\n' +
+                    '                        \n' +
+                    'ex) 양자역학은 무엇인가요</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '        </div>'
                 // 요청, 통신이 성공했을 때 실행할 함수
-                $('.box').html(html)
+                let div = document.createElement('div');
+                div.innerHTML = html;
+                document.querySelector('.box').appendChild(div);
             })
             $('.exhibition').on('click',function(){
                 $('.utility').val('exhibition')
-                let html = '<div th:fragment="wiki" class="flex w-full mt-2 space-x-3 max-w-xs">\n' +
-                    '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
-                    '  <div>\n' +
-                    '    <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">\n' +
-                    '      <p class="text-sm">전시 관련 질문 해주세요.</p>\n' +
-                    '    </div>\n' +
-                    '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
-                    '  </div>\n' +
-                    '</div>'
+                $(this).off('click');
+                $('.wiki').off('click');
+                let html =
+                    '<div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                    '            </div>\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                    '                    <p class="text-sm">' +
+                    '전시 관련 물어보기를 클릭하셨습니다.\n' +
+                    '\n' +
+                    '전시 관련하여 궁금한 질문을 선택해주세요.\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '        </div>'
                 // 요청, 통신이 성공했을 때 실행할 함수
-                $('.box').html(html)
+                let div = document.createElement('div');
+                div.innerHTML = html;
+                document.querySelector('.box').appendChild(div);
 
                 var temp = document.createElement("div");
                 temp.innerHTML =
-                    '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
-                    '  <div>\n' +
-                    '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
-                    '      <p class="time text-sm">운영시간</p>\n' +
-                    '    </div>\n' +
-                    '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
-                    '  </div>\n' +
-                    '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
-                    '</div>'
+                    ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="time bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">운영시간</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
                 // 요청, 통신이 성공했을 때 실행할 함수
                 $('.box').append(temp)
 
                 temp = document.createElement("div");
                 temp.innerHTML =
-                    '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
-                    '  <div>\n' +
-                    '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
-                    '      <p class="period text-sm">전시 기간</p>\n' +
-                    '    </div>\n' +
-                    '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
-                    '  </div>\n' +
-                    '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
-                    '</div>'
+                    ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="period bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">전시기간</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
                 // 요청, 통신이 성공했을 때 실행할 함수
                 $('.box').append(temp)
 
                 temp = document.createElement("div");
                 temp.innerHTML =
-                    '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
-                    '  <div>\n' +
-                    '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
-                    '      <p class="location text-sm">위치정보</p>\n' +
-                    '    </div>\n' +
-                    '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
-                    '  </div>\n' +
-                    '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
-                    '</div>'
+                   ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="location bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">위치정보</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
                 // 요청, 통신이 성공했을 때 실행할 함수
                 $('.box').append(temp)
 
                 $('.time').on('click',function(){
+                    $(this).off('click');
+                    $('.period').off('click');
+                    $('.location').off('click');
                     $.ajax({
                         type: "POST",    // GET 또는 POST
                         url: "/chatbot/exhibition/option/" + 1,
@@ -251,11 +521,13 @@
                             temp.innerHTML = data
                             // 요청, 통신이 성공했을 때 실행할 함수
                             $('.box').append(temp)
+                            end()
                         }
                     })
                 })
 
                 $('.period').on('click',function(){
+                    $(this).off('click');
                     $.ajax({
                         type: "POST",    // GET 또는 POST
                         url: "/chatbot/exhibition/option/" + 1,
@@ -268,11 +540,13 @@
                             temp.innerHTML = data
                             // 요청, 통신이 성공했을 때 실행할 함수
                             $('.box').append(temp)
+                            end()
                         }
                     })
                 })
 
                 $('.location').on('click',function(){
+                    $(this).off('click');
                     $.ajax({
                         type: "POST",    // GET 또는 POST
                         url: "/chatbot/exhibition/option/" + 1,
@@ -285,22 +559,26 @@
                             temp.innerHTML = data
                             // 요청, 통신이 성공했을 때 실행할 함수
                             $('.box').append(temp)
+                            end()
                         }
                     })
                 })
             })
             $('.send').on('click',function(){
+                $(this).off('click');
                 let temp = document.createElement("div");
                 temp.innerHTML =
-                    '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
-                    '  <div>\n' +
-                    '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
-                    '      <p class="text-sm">' + $('.text').val() + '</p>\n' +
-                    '    </div>\n' +
-                    '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
-                    '  </div>\n' +
-                    '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
-                    '</div>'
+                    '<div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="wiki bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">'+$('.text').val() + '</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
                 // 요청, 통신이 성공했을 때 실행할 함수
                 $('.box').append(temp)
 
@@ -317,26 +595,26 @@
                             temp.innerHTML = data
                             // 요청, 통신이 성공했을 때 실행할 함수
                             $('.box').append(temp)
+                            end()
                         }
                     })
                 }else if($('.utility').val() === 'exhibition'){
-                    $.ajax({
-                        type: "POST",    // GET 또는 POST
-                        url: "/chatbot/exhibition/" + 1,
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify({'question': $('.text').val()}),
-                        dataType : "html" ,
-                        success: function (data) {
-                            console.log(data)
-                            let temp = document.createElement("div");
-                            temp.innerHTML = data
-                            // 요청, 통신이 성공했을 때 실행할 함수
-                            $('.box').append(temp)
-                        }
-                    })
+                    // $.ajax({
+                    //     type: "POST",    // GET 또는 POST
+                    //     url: "/chatbot/exhibition/" + 1,
+                    //     contentType: "application/json; charset=utf-8",
+                    //     data: JSON.stringify({'question': $('.text').val()}),
+                    //     dataType : "html" ,
+                    //     success: function (data) {
+                    //         console.log(data)
+                    //         let temp = document.createElement("div");
+                    //         temp.innerHTML = data
+                    //         // 요청, 통신이 성공했을 때 실행할 함수
+                    //         $('.box').append(temp)
+                    //     }
+                    // })
+                    alert('위키 관련 질문만 텍스트 입력이 가능합니다.')
                 }
-
-                $('.text').val('')
             })
         })
     </script>
@@ -355,22 +633,30 @@
             </div>
         </div>
     </div>
-    <div class="chatbot-title-border"></div>
+    <div>
+        <img src="/chatbotAssets/img.png">
+    </div>
     <div class="e311_180">
-        <span class="e319_192"></span>
-        <span class="e319_194">오늘 10/31</span>
-        <span class="e319_192"></span>
+        <span class="e319_192">
+            <img src="/chatbotAssets/img_2.png">
+        </span>
+        <div style="padding:0px 20px">
+        <span class="e319_194">TODAY 10/31</span>
+        </div>
+        <span class="e319_192">
+            <img src="/chatbotAssets/img_2.png">
+        </span>
     </div>
     <div class="box elementbox flex flex-col flex-grow h-0 p-4 overflow-auto">
-        <div class="flex w-full space-x-3 max-w-xs">
+        <div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">
             <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">
                 <img src="/chatbotAssets/chatbot1.png"/>
             </div>
             <div class="container-text">
-                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black">
-                    <p class="text-sm">안녕하십니까.
+                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">
+                    <p class="text-sm">안녕하십니까.<br>
                         위 챗봇은 위키백과와, 전시관련 챗봇으로
-                        이루어졌습니다.
+                        이루어졌습니다.<br><br>
 
                         위키관련 질문은 “위키에게 물어보기”를
                         전시관련 질문은 “전시" 버튼을
@@ -379,10 +665,10 @@
                 <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>
             </div>
         </div>
-        <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+        <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">
             <div class="container-text">
-                <div class="wiki bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black">
-                    <p class="text-sm">위키에게 질문하기</p>
+                <div class="exhibition bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">
+                    <p class="text-sm">전시</p>
                 </div>
                 <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>
             </div>
@@ -390,10 +676,10 @@
                 <img src="/chatbotAssets/chatbot2.png"/>
             </div>
         </div>
-        <div class="exhibition flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+        <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">
             <div class="container-text">
-                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black">
-                    <p class="text-sm">전시 관련 질문하기</p>
+                <div class="wiki bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">
+                    <p class="text-sm">위키에게 물어보기</p>
                 </div>
                 <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>
             </div>
@@ -402,16 +688,31 @@
             </div>
         </div>
     </div>
-
-    <div class="chatbot-title-border"></div>
     <div class="custom-bg-sendbox p-4">
         <input class="text text-custom-box flex items-center px-3 text-sm" type="text" placeholder="TYPE YOUR MESSAGE">
         <div class="e185_115">
             <div class="send">
-                <img src="/chatbotAssets/chatbot_send.png"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="68" height="54" viewBox="0 0 68 54" fill="none">
+                    <g filter="url(#filter0_f_391_315)">
+                        <rect x="4" y="5.05896" width="60" height="44" fill="url(#paint0_radial_391_315)"/>
+                    </g>
+                    <path d="M35.435 43.0113L48.3925 13.3654L17.9847 24.4173L24.7606 31.658L42.1945 19.1821L28.6384 35.79L35.435 43.0113Z" fill="black"/>
+                    <defs>
+                        <filter id="filter0_f_391_315" x="0" y="1.05896" width="68" height="52" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                            <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_391_315"/>
+                        </filter>
+                        <radialGradient id="paint0_radial_391_315" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(34 27.059) rotate(90) scale(22 30)">
+                            <stop stop-color="white"/>
+                            <stop offset="1" stop-color="#0FEF4E"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
             </div>
         </div>
     </div>
+
 </div>
 <!-- Component End  -->
 <div class="chat-button"><span></span></div>
