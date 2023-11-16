@@ -42,6 +42,11 @@ public class Work {
     @OneToMany(mappedBy = "work")
     private List<Comment> comments;
 
+    @Column(name = "template_num")
+    private int templateNum;
+
+    private String topic;
+
     public void updateView(){
         view += 1;
     }
