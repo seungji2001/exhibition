@@ -471,6 +471,21 @@
                     '            </div>\n' +
                     '        </div>'
                 // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').html(html)
+
+                var temp = document.createElement("div");
+                temp.innerHTML =
+                    '<div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '  <div>\n' +
+                    '    <div class="wiki bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">\n' +
+                    '      <p class="time text-sm">운영시간</p>\n' +
+                    '    </div>\n' +
+                    '    <span class="text-xs text-gray-500 leading-none">2 min ago</span>\n' +
+                    '  </div>\n' +
+                    '  <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>\n' +
+                    '</div>'
+>>>>>>> origin/exhibition-3-d
+                // 요청, 통신이 성공했을 때 실행할 함수
                 $('.box').append(temp)
 
                 temp = document.createElement("div");
@@ -559,7 +574,10 @@
                             temp.innerHTML = data
                             // 요청, 통신이 성공했을 때 실행할 함수
                             $('.box').append(temp)
+<<<<<<< HEAD
                             end()
+=======
+>>>>>>> origin/exhibition-3-d
                         }
                     })
                 })
