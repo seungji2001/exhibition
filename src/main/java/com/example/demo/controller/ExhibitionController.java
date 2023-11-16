@@ -22,7 +22,8 @@ public class ExhibitionController {
     @GetMapping(value = "/exhibition/{exhibition_id}")
     public String getExhibition(Model model, @PathVariable("exhibition_id") Long exhibition_id){
         model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
-        return "/exhibition/index1";
+
+        return "/exhibition/index4";
     }
 
     //exhibition 등록
