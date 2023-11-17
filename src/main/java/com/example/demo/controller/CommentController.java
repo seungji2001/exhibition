@@ -17,7 +17,6 @@ public class CommentController {
 
     @Autowired
     CommentService commentService;
-
     //댓글 등록
     @PostMapping(value = "/comment")
     public ResponseEntity<Long> saveComment(@RequestBody CommentRequestDto.RegistrationComment registrationComment) {
