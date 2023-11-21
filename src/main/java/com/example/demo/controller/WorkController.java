@@ -17,6 +17,9 @@ public class WorkController {
     @Autowired
     WorkService workService;
 
+    @GetMapping("/work/{exhibition_id}")
+
+
     //멤버별 작품 등록하기 -v1
     @PostMapping(value = "/work/version1")
     public String registrationWork (WorkRequestDto.registNewWork newWork){

@@ -10,9 +10,79 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/exhibitionAssets/assets/css/main.css" />
+    <style>
+        .main_page_line{
+            position: absolute;
+            z-index: 1;
+            width: 100vw;
+            height: 40px;
+        }
+        .main_page_line_horizontal{
+            z-index: 2;
+            height: -webkit-fill-available;
+            right: 0%;
+            position: absolute;
+            width: 40px;
+            top: 0%;
+        }
+        .main_text_1{
+            text-align: center;
+        color: #FFF;
+            font-family: "Arial Black", sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            filter: blur(1.0px);
+            opacity: 0.5;
+
+        }
+        .main_text_2{
+            color: #FFF;
+            font-family: "Arial Black", sans-serif;
+            font-size: 20px;
+            letter-spacing: -0.1px;
+            font-style: normal;
+            font-weight: 400;
+            text-align: right;
+            opacity: 0.5;
+            filter: blur(1.0px);
+            line-height: 1.5;
+        }
+
+        .main_text_5 {
+            font-family: "Arial Black", sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 2px 2px 6px #0FEF4E;
+            line-height: 6;
+        }
+        .main_text_4{
+            /*font-family: "Arial Black", sans-serif;*/
+            /*font-size: 6;*/
+            font-weight: unset;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0px 13px 2px gray;
+            filter: blur(0.4px);
+        }
+        #one > .container_1{
+            display: flex;
+            flex-direction: column;
+        }
+        .container_2{
+            /*display: flex;*/
+            /*!*flex-direction: row;*!*/
+            /*justify-content: center;*/
+            /*line-height: 5;*/
+        }
+
+    </style>
 </head>
 <body class="is-preload">
-
+<img src="/exhibitionAssets/images/mainPageLine-1.png" class="main_page_line">
 <!-- Header -->
 <header id="header">
     <div class="inner">
@@ -25,17 +95,32 @@
 
 <!-- Main -->
 <div id="main">
-
+    <img src="/exhibitionAssets/images/mainPageLine-2.png" class="main_page_line_horizontal">
     <!-- One -->
     <section id="one">
-        <header class="major">
-            <h2>Ipsum lorem dolor aliquam ante commodo<br />
-                magna sed accumsan arcu neque.</h2>
-        </header>
-        <p>Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi lorem vulputate lorem neque cubilia ac in adipiscing in curae lobortis tortor primis integer massa adipiscing id nisi accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque cubilia.</p>
-        <ul class="actions">
-            <li><a href="#" class="button">Learn More</a></li>
-        </ul>
+        <div class="container_1">
+        <span class="main_text_1">A는 문이 닫힌 서로 같은 두 방 앞에 서 있다</span>
+        <br>
+        <span class="main_text_2">
+            각각의 방 안에는
+        <br>B와 B
+            <br>가 있다</span>
+            <br>
+            <div class="container_2">
+                <div class="main_text_1">A는 그 중</div>
+<!--                <div class="same_loc">-->
+<!--                <div class="main_text_4">하나의 문</div>-->
+                <div class="main_text_5">하나의 문</div>
+<!--                </div>-->
+                <div class="main_text_1">을 열고 방으로 들어갔다</div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <span class="main_text_4">
+                A가 들어간 방과 들어가지 않은 방에서는 각각 어떤 일이 일어날까
+            </span>
+        </div>
     </section>
 
     <!-- Two -->
