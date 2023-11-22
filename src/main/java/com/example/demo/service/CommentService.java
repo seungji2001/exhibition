@@ -12,6 +12,8 @@ import com.example.demo.repository.ReplyCommentRepository;
 import com.example.demo.repository.WorkRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -67,9 +69,9 @@ public class CommentService {
     }
 
     @Transactional
-    public List<CommentResponseDto.GetCommentsResponse> getComments(Long work_id){
+    public List<CommentResponseDto.GetCommentsResponse> getComments(Long work_id, Pageable pageable){
         Work work = workRepository.findById(work_id).orElseThrow();
-        List<Comment> comments = commentRepository.findAllByWork(work);
+        Page<Comment> comments = commentRepository.findAllByWork(work,pageable);
         List<CommentResponseDto.GetCommentsResponse> getCommentsResponses = new ArrayList<>();
 
         if(comments.isEmpty()){
@@ -105,9 +107,9 @@ public class CommentService {
     }
 
     @Transactional
-    public List<CommentResponseDto.GetReplyCommentsResponse> getReplyComment(Long comment_id){
+    public List<CommentResponseDto.GetReplyCommentsResponse> getReplyComment(Long comment_id, Pageable pageable){
         Comment comment = commentRepository.findById(comment_id).orElseThrow();
-        List<ReplyComment> replyComments = replyCommentRepository.findAllByComment(comment);
+        Page<ReplyComment> replyComments = replyCommentRepository.findAllByComment(comment, pageable);
 
         List<CommentResponseDto.GetReplyCommentsResponse> getReplyCommentsResponses = new ArrayList<>();
 
