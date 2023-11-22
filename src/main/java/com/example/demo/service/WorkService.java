@@ -6,6 +6,7 @@ import com.example.demo.domain.ViewRecord;
 import com.example.demo.domain.Work;
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
+import com.example.demo.dto.workDto.GetAllWork;
 import com.example.demo.dto.workDto.WorkRequestDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
 import com.example.demo.repository.ExhibitionRepository;
@@ -125,7 +126,7 @@ public class WorkService {
         Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()->new IllegalArgumentException("해당하는 전시가 없습니다."));
         Member member = memberRepository.findMemberByIdAndExhibition(participants_id, exhibition).orElseThrow(()-> new IllegalArgumentException("해당하는 전시에 멤버가 없습니다."));
         Work work = Work.builder()
-                .ImgUrl(registSupporterWork.getImg_url())
+                .imgUrl(registSupporterWork.getImg_url())
                 .title(registSupporterWork.getTitle())
                 .contents(registSupporterWork.getContent())
                 .member(member)
@@ -197,5 +198,14 @@ public class WorkService {
                 .viewList(memberViewList)
                 .likeCount(work.getLikeCount())
                 .build();
+    }
+
+    @Transactional
+    public List<GetAllWork> getAllWork(Long exhibition_id){
+        Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()-> new IllegalArgumentException("해당하는 전시가 없습니다."));
+
+        List<GetAllWork> workThumbnailList = workRepository.findByExhibition(exhibition);
+
+        return workThumbnailList;
     }
 }

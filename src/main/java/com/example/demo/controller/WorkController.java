@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.memberDto.MemberRequestDto;
+import com.example.demo.dto.workDto.GetAllWork;
 import com.example.demo.dto.workDto.WorkRequestDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
 import com.example.demo.service.WorkService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -66,4 +69,9 @@ public class WorkController {
 
     //서포터 작품에 대한 감상평 보기 -> 테이블에 칼람 추가 필요
 
+    // 해당 전시 모든 작품 불러오기
+    @GetMapping(value = "/work/getAll/{exhibition_id}")
+    public ResponseEntity<List<GetAllWork>> getAllWork(@PathVariable("exhibition_id")Long exhibition_id){
+        return ResponseEntity.ok().body(workService.getAllWork(exhibition_id));
+    }
 }

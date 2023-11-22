@@ -22,7 +22,7 @@ public class Work {
 
     private String title;
 
-    private String ImgUrl;
+    private String imgUrl;
 
     private String contents;
 
