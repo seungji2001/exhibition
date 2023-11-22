@@ -11,77 +11,203 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/exhibitionAssets/assets/css/main.css" />
     <style>
-        .main_page_line{
-            position: absolute;
-            z-index: 1;
-            width: 100vw;
-            height: 40px;
-        }
-        .main_page_line_horizontal{
-            z-index: 2;
-            height: -webkit-fill-available;
-            right: 0%;
-            position: absolute;
-            width: 40px;
-            top: 0%;
-        }
-        .main_text_1{
-            text-align: center;
-        color: #FFF;
-            font-family: "Arial Black", sans-serif;
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            filter: blur(1.0px);
-            opacity: 0.5;
+        @media screen and (min-width: 2000px) and (max-width: 2500px) {
+            .option_text{
+                font-weight: bold; font-size: 40px;
+                color: white;
+                padding-right: 15%;
+            }
 
-        }
-        .main_text_2{
-            color: #FFF;
-            font-family: "Arial Black", sans-serif;
-            font-size: 20px;
-            letter-spacing: -0.1px;
-            font-style: normal;
-            font-weight: 400;
-            text-align: right;
-            opacity: 0.5;
-            filter: blur(1.0px);
-            line-height: 1.5;
-        }
+            .img_line{
+                padding-top:4.5%;
+            }
+            .main_page_line {
+                position: absolute;
+                z-index: 1;
+                width: 100vw;
+                height: 40px;
+            }
 
-        .main_text_5 {
-            font-family: "Arial Black", sans-serif;
-            font-size: 24px;
-            font-weight: 400;
-            color: #ffffff;
-            text-align: center;
-            text-shadow: 2px 2px 6px #0FEF4E;
-            line-height: 6;
-        }
-        .main_text_4{
-            /*font-family: "Arial Black", sans-serif;*/
-            /*font-size: 6;*/
-            font-weight: unset;
-            color: #ffffff;
-            text-align: center;
-            text-shadow: 0px 13px 2px gray;
-            filter: blur(0.4px);
-        }
-        #one > .container_1{
-            display: flex;
-            flex-direction: column;
-        }
-        .container_2{
-            /*display: flex;*/
-            /*!*flex-direction: row;*!*/
-            /*justify-content: center;*/
-            /*line-height: 5;*/
-        }
+            .main_page_line_horizontal {
+                z-index: 2;
+                height: -webkit-fill-available;
+                right: 0%;
+                position: absolute;
+                width: 3%;
+                top: 0%;
+            }
 
+            .main_text_1 {
+                text-align: center;
+                color: #FFF;
+                font-family: "Arial Black", sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                filter: blur(1.0px);
+                opacity: 0.5;
+
+            }
+
+            .main_text_2 {
+                padding-right: 15%;
+                color: #FFF;
+                font-family: "Arial Black", sans-serif;
+                font-size: 20px;
+                letter-spacing: -0.1px;
+                font-style: normal;
+                font-weight: 400;
+                text-align: right;
+                opacity: 0.5;
+                filter: blur(1.0px);
+                line-height: 1.5;
+            }
+
+            .main_text_5 {
+                font-family: "Arial Black", sans-serif;
+                font-size: 24px;
+                font-weight: 400;
+                color: #ffffff;
+                text-align: center;
+                text-shadow: 2px 2px 6px #0FEF4E;
+                line-height: 6;
+            }
+
+            .main_text_4 {
+                /*font-family: "Arial Black", sans-serif;*/
+                /*font-size: 6;*/
+                font-weight: unset;
+                color: #ffffff;
+                text-align: center;
+                text-shadow: 0px 13px 2px gray;
+                filter: blur(0.4px);
+            }
+
+            #one > .container_1 {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .container_2 {
+                /*display: flex;*/
+                /*!*flex-direction: row;*!*/
+                /*justify-content: center;*/
+                /*line-height: 5;*/
+            }
+        }
+        @media screen and (max-width: 1000px){
+            .main_page_line{
+                display: none;
+            }
+            .main_page_line_horizontal{
+                display: none;
+            }
+            .img_line{
+                display: none;
+            }
+            .img_line_1{
+                display: none;
+            }
+            #header{
+                background-size: cover;
+                /*padding: 14.5em 1.5em;*/
+            }
+        }
+        @media screen and (max-width: 2000px) {
+            .option_text{
+                font-weight: bold; font-size: 40px;
+                color: white;
+            }
+            .main_page_line {
+                position: absolute;
+                z-index: 1;
+                width: 100vw;
+                height: 40px;
+            }
+
+            .main_page_line_horizontal {
+                z-index: 2;
+                height: -webkit-fill-available;
+                right: 0%;
+                position: absolute;
+                width: 3%;
+                top: 0%;
+            }
+
+            .main_text_1 {
+                text-align: center;
+                color: #FFF;
+                font-family: "Arial Black", sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                filter: blur(1.0px);
+                opacity: 0.5;
+
+            }
+
+            .main_text_2 {
+                color: #FFF;
+                font-family: "Arial Black", sans-serif;
+                font-size: 20px;
+                letter-spacing: -0.1px;
+                font-style: normal;
+                font-weight: 400;
+                text-align: right;
+                opacity: 0.5;
+                filter: blur(1.0px);
+                line-height: 1.5;
+            }
+
+            .main_text_5 {
+                font-family: "Arial Black", sans-serif;
+                font-size: 24px;
+                font-weight: 400;
+                color: #ffffff;
+                text-align: center;
+                text-shadow: 2px 2px 6px #0FEF4E;
+                line-height: 6;
+            }
+
+            .main_text_4 {
+                /*font-family: "Arial Black", sans-serif;*/
+                /*font-size: 6;*/
+                font-weight: unset;
+                color: #ffffff;
+                text-align: center;
+                text-shadow: 0px 13px 2px gray;
+                filter: blur(0.4px);
+            }
+
+            #one > .container_1 {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .container_2 {
+                /*display: flex;*/
+                /*!*flex-direction: row;*!*/
+                /*justify-content: center;*/
+                /*line-height: 5;*/
+            }
+            .option_text{
+                font-weight: bold; font-size: 40px;
+                color: white;
+            }
+            .img_line{
+                padding-top:4.5%;
+            }
+        }
+        .option_text:hover{
+            font-weight: bold; font-size: 40px;
+            text-shadow: 2px 2px 10px #0FEF4E;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body class="is-preload">
+<body class="is-preload" style="overflow-x: hidden">
 <img src="/exhibitionAssets/images/mainPageLine-1.png" class="main_page_line">
 <!-- Header -->
 <header id="header">
@@ -124,78 +250,72 @@
     </section>
 
     <!-- Two -->
-    <section id="two">
-        <h2>Recent Work</h2>
-        <div class="row">
-            <article class="col-6 col-12-xsmall work-item">
-                <a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="" /></a>
-                <h3>Magna sed consequat tempus</h3>
-                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-            </article>
-            <article class="col-6 col-12-xsmall work-item">
-                <a href="images/fulls/02.jpg" class="image fit thumb"><img src="images/thumbs/02.jpg" alt="" /></a>
-                <h3>Ultricies lacinia interdum</h3>
-                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-            </article>
-            <article class="col-6 col-12-xsmall work-item">
-                <a href="images/fulls/03.jpg" class="image fit thumb"><img src="images/thumbs/03.jpg" alt="" /></a>
-                <h3>Tortor metus commodo</h3>
-                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-            </article>
-            <article class="col-6 col-12-xsmall work-item">
-                <a href="images/fulls/04.jpg" class="image fit thumb"><img src="images/thumbs/04.jpg" alt="" /></a>
-                <h3>Quam neque phasellus</h3>
-                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-            </article>
-            <article class="col-6 col-12-xsmall work-item">
-                <a href="images/fulls/05.jpg" class="image fit thumb"><img src="images/thumbs/05.jpg" alt="" /></a>
-                <h3>Nunc enim commodo aliquet</h3>
-                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-            </article>
-            <article class="col-6 col-12-xsmall work-item">
-                <a href="images/fulls/06.jpg" class="image fit thumb"><img src="images/thumbs/06.jpg" alt="" /></a>
-                <h3>Risus ornare lacinia</h3>
-                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-            </article>
-        </div>
-        <ul class="actions">
-            <li><a href="#" class="button">Full Portfolio</a></li>
-        </ul>
-    </section>
+<!--    <section id="two" style="padding-top: 30%">-->
+<!--            <img src="/exhibitionAssets/images/mainPageLine-1.png" style="height: 40px">-->
+<!--        <h2>Recent Work</h2>-->
+<!--        <div class="row">-->
+<!--            <article class="col-6 col-12-xsmall work-item">-->
+<!--                <a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="" /></a>-->
+<!--                <h3>Magna sed consequat tempus</h3>-->
+<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
+<!--            </article>-->
+<!--            <article class="col-6 col-12-xsmall work-item">-->
+<!--                <a href="images/fulls/02.jpg" class="image fit thumb"><img src="images/thumbs/02.jpg" alt="" /></a>-->
+<!--                <h3>Ultricies lacinia interdum</h3>-->
+<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
+<!--            </article>-->
+<!--            <article class="col-6 col-12-xsmall work-item">-->
+<!--                <a href="images/fulls/03.jpg" class="image fit thumb"><img src="images/thumbs/03.jpg" alt="" /></a>-->
+<!--                <h3>Tortor metus commodo</h3>-->
+<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
+<!--            </article>-->
+<!--            <article class="col-6 col-12-xsmall work-item">-->
+<!--                <a href="images/fulls/04.jpg" class="image fit thumb"><img src="images/thumbs/04.jpg" alt="" /></a>-->
+<!--                <h3>Quam neque phasellus</h3>-->
+<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
+<!--            </article>-->
+<!--            <article class="col-6 col-12-xsmall work-item">-->
+<!--                <a href="images/fulls/05.jpg" class="image fit thumb"><img src="images/thumbs/05.jpg" alt="" /></a>-->
+<!--                <h3>Nunc enim commodo aliquet</h3>-->
+<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
+<!--            </article>-->
+<!--            <article class="col-6 col-12-xsmall work-item">-->
+<!--                <a href="images/fulls/06.jpg" class="image fit thumb"><img src="images/thumbs/06.jpg" alt="" /></a>-->
+<!--                <h3>Risus ornare lacinia</h3>-->
+<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
+<!--            </article>-->
+<!--        </div>-->
+<!--        <ul class="actions">-->
+<!--            <li><a href="#" class="button">Full Portfolio</a></li>-->
+<!--        </ul>-->
+<!--    </section>-->
 
     <!-- Three -->
-    <section id="three">
-        <h2>Get In Touch</h2>
-        <p>Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>
-        <div class="row">
-            <div class="col-8 col-12-small">
-                <form method="post" action="#">
-                    <div class="row gtr-uniform gtr-50">
-                        <div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
-                        <div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
-                        <div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-                    </div>
-                </form>
-                <ul class="actions">
-                    <li><input type="submit" value="Send Message" /></li>
-                </ul>
-            </div>
-            <div class="col-4 col-12-small">
+    <!-- Three -->
+    <section id="three" style="padding-top:30%">
+        <img src="/exhibitionAssets/images/mainPageLine-1.png" style="padding-bottom: 5%" class="img_line_1">
+        <div class="row" style="
+    display: flex;
+    justify-content: flex-end;
+">
+            <div class="col-4 col-12-small" style="text-align: right">
                 <ul class="labeled-icons">
                     <li>
-                        <h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-                        1234 Somewhere Rd.<br />
-                        Nashville, TN 00000<br />
-                        United States
+                        <span class="option_text">LOCATION</span><br />
                     </li>
+                    <img src="/exhibitionAssets/images/mainPageLine-1.png" class="img_line">
                     <li>
-                        <h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-                        000-000-0000
+                        <span class="option_text">DATE</span><br />
                     </li>
+                    <img src="/exhibitionAssets/images/mainPageLine-1.png" class="img_line">
                     <li>
-                        <h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-                        <a href="#">hello@untitled.tld</a>
+                        <span class="option_text">ARTIST INFO</span><br />
                     </li>
+                    <img src="/exhibitionAssets/images/mainPageLine-1.png" class="img_line">
+                    <li>
+                        <span class="option_text">ART WORK</span><br />
+                    </li>
+                    <img src="/exhibitionAssets/images/mainPageLine-1.png" class="img_line">
                 </ul>
             </div>
         </div>

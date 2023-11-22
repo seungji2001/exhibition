@@ -360,7 +360,7 @@ input, select, textarea {
 		}
 
 		.row > .col-4 {
-			width: 33.33333%;
+			width: 100%;
 		}
 
 		.row > .off-4 {
@@ -534,7 +534,6 @@ input, select, textarea {
 				}
 
 		@media screen and (max-width: 1800px) {
-
 			.row {
 				display: flex;
 				flex-wrap: wrap;
@@ -3063,6 +3062,7 @@ input, select, textarea {
 				top: auto;
 				width: 100%;
 				display: block;
+
 			}
 
 				#header h1 {
