@@ -1,21 +1,31 @@
 package com.example.demo.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@DynamicUpdate
+@NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(value={"modifiedDate"}, allowGetters=true)
 @Entity(name = "replycomment")
 public class ReplyComment {
     @Id
@@ -36,6 +46,30 @@ public class ReplyComment {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    //대댓글 작성일자
     @CreationTimestamp
     private LocalDateTime insertDate;
+
+    //대댓글 수정일자
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
+
+    //수정의 경우 1로
+    @ColumnDefault("0")
+    private int modified;
+
+    @PostLoad
+    public void checkModified(){
+        if(!insertDate.equals(modifiedDate)){
+            modified = 1;
+        }
+    }
+
+    public void updateReplyComment(String content){
+        this.content = content;
+        if (modified!=1){
+            modified=1;
+        }
+    }
+
 }
