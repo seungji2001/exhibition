@@ -11,6 +11,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/exhibitionAssets/assets/css/main.css" />
     <style>
+        .custom-bg {
+            background-color: rgba(241.00000083446503, 241.00000083446503, 241.00000083446503, 1);
+        }
+        .rotate-45 {
+            --transform-rotate: 45deg;
+            transform: rotate(45deg);
+        }
+
+        .group:hover .group-hover\:flex {
+            display: flex;
+        }
+        .chat-box {
+            visibility: hidden;
+        }
+        .chat-button {
+            /*padding: 25px 16px;*/
+            /*width: 150px;*/
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: 15px;
+            cursor: pointer;
+            & span {
+                &::before {
+                    content: "";
+                    height: 15px;
+                    width: 15px;
+                    background: #47cf73;
+                    position: absolute;
+                    transform: translate(0, -7px);
+                    border-radius: 15px;
+                }
+                &::after {
+                    content: "Message Us";
+                    font-size: 14px;
+                    color: white;
+                    position: absolute;
+                    left: 50px;
+                    top: 18px;
+                }
+            }
+        }
+        .custom-shadow {
+            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+        }
+        .custom-height-chatbot-title {
+            height: 63px;
+            display: flex;
+            align-items: center;
+        }
+        .chatbot-title-text{
+            font-family:Apple SD Gothic Neo,serif;
+            font-size:24px;
+            font-weight: bold;
+            letter-spacing:0;
+        }
+        .chatbot-title-border {
+            border:4px solid rgba(0, 0, 0, 1);
+            height: 0;
+        }
+        .e320_219 {
+            height:60px;
+            overflow:hidden;
+        }
+        .e319_194 {
+            color: rgba(0, 0, 0, 1);
+            width: 68px;
+            height: 19px;
+            /* left: 236px; */
+            /* top: 20px; */
+            font-family: Apple SD Gothic Neo;
+            text-align: center;
+            font-size: 16px;
+            letter-spacing: 0;
+        }
+        .e319_192 {
+            /*border: 2px solid rgba(0, 0, 0, 1);*/
+            /*width: 190px;*/
+            /*height: 0px;*/
+            /*margin: 30px;*/
+        }
+        .e311_180 {
+            height: 50px;
+            overflow: hidden;
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+        }
+        .container-text{
+            position: relative;
+        }
+        .minute-text-l {
+            position: absolute;
+            bottom: 0;
+            left: 100%;
+            padding-left: 5px;
+        }
+        .minute-text-r {
+            position: absolute;
+            bottom: 0;
+            right: 100%;
+            padding-right:5px;
+        }
+        .custom-bg-sendbox{
+            background: #000;
+            /*filter: blur(2px);*/
+            height:80px;
+            display: flex;
+        }
+        .text-custom-box {
+            height: 100%;
+            width: 90%;
+            border:4px solid black;
+            margin-right: 16px;
+        }
+        .text-custom-box::placeholder{
+            color:rgba(154.0625050663948, 154.0625050663948, 154.0625050663948, 1);
+            width:152px;
+            height:17px;
+            font-family:Apple SD Gothic Neo, Sans;
+            text-align:left;
+            font-size:16px;
+            letter-spacing:0;
+            backdrop-filter: none;
+        }
+        .e185_115 {
+
+            width:10%;
+            height:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .send{
+            display: block;
+            margin: 0 auto;
+        }
+        .e185_118 {
+            color:rgba(154.0625050663948, 154.0625050663948, 154.0625050663948, 1);
+            width:152px;
+            height:17px;
+            position:absolute;
+            left:29px;
+            top:916px;
+            font-family:Apple SD Gothic Neo;
+            text-align:left;
+            font-size:16px;
+            letter-spacing:0;
+        }
         @media screen and (min-width: 2000px) and (max-width: 2500px) {
             .option_text{
                 font-weight: bold; font-size: 40px;
@@ -205,7 +355,485 @@
             text-shadow: 2px 2px 10px #0FEF4E;
             cursor: pointer;
         }
+        .goback:hover{
+            cursor: pointer;
+        }
+        .container-text > div{
+            border: solid 1px;
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css?family=Apple+SD Gothic Neo&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.8.10/tailwind.min.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var svgElement = document.querySelector('svg.goback');
+            svgElement.addEventListener('click', function() {
+                // Your code here
+                // $('.chat-button').css("visibility", "visible");
+                // $('.chat-box').css("visibility", "hidden");
+                // $('.main_page_line_horizontal').css({"visibility":"hidden"})
+                window.location.reload()
+            });
+
+            function end() {
+                temp = document.createElement("div");
+                temp.innerHTML =
+                    ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="goback bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm goback">종료하기</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').append(temp)
+
+                temp = document.createElement("div");
+                temp.innerHTML =
+                    ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="morequestion bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">더 질문하기.</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').append(temp)
+
+                $('.morequestion').on('click', function () {
+                    // Your code here
+                    let temp = document.createElement("div")
+                    temp.innerHTML =
+                        '        <div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                        '            </div>\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                        '                    <p class="text-sm">안녕하십니까.<br>\n' +
+                        '                        위 챗봇은 위키백과와, 전시관련 챗봇으로\n' +
+                        '                        이루어졌습니다.<br><br>\n' +
+                        '\n' +
+                        '                        위키관련 질문은 “위키에게 물어보기”를\n' +
+                        '                        전시관련 질문은 “전시" 버튼을\n' +
+                        '                        이용해주세요.</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="exhibition bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">전시</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '        <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="wiki bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">위키에게 물어보기</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>\n'
+                    $('.box').append(temp)
+                    wiki()
+                    exhibition()
+                });
+                $('.goback').on('click',function () {
+                    window.location.reload()
+                })
+            }
+            function wiki() {
+                $('.wiki').on('click',function(){
+                    $('.utility').val('wiki')
+                    $(this).off('click');
+                    let html =
+                        '<div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                        '            </div>\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                        '                    <p class="text-sm">위키에게 물어보기를 클릭하셨습니다.<br><br>\n' +
+                        '                        위키백과사전을 통해 모르는 단어나 궁금한 것들을 자유롭게 물어보세요.' +
+                        '<br><br>\n' +
+                        '\n' +
+                        '                        \n' +
+                        'ex) 양자역학은 무엇인가요</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    let div = document.createElement('div');
+                    div.innerHTML = html;
+                    document.querySelector('.box').appendChild(div);
+                })
+            }
+            function exhibition() {
+                $('.exhibition').on('click',function(){
+                    $('.utility').val('exhibition')
+                    $(this).off('click');
+                    let html =
+                        '<div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                        '            </div>\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                        '                    <p class="text-sm">' +
+                        '전시 관련 물어보기를 클릭하셨습니다.\n' +
+                        '\n' +
+                        '전시 관련하여 궁금한 질문을 선택해주세요.\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    let div = document.createElement('div');
+                    div.innerHTML = html;
+                    document.querySelector('.box').appendChild(div);
+
+                    var temp = document.createElement("div");
+                    temp.innerHTML =
+                        ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="time bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">운영시간</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    $('.box').append(temp)
+
+                    temp = document.createElement("div");
+                    temp.innerHTML =
+                        ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="period bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">전시기간</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    $('.box').append(temp)
+
+                    temp = document.createElement("div");
+                    temp.innerHTML =
+                        ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                        '            <div class="container-text">\n' +
+                        '                <div class="location bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                        '                    <p class="text-sm">위치정보</p>\n' +
+                        '                </div>\n' +
+                        '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                        '            </div>\n' +
+                        '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                        '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                        '            </div>\n' +
+                        '        </div>'
+                    // 요청, 통신이 성공했을 때 실행할 함수
+                    $('.box').append(temp)
+
+                    $('.time').on('click',function(){
+                        $(this).off('click');
+                        $.ajax({
+                            type: "POST",    // GET 또는 POST
+                            url: "/chatbot/exhibition/option/" + 1,
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({'question': "time"}),
+                            dataType : "html" ,
+                            success: function (data) {
+                                console.log(data)
+                                let temp = document.createElement("div");
+                                temp.innerHTML = data
+                                // 요청, 통신이 성공했을 때 실행할 함수
+                                $('.box').append(temp)
+                                end()
+                            }
+                        })
+                    })
+
+                    $('.period').on('click',function(){
+                        $(this).off('click');
+                        $.ajax({
+                            type: "POST",    // GET 또는 POST
+                            url: "/chatbot/exhibition/option/" + 1,
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({'question': "period"}),
+                            dataType : "html" ,
+                            success: function (data) {
+                                console.log(data)
+                                let temp = document.createElement("div");
+                                temp.innerHTML = data
+                                // 요청, 통신이 성공했을 때 실행할 함수
+                                $('.box').append(temp)
+                                end()
+                            }
+                        })
+                    })
+
+                    $('.location').on('click',function(){
+                        $(this).off('click');
+                        $.ajax({
+                            type: "POST",    // GET 또는 POST
+                            url: "/chatbot/exhibition/option/" + 1,
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({'question': "location"}),
+                            dataType : "html" ,
+                            success: function (data) {
+                                console.log(data)
+                                let temp = document.createElement("div");
+                                temp.innerHTML = data
+                                // 요청, 통신이 성공했을 때 실행할 함수
+                                $('.box').append(temp)
+                                end()
+                            }
+                        })
+                    })
+                })
+            }
+            $('.chat-button').on('click', function () {
+                $('.chat-button').css({"visibility": "hidden"});
+                $('.chat-box').css({"display": "flex", "visibility":"visible"});
+                // $('.chat-box').css({"display": "flex"});
+                $('.main_page_line_horizontal').css({"visibility":"hidden"})
+            })
+
+            $('.wiki').on('click',function(){
+                $('.utility').val('wiki')
+                $(this).off('click');
+                $('.exhibition').off('click')
+                let html =
+                    '<div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                    '            </div>\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                    '                    <p class="text-sm">위키에게 물어보기를 클릭하셨습니다.<br><br>\n' +
+                    '                        위키백과사전을 통해 모르는 단어나 궁금한 것들을 자유롭게 물어보세요.' +
+                    '<br><br>\n' +
+                    '\n' +
+                    '                        \n' +
+                    'ex) 양자역학은 무엇인가요</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                let div = document.createElement('div');
+                div.innerHTML = html;
+                document.querySelector('.box').appendChild(div);
+            })
+            $('.exhibition').on('click',function(){
+                $('.utility').val('exhibition')
+                $(this).off('click');
+                $('.wiki').off('click');
+                let html =
+                    '<div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot1.png"/>\n' +
+                    '            </div>\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">\n' +
+                    '                    <p class="text-sm">' +
+                    '전시 관련 물어보기를 클릭하셨습니다.\n' +
+                    '\n' +
+                    '전시 관련하여 궁금한 질문을 선택해주세요.\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                let div = document.createElement('div');
+                div.innerHTML = html;
+                document.querySelector('.box').appendChild(div);
+
+                var temp = document.createElement("div");
+                temp.innerHTML =
+                    ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="time bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">운영시간</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').append(temp)
+
+                temp = document.createElement("div");
+                temp.innerHTML =
+                    ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="period bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">전시기간</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').append(temp)
+
+                temp = document.createElement("div");
+                temp.innerHTML =
+                    ' <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="location bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">위치정보</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').append(temp)
+
+                $('.time').on('click',function(){
+                    $(this).off('click');
+                    $('.period').off('click');
+                    $('.location').off('click');
+                    $.ajax({
+                        type: "POST",    // GET 또는 POST
+                        url: "/chatbot/exhibition/option/" + 1,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({'question': "time"}),
+                        dataType : "html" ,
+                        success: function (data) {
+                            console.log(data)
+                            let temp = document.createElement("div");
+                            temp.innerHTML = data
+                            // 요청, 통신이 성공했을 때 실행할 함수
+                            $('.box').append(temp)
+                            end()
+                        }
+                    })
+                })
+
+                $('.period').on('click',function(){
+                    $(this).off('click');
+                    $.ajax({
+                        type: "POST",    // GET 또는 POST
+                        url: "/chatbot/exhibition/option/" + 1,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({'question': "period"}),
+                        dataType : "html" ,
+                        success: function (data) {
+                            console.log(data)
+                            let temp = document.createElement("div");
+                            temp.innerHTML = data
+                            // 요청, 통신이 성공했을 때 실행할 함수
+                            $('.box').append(temp)
+                            end()
+                        }
+                    })
+                })
+
+                $('.location').on('click',function(){
+                    $(this).off('click');
+                    $.ajax({
+                        type: "POST",    // GET 또는 POST
+                        url: "/chatbot/exhibition/option/" + 1,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({'question': "location"}),
+                        dataType : "html" ,
+                        success: function (data) {
+                            console.log(data)
+                            let temp = document.createElement("div");
+                            temp.innerHTML = data
+                            // 요청, 통신이 성공했을 때 실행할 함수
+                            $('.box').append(temp)
+                            end()
+                        }
+                    })
+                })
+            })
+            $('.send').on('click',function(){
+                let temp = document.createElement("div");
+                temp.innerHTML =
+                    '<div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">\n' +
+                    '            <div class="container-text">\n' +
+                    '                <div class="wiki bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">\n' +
+                    '                    <p class="text-sm">'+$('.text').val() + '</p>\n' +
+                    '                </div>\n' +
+                    '                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>\n' +
+                    '            </div>\n' +
+                    '            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">\n' +
+                    '                <img src="/chatbotAssets/chatbot2.png"/>\n' +
+                    '            </div>\n' +
+                    '        </div>'
+                // 요청, 통신이 성공했을 때 실행할 함수
+                $('.box').append(temp)
+
+                if($('.utility').val() === 'wiki'){
+                    $.ajax({
+                        type: "POST",    // GET 또는 POST
+                        url: "/chatbot/wiki",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({'question': $('.text').val()}),
+                        dataType : "html" ,
+                        success: function (data) {
+                            console.log(data)
+                            let temp = document.createElement("div");
+                            temp.innerHTML = data
+                            // 요청, 통신이 성공했을 때 실행할 함수
+                            $('.box').append(temp)
+                            end()
+                        }
+                    })
+                }else if($('.utility').val() === 'exhibition'){
+                    // $.ajax({
+                    //     type: "POST",    // GET 또는 POST
+                    //     url: "/chatbot/exhibition/" + 1,
+                    //     contentType: "application/json; charset=utf-8",
+                    //     data: JSON.stringify({'question': $('.text').val()}),
+                    //     dataType : "html" ,
+                    //     success: function (data) {
+                    //         console.log(data)
+                    //         let temp = document.createElement("div");
+                    //         temp.innerHTML = data
+                    //         // 요청, 통신이 성공했을 때 실행할 함수
+                    //         $('.box').append(temp)
+                    //     }
+                    // })
+                    alert('위키 관련 질문만 텍스트 입력이 가능합니다.')
+                }
+            })
+        })
+    </script>
 </head>
 <body class="is-preload" style="overflow-x: hidden">
 <img src="/exhibitionAssets/images/mainPageLine-1.png" class="main_page_line">
@@ -234,10 +862,7 @@
             <br>
             <div class="container_2">
                 <div class="main_text_1">A는 그 중</div>
-<!--                <div class="same_loc">-->
-<!--                <div class="main_text_4">하나의 문</div>-->
                 <div class="main_text_5">하나의 문</div>
-<!--                </div>-->
                 <div class="main_text_1">을 열고 방으로 들어갔다</div>
             </div>
             <br>
@@ -248,50 +873,6 @@
             </span>
         </div>
     </section>
-
-    <!-- Two -->
-<!--    <section id="two" style="padding-top: 30%">-->
-<!--            <img src="/exhibitionAssets/images/mainPageLine-1.png" style="height: 40px">-->
-<!--        <h2>Recent Work</h2>-->
-<!--        <div class="row">-->
-<!--            <article class="col-6 col-12-xsmall work-item">-->
-<!--                <a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="" /></a>-->
-<!--                <h3>Magna sed consequat tempus</h3>-->
-<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
-<!--            </article>-->
-<!--            <article class="col-6 col-12-xsmall work-item">-->
-<!--                <a href="images/fulls/02.jpg" class="image fit thumb"><img src="images/thumbs/02.jpg" alt="" /></a>-->
-<!--                <h3>Ultricies lacinia interdum</h3>-->
-<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
-<!--            </article>-->
-<!--            <article class="col-6 col-12-xsmall work-item">-->
-<!--                <a href="images/fulls/03.jpg" class="image fit thumb"><img src="images/thumbs/03.jpg" alt="" /></a>-->
-<!--                <h3>Tortor metus commodo</h3>-->
-<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
-<!--            </article>-->
-<!--            <article class="col-6 col-12-xsmall work-item">-->
-<!--                <a href="images/fulls/04.jpg" class="image fit thumb"><img src="images/thumbs/04.jpg" alt="" /></a>-->
-<!--                <h3>Quam neque phasellus</h3>-->
-<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
-<!--            </article>-->
-<!--            <article class="col-6 col-12-xsmall work-item">-->
-<!--                <a href="images/fulls/05.jpg" class="image fit thumb"><img src="images/thumbs/05.jpg" alt="" /></a>-->
-<!--                <h3>Nunc enim commodo aliquet</h3>-->
-<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
-<!--            </article>-->
-<!--            <article class="col-6 col-12-xsmall work-item">-->
-<!--                <a href="images/fulls/06.jpg" class="image fit thumb"><img src="images/thumbs/06.jpg" alt="" /></a>-->
-<!--                <h3>Risus ornare lacinia</h3>-->
-<!--                <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>-->
-<!--            </article>-->
-<!--        </div>-->
-<!--        <ul class="actions">-->
-<!--            <li><a href="#" class="button">Full Portfolio</a></li>-->
-<!--        </ul>-->
-<!--    </section>-->
-
-    <!-- Three -->
-    <!-- Three -->
     <section id="three" style="padding-top:30%">
         <img src="/exhibitionAssets/images/mainPageLine-1.png" style="padding-bottom: 5%" class="img_line_1">
         <div class="row" style="
@@ -321,324 +902,6 @@
         </div>
     </section>
 
-    <!-- Four -->
-    <!--
-        <section id="four">
-            <h2>Elements</h2>
-
-            <section>
-                <h4>Text</h4>
-                <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-                This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-                This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-                <hr />
-                <header>
-                    <h4>Heading with a Subtitle</h4>
-                    <p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-                </header>
-                <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-                <header>
-                    <h5>Heading with a Subtitle</h5>
-                    <p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-                </header>
-                <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-                <hr />
-                <h2>Heading Level 2</h2>
-                <h3>Heading Level 3</h3>
-                <h4>Heading Level 4</h4>
-                <h5>Heading Level 5</h5>
-                <h6>Heading Level 6</h6>
-                <hr />
-                <h5>Blockquote</h5>
-                <blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-                <h5>Preformatted</h5>
-                <pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-print 'Iteration ' + i;
-deck.shuffle();
-i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-            </section>
-
-            <section>
-                <h4>Lists</h4>
-                <div class="row">
-                    <div class="col-6 col-12-xsmall">
-                        <h5>Unordered</h5>
-                        <ul>
-                            <li>Dolor pulvinar etiam magna etiam.</li>
-                            <li>Sagittis adipiscing lorem eleifend.</li>
-                            <li>Felis enim feugiat dolore viverra.</li>
-                        </ul>
-                        <h5>Alternate</h5>
-                        <ul class="alt">
-                            <li>Dolor pulvinar etiam magna etiam.</li>
-                            <li>Sagittis adipiscing lorem eleifend.</li>
-                            <li>Felis enim feugiat dolore viverra.</li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-12-xsmall">
-                        <h5>Ordered</h5>
-                        <ol>
-                            <li>Dolor pulvinar etiam magna etiam.</li>
-                            <li>Etiam vel felis at lorem sed viverra.</li>
-                            <li>Felis enim feugiat dolore viverra.</li>
-                            <li>Dolor pulvinar etiam magna etiam.</li>
-                            <li>Etiam vel felis at lorem sed viverra.</li>
-                            <li>Felis enim feugiat dolore viverra.</li>
-                        </ol>
-                        <h5>Icons</h5>
-                        <ul class="icons">
-                            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-                            <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-                            <li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <h5>Actions</h5>
-                <ul class="actions">
-                    <li><a href="#" class="button primary">Default</a></li>
-                    <li><a href="#" class="button">Default</a></li>
-                </ul>
-                <ul class="actions small">
-                    <li><a href="#" class="button primary small">Small</a></li>
-                    <li><a href="#" class="button small">Small</a></li>
-                </ul>
-                <div class="row">
-                    <div class="col-6 col-12-small">
-                        <ul class="actions stacked">
-                            <li><a href="#" class="button primary">Default</a></li>
-                            <li><a href="#" class="button">Default</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-12-small">
-                        <ul class="actions stacked">
-                            <li><a href="#" class="button primary small">Small</a></li>
-                            <li><a href="#" class="button small">Small</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-12-small">
-                        <ul class="actions stacked">
-                            <li><a href="#" class="button primary fit">Default</a></li>
-                            <li><a href="#" class="button fit">Default</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-12-small">
-                        <ul class="actions stacked">
-                            <li><a href="#" class="button primary small fit">Small</a></li>
-                            <li><a href="#" class="button small fit">Small</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h4>Table</h4>
-                <h5>Default</h5>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Item One</td>
-                                <td>Ante turpis integer aliquet porttitor.</td>
-                                <td>29.99</td>
-                            </tr>
-                            <tr>
-                                <td>Item Two</td>
-                                <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                                <td>19.99</td>
-                            </tr>
-                            <tr>
-                                <td>Item Three</td>
-                                <td> Morbi faucibus arcu accumsan lorem.</td>
-                                <td>29.99</td>
-                            </tr>
-                            <tr>
-                                <td>Item Four</td>
-                                <td>Vitae integer tempus condimentum.</td>
-                                <td>19.99</td>
-                            </tr>
-                            <tr>
-                                <td>Item Five</td>
-                                <td>Ante turpis integer aliquet porttitor.</td>
-                                <td>29.99</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2"></td>
-                                <td>100.00</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-
-                <h5>Alternate</h5>
-                <div class="table-wrapper">
-                    <table class="alt">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Item One</td>
-                                <td>Ante turpis integer aliquet porttitor.</td>
-                                <td>29.99</td>
-                            </tr>
-                            <tr>
-                                <td>Item Two</td>
-                                <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                                <td>19.99</td>
-                            </tr>
-                            <tr>
-                                <td>Item Three</td>
-                                <td> Morbi faucibus arcu accumsan lorem.</td>
-                                <td>29.99</td>
-                            </tr>
-                            <tr>
-                                <td>Item Four</td>
-                                <td>Vitae integer tempus condimentum.</td>
-                                <td>19.99</td>
-                            </tr>
-                            <tr>
-                                <td>Item Five</td>
-                                <td>Ante turpis integer aliquet porttitor.</td>
-                                <td>29.99</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2"></td>
-                                <td>100.00</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </section>
-
-            <section>
-                <h4>Buttons</h4>
-                <ul class="actions">
-                    <li><a href="#" class="button primary">Primary</a></li>
-                    <li><a href="#" class="button">Default</a></li>
-                </ul>
-                <ul class="actions">
-                    <li><a href="#" class="button large">Large</a></li>
-                    <li><a href="#" class="button">Default</a></li>
-                    <li><a href="#" class="button small">Small</a></li>
-                </ul>
-                <ul class="actions fit">
-                    <li><a href="#" class="button primary fit">Fit</a></li>
-                    <li><a href="#" class="button fit">Fit</a></li>
-                </ul>
-                <ul class="actions fit small">
-                    <li><a href="#" class="button primary fit small">Fit + Small</a></li>
-                    <li><a href="#" class="button fit small">Fit + Small</a></li>
-                </ul>
-                <ul class="actions">
-                    <li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-                    <li><a href="#" class="button icon solid fa-download">Icon</a></li>
-                </ul>
-                <ul class="actions">
-                    <li><span class="button primary disabled">Primary</span></li>
-                    <li><span class="button disabled">Default</span></li>
-                </ul>
-            </section>
-
-            <section>
-                <h4>Form</h4>
-                <form method="post" action="#">
-                    <div class="row gtr-uniform gtr-50">
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-                        </div>
-                        <div class="col-6 col-12-xsmall">
-                            <input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-                        </div>
-                        <div class="col-12">
-                            <select name="demo-category" id="demo-category">
-                                <option value="">- Category -</option>
-                                <option value="1">Manufacturing</option>
-                                <option value="1">Shipping</option>
-                                <option value="1">Administration</option>
-                                <option value="1">Human Resources</option>
-                            </select>
-                        </div>
-                        <div class="col-4 col-12-small">
-                            <input type="radio" id="demo-priority-low" name="demo-priority" checked>
-                            <label for="demo-priority-low">Low Priority</label>
-                        </div>
-                        <div class="col-4 col-12-small">
-                            <input type="radio" id="demo-priority-normal" name="demo-priority">
-                            <label for="demo-priority-normal">Normal Priority</label>
-                        </div>
-                        <div class="col-4 col-12-small">
-                            <input type="radio" id="demo-priority-high" name="demo-priority">
-                            <label for="demo-priority-high">High Priority</label>
-                        </div>
-                        <div class="col-6 col-12-small">
-                            <input type="checkbox" id="demo-copy" name="demo-copy">
-                            <label for="demo-copy">Email me a copy of this message</label>
-                        </div>
-                        <div class="col-6 col-12-small">
-                            <input type="checkbox" id="demo-human" name="demo-human" checked>
-                            <label for="demo-human">I am a human and not a robot</label>
-                        </div>
-                        <div class="col-12">
-                            <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-                        </div>
-                        <div class="col-12">
-                            <ul class="actions">
-                                <li><input type="submit" value="Send Message" class="primary" /></li>
-                                <li><input type="reset" value="Reset" /></li>
-                            </ul>
-                        </div>
-                    </div>
-                </form>
-            </section>
-
-            <section>
-                <h4>Image</h4>
-                <h5>Fit</h5>
-                <div class="box alt">
-                    <div class="row gtr-50 gtr-uniform">
-                        <div class="col-12"><span class="image fit"><img src="images/fulls/05.jpg" alt="" /></span></div>
-                        <div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-                        <div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-                        <div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-                        <div class="col-4"><span class="image fit"><img src="images/thumbs/04.jpg" alt="" /></span></div>
-                        <div class="col-4"><span class="image fit"><img src="images/thumbs/05.jpg" alt="" /></span></div>
-                        <div class="col-4"><span class="image fit"><img src="images/thumbs/06.jpg" alt="" /></span></div>
-                        <div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-                        <div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-                        <div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-                    </div>
-                </div>
-                <h5>Left &amp; Right</h5>
-                <p><span class="image left"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-                <p><span class="image right"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-            </section>
-
-        </section>
-    -->
-
 </div>
 
 <!-- Footer -->
@@ -654,8 +917,8 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
             <li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
         </ul>
     </div>
-</footer>
 
+</footer>
 <!-- Scripts -->
 <script src="/exhibitionAssets/js/jquery.min.js"></script>
 <script src="/exhibitionAssets/js/jquery.poptrox.min.js"></script>
@@ -663,6 +926,132 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 <script src="/exhibitionAssets/js/breakpoints.min.js"></script>
 <script src="/exhibitionAssets/js/util.js"></script>
 <script src="/exhibitionAssets/js/main.js"></script>
+<div style="
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+">
+<!-- partial:index.partial.html -->
 
+
+<!-- Component Start -->
+<div class="chat-box" style="background-color:white; position: relative;/* height: 500px; *//* height: 100%; */display: none;flex-wrap: wrap;flex-direction: column;">
+    <input class="utility" type="hidden">
+    <div class="w-full">
+        <div>
+            <div class="custom-height-chatbot-title p-3">
+                <img src="chatbotAssets/chatbot_option.png" style="margin-right: auto" class="chatbot_option">
+                <p class="chatbot-title-text">CHATBOT</p>
+                <div style="margin-left: auto">
+                    <svg class="goback" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <path d="M9 9L18 18L27 27" stroke="black" stroke-width="3" stroke-linecap="round"></path>
+                        <path d="M9 27L27 9" stroke="black" stroke-width="3" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <img src="/chatbotAssets/img.png" style="
+    width: 100%;
+">
+    </div>
+    <div class="e311_180">
+        <span class="e319_192">
+            <img src="/chatbotAssets/img_2.png">
+        </span>
+        <div style="padding:0px 20px">
+            <span class="e319_194">TODAY 10/31</span>
+        </div>
+        <span class="e319_192">
+            <img src="/chatbotAssets/img_2.png">
+        </span>
+    </div>
+    <div class="box elementbox p-4 overflow-auto" style="
+    height: 800px;
+">
+        <div class="flex w-full mt-3 mb-5 space-x-3 max-w-xs">
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">
+                <img src="/chatbotAssets/chatbot1.png">
+            </div>
+            <div class="container-text">
+                <div class="bg-white p-3 rounded-r-lg rounded-bl-lg border-2 border-black" style="width: 277px;">
+                    <p class="text-sm">안녕하십니까.<br>
+                        위 챗봇은 위키백과와, 전시관련 챗봇으로
+                        이루어졌습니다.<br><br>
+
+                        위키관련 질문은 “위키에게 물어보기”를
+                        전시관련 질문은 “전시" 버튼을
+                        이용해주세요.</p>
+                </div>
+                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-l">14:37</p></span>
+            </div>
+        </div>
+        <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">
+            <div class="container-text">
+                <div class="exhibition bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">
+                    <p class="text-sm">전시</p>
+                </div>
+                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>
+            </div>
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">
+                <img src="/chatbotAssets/chatbot2.png">
+            </div>
+        </div>
+        <div class="flex w-full mb-2 space-x-3 max-w-xs ml-auto justify-end">
+            <div class="container-text">
+                <div class="wiki bg-white p-3 rounded-tl-lg rounded-bl-lg rounded-br-lg border-2 border-black" style="width: 190px; text-align: center;">
+                    <p class="text-sm">위키에게 물어보기</p>
+                </div>
+                <span class="text-xs text-gray-500 leading-none"><p class="minute-text-r">14:37</p></span>
+            </div>
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">
+                <img src="/chatbotAssets/chatbot2.png">
+            </div>
+        </div>
+    </div>
+    <div class="custom-bg-sendbox p-4">
+        <input class="text text-custom-box flex items-center px-3 text-sm" type="text" placeholder="TYPE YOUR MESSAGE">
+        <div class="e185_115">
+            <div class="send">
+                <svg xmlns="http://www.w3.org/2000/svg" width="68" height="54" viewBox="0 0 68 54" fill="none">
+                    <g filter="url(#filter0_f_391_315)">
+                        <rect x="4" y="5.05896" width="60" height="44" fill="url(#paint0_radial_391_315)"></rect>
+                    </g>
+                    <path d="M35.435 43.0113L48.3925 13.3654L17.9847 24.4173L24.7606 31.658L42.1945 19.1821L28.6384 35.79L35.435 43.0113Z" fill="black"></path>
+                    <defs>
+                        <filter id="filter0_f_391_315" x="0" y="1.05896" width="68" height="52" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+                            <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_391_315"></feGaussianBlur>
+                        </filter>
+                        <radialGradient id="paint0_radial_391_315" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(34 27.059) rotate(90) scale(22 30)">
+                            <stop stop-color="white"></stop>
+                            <stop offset="1" stop-color="#0FEF4E"></stop>
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Component End  -->
+
+
+
+
+
+
+
+</div>
+<div class="chat-button"
+     style="
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+">
+    <img src="/chatbotAssets/chatbot_button.png">
+</div>
 </body>
 </html>
