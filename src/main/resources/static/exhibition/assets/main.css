@@ -3164,24 +3164,12 @@ input, select, textarea {
 
 		}
 
-		#main > .word{
-              margin:100px;
-                      outline: 1px solid black;
-                      display: block;
-                      color: black;
-                      width: 630px;
-                      font-size: 20px;
-                      font-weight: bolder !important;
-                      overflow: hidden;
-                      text-overflow: ellipsis;
-                      white-space: normal;
-                      line-height: 1.2;
-              /*        height: 4.8em;*/
-                      text-align: left;
-                      word-wrap: break-word;
-                      display: -webkit-box;
-                      -webkit-line-clamp: 2 ;
-                      -webkit-box-orient: vertical;
+		.word{
+            width: 300px;
+             display: -webkit-box;
+             -webkit-box-orient: vertical;
+             -webkit-line-clamp: 10;
+             overflow: hidden;
         }
 
 /* Footer */

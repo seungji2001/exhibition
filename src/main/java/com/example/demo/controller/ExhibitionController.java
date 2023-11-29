@@ -35,7 +35,7 @@ public class ExhibitionController {
 
         model.addAttribute("workList", workService.getAllWork(exhibition_id));
 
-        return "/exhibition/index4";
+        return "/exhibition/index1";
     }
 
     //exhibition 등록
