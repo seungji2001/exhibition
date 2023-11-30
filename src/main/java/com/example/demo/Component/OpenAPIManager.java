@@ -53,6 +53,11 @@ public class OpenAPIManager {
 
         JsonNode answer = jsonNode.get("return_object").findValue("AnswerInfo");
 
+        System.out.println(answer);
+
+//        if(answer.size())
+//            throw new IllegalArgumentException("반환값이 없습니다.");
+
         return ChatBotResponseDto.ResponseAnswer.builder()
                 .answer(answer.get(0).get("answer").asText())
                 .build();
