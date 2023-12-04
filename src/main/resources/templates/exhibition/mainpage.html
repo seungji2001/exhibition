@@ -369,12 +369,6 @@
                 font-weight: bold; font-size: 40px;
                 color: white;
             }
-            .main_page_line {
-                position: absolute;
-                z-index: 1;
-                width: 100vw;
-                height: 40px;
-            }
 
             .main_page_line_horizontal {
                 z-index: 2;
@@ -730,7 +724,7 @@
                 $('.chat-button').css({"visibility": "hidden"});
                 $('.chat-box').css({"display": "flex", "visibility":"visible"});
                 // $('.chat-box').css({"display": "flex"});
-                $('.main_page_line_horizontal').css({"visibility":"hidden"})
+                // $('.main_page_line_horizontal').css({"visibility":"hidden"})
             })
 
             $('.wiki').on('click',function(){
@@ -952,7 +946,6 @@
     </script>
 </head>
 <body class="is-preload" style="overflow-x: hidden">
-<img src="/exhibitionAssets/images/mainPageLine-1.png" class="main_page_line">
 <!-- Header -->
 <header id="header">
     <div class="inner">
@@ -965,7 +958,6 @@
 
 <!-- Main -->
 <div id="main">
-    <img src="/exhibitionAssets/images/mainPageLine-2.png" class="main_page_line_horizontal">
     <!-- One -->
     <section id="one">
         <div class="container_1">
@@ -990,26 +982,23 @@
         </div>
     </section>
     <section id="three" class="sectionThree">
-        <img src="/exhibitionAssets/images/mainPageLine-1.png" style="padding-bottom: 5%" class="img_line_1">
         <div class="row only_for_web_row">
             <div class="col-4 col-12-small only_for_web_col">
                 <ul class="labeled-icons">
                     <li>
                         <span class="option_text">LOCATION</span><br />
                     </li>
-                    <img src="/exhibitionAssets/images/mainPageLine-1.png" class="img_line">
                     <li>
                         <span class="option_text option_text_left">DATE</span><br />
                     </li>
-                    <img src="/exhibitionAssets/images/mainPageLine-1.png" class="img_line">
                     <li>
                         <span class="option_text">ARTIST INFO</span><br />
                     </li>
-                    <img src="/exhibitionAssets/images/mainPageLine-1.png" class="img_line">
                     <li>
-                        <span class="option_text option_text_left">ART WORK</span><br />
+                        <span class="option_text option_text_left">
+                            <a th:href="@{/work/getAll/1}">ART WORK</a>
+                        </span><br />
                     </li>
-                    <img src="/exhibitionAssets/images/mainPageLine-1.png" class="img_line">
                 </ul>
             </div>
         </div>
@@ -1033,12 +1022,12 @@
 
 </footer>
 <!-- Scripts -->
-<script src="/exhibitionAssets/js/jquery.min.js"></script>
-<script src="/exhibitionAssets/js/jquery.poptrox.min.js"></script>
-<script src="/exhibitionAssets/js/browser.min.js"></script>
-<script src="/exhibitionAssets/js/breakpoints.min.js"></script>
-<script src="/exhibitionAssets/js/util.js"></script>
-<script src="/exhibitionAssets/js/main.js"></script>
+<script src="/exhibitionAssets/assets/js/jquery.min.js"></script>
+<script src="/exhibitionAssets/assets/js/jquery.poptrox.min.js"></script>
+<script src="/exhibitionAssets/assets/js/browser.min.js"></script>
+<script src="/exhibitionAssets/assets/js/breakpoints.min.js"></script>
+<script src="/exhibitionAssets/assets/js/util.js"></script>
+<script src="/exhibitionAssets/assets/js/main.js"></script>
 <div style="
     position: fixed;
     bottom: 10px;
