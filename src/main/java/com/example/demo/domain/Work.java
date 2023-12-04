@@ -26,7 +26,7 @@ public class Work {
 
     private String contents;
 
-    private int likeCount;
+    private Integer likeCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
