@@ -3,11 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.Component.OpenAPIManager;
 import com.example.demo.dto.ChatBotDto.ChatBotRequestDto;
 import com.example.demo.service.ChatBotService;
-import com.example.demo.service.ChatBotService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,17 +34,11 @@ public class ChatBotController {
         return "exhibition/index3";
     }
 
-
-    @GetMapping(value = "/index")
-    public String index3Design(){
-        return "exhibition/index3_design";
-    }
-
-    @PostMapping(value = "/chatbot/exhibition/{exhibition_id}")
-    public String getChatBotExhibition(@RequestBody ChatBotRequestDto.RequestQuestion chatBotRequestDto, @PathVariable("exhibition_id") Long exhibition_id, Model model) throws UnsupportedEncodingException, JsonProcessingException {
-        model.addAttribute("answer", chatBotService.getChatBotExhibition(exhibition_id, chatBotRequestDto, getKey));
-        return "exhibition/question::wiki";
-    }
+//    @PostMapping(value = "/chatbot/exhibition/{exhibition_id}")
+//    public String getChatBotExhibition(@RequestBody ChatBotRequestDto.RequestQuestion chatBotRequestDto, @PathVariable("exhibition_id") Long exhibition_id, Model model) throws UnsupportedEncodingException, JsonProcessingException {
+//        model.addAttribute("answer", chatBotService.getChatBotExhibition(exhibition_id, chatBotRequestDto, getKey));
+//        return "exhibition/question::wiki";
+//    }
 
     @PostMapping(value = "/chatbot/exhibition/option/{exhibition_id}")
     public String getChatBotOptionExhibition(@RequestBody ChatBotRequestDto.RequestQuestion chatBotRequestDto, @PathVariable("exhibition_id") Long exhibition_id, Model model) throws UnsupportedEncodingException, JsonProcessingException {

@@ -201,11 +201,24 @@ public class WorkService {
     }
 
     @Transactional
-    public List<GetAllWork> getAllWork(Long exhibition_id){
+    public List<WorkResponseDto.getAllWorks> getAllWork(Long exhibition_id){
         Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(()-> new IllegalArgumentException("해당하는 전시가 없습니다."));
+        List<Work> workThumbnailList = workRepository.findByExhibition(exhibition);
 
-        List<GetAllWork> workThumbnailList = workRepository.findByExhibition(exhibition);
+        List<WorkResponseDto.getAllWorks> works = workThumbnailList.stream()
+                .map(work -> {
+                    return WorkResponseDto.getAllWorks.builder()
+                            .author(work.getMember().getName())
+                            .memberId(work.getId())
+                            .view(work.getView())
+                            .title(work.getTitle())
+                            .imgUrl(work.getImgUrl())
+                            .contents(work.getContents())
+                            .build();
+                })
+                .toList();
 
-        return workThumbnailList;
+        System.out.println(works);
+        return works;
     }
 }

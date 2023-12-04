@@ -26,7 +26,7 @@ public class Work {
 
     private String contents;
 
-    private Integer likeCount;
+    private int likeCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -43,7 +43,7 @@ public class Work {
     private List<Comment> comments;
 
     @Column(name = "template_num")
-    private int templateNum;
+    private Integer templateNum;
 
     private String topic;
 

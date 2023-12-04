@@ -71,7 +71,7 @@ public class WorkController {
 
     // 해당 전시 모든 작품 불러오기
     @GetMapping(value = "/work/getAll/{exhibition_id}")
-    public ResponseEntity<List<GetAllWork>> getAllWork(@PathVariable("exhibition_id")Long exhibition_id){
+    public ResponseEntity<List<WorkResponseDto.getAllWorks>> getAllWork(@PathVariable("exhibition_id")Long exhibition_id){
         return ResponseEntity.ok().body(workService.getAllWork(exhibition_id));
     }
 }

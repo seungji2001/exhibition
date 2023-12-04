@@ -5,7 +5,6 @@ import com.example.demo.domain.Exhibition;
 import com.example.demo.dto.ChatBotDto.ChatBotRequestDto;
 import com.example.demo.dto.ChatBotDto.ChatBotResponseDto;
 import com.example.demo.repository.ExhibitionRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,21 +24,6 @@ public class ChatBotService {
 
     @Autowired
     ExhibitionRepository exhibitionRepository;
-
-    public ChatBotResponseDto.ResponseAnswer getChatBotExhibition(Long exhibition_id, ChatBotRequestDto.RequestQuestion chatBotRequestDto, String getKey) throws UnsupportedEncodingException, JsonProcessingException {
-        //질문에 해당되는 답변 만들어 return 하기
-        List<String> words = new ArrayList<>();
-        //질문 분석 api 붙이기
-        words = openAPIManager.getWiseNLU(getKey, chatBotRequestDto);
-
-        if(words.contains("몇시")){
-            return ChatBotResponseDto.ResponseAnswer.builder()
-                    .answer("1시")
-                    .build();
-        }
-
-        return null;
-    }
 
     public ChatBotResponseDto.ResponseAnswer getChatBotOptionExhibition(Long exhibition_id, ChatBotRequestDto.RequestQuestion chatBotRequestDto){
         Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow();

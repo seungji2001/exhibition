@@ -42,4 +42,27 @@ public class WorkResponseDto {
         private List<Member> viewList;
         private int likeCount;
     }
+
+//           String getTitle();
+//    String getImgUrl();
+//    String getContents();
+//    GetAllWork.Member getMember(); //작품을 창작한 멤버의 이름
+//    Long getView();
+//
+//    interface Member{
+//        String getId();
+//        String getName();
+//    }
+
+    @Builder
+    @Data
+    public static class getAllWorks{
+        private String title;
+        private String imgUrl;
+        private String contents;
+//        private Member author; //작품을 창작한 멤버의 이름
+        private Long view;
+        private String author;
+        private Long memberId;
+    }
 }
