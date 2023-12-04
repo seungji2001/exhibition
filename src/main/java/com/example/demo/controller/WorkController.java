@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +20,6 @@ public class WorkController {
 
     @Autowired
     WorkService workService;
-
-    @GetMapping("/work/{exhibition_id}")
 
 
     //멤버별 작품 등록하기 -v1
@@ -71,7 +70,9 @@ public class WorkController {
 
     // 해당 전시 모든 작품 불러오기
     @GetMapping(value = "/work/getAll/{exhibition_id}")
-    public ResponseEntity<List<WorkResponseDto.getAllWorks>> getAllWork(@PathVariable("exhibition_id")Long exhibition_id){
-        return ResponseEntity.ok().body(workService.getAllWork(exhibition_id));
+    public String getAllWork(@PathVariable("exhibition_id")Long exhibition_id, Model model){
+//        return ResponseEntity.ok().body(workService.getAllWork(exhibition_id));
+        model.addAttribute("workList", workService.getAllWork(exhibition_id));
+        return "exhibition/index4";
     }
 }

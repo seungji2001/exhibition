@@ -208,6 +208,7 @@ public class WorkService {
         List<WorkResponseDto.getAllWorks> works = workThumbnailList.stream()
                 .map(work -> {
                     return WorkResponseDto.getAllWorks.builder()
+                            .work_id(work.getId())
                             .author(work.getMember().getName())
                             .memberId(work.getId())
                             .view(work.getView())
@@ -217,8 +218,6 @@ public class WorkService {
                             .build();
                 })
                 .toList();
-
-        System.out.println(works);
         return works;
     }
 }
