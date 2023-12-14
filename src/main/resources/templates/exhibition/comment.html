@@ -13,8 +13,88 @@
 <!--    <link rel="stylesheet" href="/assets/css/main.css" />-->
     <noscript><link rel="stylesheet" href="/exhibition/assets/noscript.css" /></noscript>
    <style>
-       @media screen and (max-width: 2500px) and (min-width: 1200px) {
+       @media screen and (max-width: 1200px) {
+           .reply {
+               display: flex;
+               text-align: left;
+           }
+           p {
+               font-size: 12px
+           }
+           .comment_line {
+               border: 0;
+               border-bottom: solid 1px #c9c9c9;
+               margin: 0.3em 0;
+           }
+           .comment_box{
+               padding: 2%;}
+           .comment {
+               padding: 2% 2% 0% 2%;
+               border:1px solid rgba(255, 255, 255, 1);
+               background-color:rgba(255, 255, 255, 0.10000000149011612);
+               border-top-left-radius:10px;
+               border-top-right-radius:10px;
+               border-bottom-left-radius:10px;
+               border-bottom-right-radius:10px;
+               display: flex;
+               flex-direction: column;
+               margin-top: 8%;
+           }
+           textarea::placeholder {
+               font-size: 12px;
+           }
+           textarea {
+               font-size: 12px;
+               padding: 3%;
+           }
            .work_container{
+                padding: 10%;
+           }
+           .work_title {
+               text-align: center;
+           }
+           .author {
+               display: flex;
+               justify-content: flex-end;
+           }
+           .comment_container {
+               padding: 10%;
+           }
+           .input_comment {
+               background-color: rgba(255, 255, 255, 0.10000000149011612);
+               display: flex;
+               position: relative;
+               border-top-left-radius: 10px;
+               border-top-right-radius: 10px;
+               border-bottom-left-radius: 10px;
+               border-bottom-right-radius: 10px;
+               /* border-radius: 10%; */
+               border: solid 1px white;
+               margin-bottom: 10%;
+           }
+       }
+       @media screen and (max-width: 2500px) and (min-width: 1200px) {
+           .comment_line{
+               border: 0;
+               border-bottom: solid 1px #c9c9c9;
+               margin: 1em 0;
+           }
+           .comment{
+               padding: 2% 2% 0% 2%;
+               border:2px solid rgba(255, 255, 255, 1);
+               background-color:rgba(255, 255, 255, 0.10000000149011612);
+               border-top-left-radius:10px;
+               border-top-right-radius:10px;
+               border-bottom-left-radius:10px;
+               border-bottom-right-radius:10px;
+               display: flex;
+               flex-direction: column;
+               margin-top: 10%;
+           }
+           .input_comment {
+               border: solid 2px white;
+           }
+           .work_container {
                moz-align-items: -moz-stretch;
                -webkit-align-items: -webkit-stretch;
                -ms-align-items: -ms-stretch;
@@ -33,7 +113,8 @@
                text-align: left;
                overflow-x: hidden;
            }
-           .work_image{
+
+           .work_image {
                width: 40%;
                aspect-ratio: 1 / 1;
                border-radius: 4px;
@@ -41,20 +122,31 @@
                overflow: hidden;
                position: relative;
            }
-           .work_content{
+
+           .work_content {
                margin-top: 2%;
                margin-left: 5%;
                display: flex;
                width: 50%;
                flex-direction: column;
            }
-           .author{
+
+           .author {
                text-align: right;
            }
-           .work_title{
-               font-size:24px;
-               letter-spacing:0;
+
+           .work_title {
+               font-size: 24px;
+               letter-spacing: 0;
            }
+           .author_font {
+               font-weight: bold;
+               display: inline-block;
+               font-size: 20px;
+           }
+           .content_font{
+               font-size: 20px;}
+
        }
        .comment_container{
            margin-top: 20%;
@@ -87,30 +179,11 @@
            border-top-right-radius: 10px;
            border-bottom-left-radius: 10px;
            border-bottom-right-radius: 10px;
-           /* border-radius: 10%; */
-           border: solid 2px white;
            margin-bottom: 10%;
        }
        .send_comment{
            box-shadow: none;
            margin: auto;
-       }
-       .comment{
-           padding: 2% 2% 0% 2%;
-           border:2px solid rgba(255, 255, 255, 1);
-           background-color:rgba(255, 255, 255, 0.10000000149011612);
-           border-top-left-radius:10px;
-           border-top-right-radius:10px;
-           border-bottom-left-radius:10px;
-           border-bottom-right-radius:10px;
-           display: flex;
-           flex-direction: column;
-           margin-top: 10%;
-       }
-       .comment_line{
-           border: 0;
-           border-bottom: solid 1px #c9c9c9;
-           margin: 1em 0;
        }
        .comment_content{
            display: flex;
@@ -215,7 +288,6 @@
 
     <!-- Header -->
     <header id="header">
-    <header id="header">
         <div class="inner">
 
             <!-- Logo -->
@@ -251,8 +323,8 @@
                 </div>
                 <div class="work_content">
                     <p class="work_title" th:text="${work.title}"></p>
-                    <span class="author"><p style="font-weight: bold; display: inline-block; font-size: 20px" th:text="${work.supporter_name}">백승지 &nbsp;</p>작가</span>
-                    <p class="major" style="font-size: 20px" th:text="${work.contents}">A (modular, highly tweakable) responsive one-page template designed by <a href="https://html5up.net">HTML5 UP</a> and released for free under the <a href="https://html5up.net/license">Creative Commons</a>.</p>
+                    <span class="author"><p class="author_font" th:text="${work.supporter_name}">백승지</p> &nbsp;작가</span>
+                    <p class="major content_font"  th:text="${work.contents}">A (modular, highly tweakable) responsive one-page template designed by <a href="https://html5up.net">HTML5 UP</a> and released for free under the <a href="https://html5up.net/license">Creative Commons</a>.</p>
                 </div>
             </div>
 
@@ -262,7 +334,7 @@
                 <div class="field">
                     <textarea name="message" class="comment_textarea" id="message" placeholder="Message"></textarea>
                 </div>
-                <input class="send_comment" onclick="sendMessage(this)" type="button" style="box-shadow: none" value="등록">
+                <input class="send_comment" onclick="sendMessage(this)" type="button" style="box-shadow: none; font-size: 10px" value="등록">
                 </div>
                 <div class="comment">
                     <th:block th:if="${not #lists.isEmpty(comments)}" th:each="comment : ${comments}">
