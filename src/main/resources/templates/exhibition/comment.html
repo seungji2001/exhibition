@@ -89,6 +89,7 @@
            border-bottom-right-radius: 10px;
            /* border-radius: 10%; */
            border: solid 2px white;
+           margin-bottom: 10%;
        }
        .send_comment{
            box-shadow: none;
@@ -106,14 +107,114 @@
            flex-direction: column;
            margin-top: 10%;
        }
+       .comment_line{
+           border: 0;
+           border-bottom: solid 1px #c9c9c9;
+           margin: 1em 0;
+       }
+       .comment_content{
+           display: flex;
+           width: 100%;
+           margin: 0;
+           /* display: inline-block; */
+           justify-content: space-between;
+       }
+       .replyCommentBox{
+           padding: 3% 3% 0 3%;
+       }
    </style>
     <link href="https://fonts.googleapis.com/css?family=Pretendard&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>function sendMessage(message) {
+        console.log(message)
+        let parentDiv = message.parentElement;
+        if(parentDiv.querySelector('#message').value.length === 0){
+            console.log("Element is null or empty");
+            return;
+        }
+        let messageText = parentDiv.querySelector('#message').value
+        console.log(messageText)
+
+        let work_id = [[${work.work_id}]]
+        let data = {
+            work_id: work_id,
+            member_id: 0,
+            content: messageText
+        };
+        fetch('/comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    alert('Error sending another API request')
+                }
+            })
+            .then(function(data) {
+                location.reload();
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    function findReplyComment(comment) {
+            if(comment.querySelector('.countReplyComment').innerText === '0'){
+                return;
+            }
+            let parentDiv = comment.parentElement;
+
+            // Get the hidden input field inside the parent div
+            let hiddenInput = parentDiv.querySelector('input[type="hidden"]');
+
+            // Get the value of the hidden input field
+            let commentId = hiddenInput.value;
+
+            //commentId로 replyComments가져오기
+            fetch("/replyComments/" + commentId)
+                .then(response =>{
+                    return response.json();
+                })
+                .then(data => {
+                    //댓글 아래 박스로 달기
+                    let html = '   <div class="replyCommentBox">\n'
+                    data.forEach(function(item) {
+                        html +='<p>ㄴ ' + item.content +  '</p>\n'
+                    });
+                    html += '</div>'
+                    let reply = parentDiv.querySelector('.reply');
+                    reply.innerHTML = html
+                })
+                .catch(error =>{
+                    console.log(error);
+                })
+        }
+
+    $(document).ready(function() {
+            // fetch("/comments/2")
+            //     .then(response =>{
+            //         return response.json();
+            //     })
+            //     .then(data => {
+            //         console.log(data);
+            //     })
+            //     .catch(error =>{
+            //         console.log(error);
+            //     })
+        })
+    </script>
 </head>
 <body class="is-preload" style="background-color: black">
 <!-- Wrapper -->
 <div id="wrapper">
 
     <!-- Header -->
+    <header id="header">
     <header id="header">
         <div class="inner">
 
@@ -143,7 +244,7 @@
 <!--            </section>-->
             <div class="work_container">
                 <div class="work_image">
-                    <img src="images/banner.jpg" alt="">
+                    <img src="/images/banner.jpg" alt="">
                 </div>
                 <div class="work_content">
                     <p class="work_title">작품제목작품제목</p>
@@ -158,11 +259,18 @@
                 <div class="field">
                     <textarea name="message" class="comment_textarea" id="message" placeholder="Message"></textarea>
                 </div>
-                <input class="send_comment" type="button" style="box-shadow: none" value="등록">
+                <input class="send_comment" onclick="sendMessage(this)" type="button" style="box-shadow: none" value="등록">
                 </div>
                 <div class="comment">
-                    <p style="margin: 0;"><span style="display: flex;">댓글입니다</span><span style="display: flex; justify-content: flex-end;">2023. 12. 24. 23:14</span></p>
-                    <p style="display: flex; margin:0"><span>대댓글보기</span><span>(1)</span></p>
+                    <th:block th:if="${not #lists.isEmpty(comments)}" th:each="comment : ${comments}">
+                        <div class="comment_box">
+                            <input type="hidden" th:value="${comment.comment_id}">
+                            <span class="comment_content"><p th:text="${comment.content}">댓글입니다</p><p th:text="${comment.insertDate}">2023. 12. 24. 23:14</p></span>
+                            <p style="display: flex; margin:0" onclick="findReplyComment(this)"><span>대댓글보기</span>&#40;<span th:text="${comment.replyCommentCount}" class="countReplyComment"></span>&#41;</p>
+                            <span class="reply"></span>
+                            <hr class="comment_line">
+                        </div>
+                    </th:block>
                 </div>
             </div>
 

@@ -34,6 +34,7 @@ public class WorkResponseDto {
     @Builder
     @Data
     public static class getWork{
+        private Long work_id;
         private String title;
         private String imgUrl;
         private String contents;

@@ -15,4 +15,5 @@ public interface ReplyCommentRepository extends JpaRepository<ReplyComment, Long
 
     @Override
     Optional<ReplyComment> findById(Long aLong);
+
 }

@@ -69,7 +69,7 @@ public class CommentService {
     @Transactional
     public List<CommentResponseDto.GetCommentsResponse> getComments(Long work_id){
         Work work = workRepository.findById(work_id).orElseThrow();
-        List<Comment> comments = commentRepository.findAllByWork(work);
+        List<Comment> comments = commentRepository.findAllByWorkOrderByInsertDateDesc(work);
         List<CommentResponseDto.GetCommentsResponse> getCommentsResponses = new ArrayList<>();
 
         if(comments.isEmpty()){
@@ -78,6 +78,7 @@ public class CommentService {
         getCommentsResponses.addAll(
             comments.stream()
                     .map(comment -> {
+                        long count = (long) replyCommentRepository.findAllByComment(comment).size();
                         return CommentResponseDto.GetCommentsResponse.builder()
                                 .comment_id(comment.getId())
                                 .content(comment.getContent())
@@ -85,6 +86,7 @@ public class CommentService {
                                 .insertDate(comment.getInsertDate())
                                 .modifiedDate(comment.getModifiedDate())
                                 .modified(comment.getModified())
+                                .replyCommentCount((int) count)
                                 .build();
                     })
                     .toList()

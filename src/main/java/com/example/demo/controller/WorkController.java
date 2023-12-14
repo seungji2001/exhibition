@@ -4,6 +4,7 @@ import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.workDto.GetAllWork;
 import com.example.demo.dto.workDto.WorkRequestDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
+import com.example.demo.service.CommentService;
 import com.example.demo.service.WorkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,8 @@ public class WorkController {
 
     @Autowired
     WorkService workService;
-
+    @Autowired
+    CommentService commentService;
 
     //멤버별 작품 등록하기 -v1
     @PostMapping(value = "/work/version1")
@@ -60,8 +62,10 @@ public class WorkController {
 
     //서포터 작품 조회하기
     @GetMapping(value = "/work/{work_id}")
-    public ResponseEntity<WorkResponseDto.getWork> getWork(@PathVariable("work_id")Long work_id){
-        return ResponseEntity.ok().body(workService.getWork(work_id));
+    public String getWork(@PathVariable("work_id")Long work_id,Model model){
+        model.addAttribute("comments", commentService.getComments(work_id));
+        model.addAttribute("work", workService.getWork(work_id));
+        return "exhibition/comment";
     }
 
     //서포터 작품 좋아요 수 추가하기 -> 테이블에 칼람 추가 필요

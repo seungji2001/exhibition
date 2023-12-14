@@ -190,6 +190,7 @@ public class WorkService {
                         .collect(Collectors.toList());
 
         return WorkResponseDto.getWork.builder()
+                .work_id(work_id)
                 .title(work.getTitle())
                 .imgUrl(work.getImgUrl())
                 .contents(work.getContents())
