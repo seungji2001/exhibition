@@ -33,7 +33,8 @@
 					<div id="main">
 						<div class="inner">
 							<header>
-								<h1> <a href="http://html5up.net">ARTIST INFO</a></h1>
+								<h1> <a href="http://html5up.net">ARTWORK</a></h1>
+							</header>
 							</header>
 							<section class="tiles">
 								<th:block th:if="${not #lists.isEmpty(workList)}" th:each="work : ${workList}">
@@ -41,7 +42,7 @@
 									<span class="image">
 										<img th:src="${work.getImgUrl()}" alt="" />
 									</span>
-										<a th:href="@{/member/{id}(id=${work.memberId})}">
+										<a th:href="@{/work/{id}(id=${work.work_id})}">
 											<h2 th:text="${work.getTitle()}"></h2>
 										</a>
 									</article>

@@ -46,6 +46,7 @@
            textarea {
                font-size: 12px;
                padding: 3%;
+               margin-left: 3%;
            }
            .work_container{
                 padding: 10%;
@@ -335,7 +336,7 @@
                 </div>
                 <div class="work_content">
                     <p class="work_title" th:text="${work.title}"></p>
-                    <span class="author"><p class="author_font" th:text="${work.supporter_name}">백승지</p> &nbsp;작가</span>
+                    <span class="author"><p class="author_font" th:text="${work.supporter_name}">백승지</p> &nbsp;<p class="author_font" >작가</p></span>
                     <p class="major content_font"  th:text="${work.contents}">A (modular, highly tweakable) responsive one-page template designed by <a href="https://html5up.net">HTML5 UP</a> and released for free under the <a href="https://html5up.net/license">Creative Commons</a>.</p>
                 </div>
             </div>
@@ -346,10 +347,10 @@
                 <div class="field">
                     <textarea name="message" class="comment_textarea" id="message" placeholder="Message"></textarea>
                 </div>
-                <input class="send_comment" onclick="sendMessage(this)" type="button" value="등록">
+                <input class="send_comment" style="box-shadow: none" onclick="sendMessage(this)" type="button" value="등록">
                 </div>
-                <div class="comment">
-                    <th:block th:if="${not #lists.isEmpty(comments)}" th:each="comment : ${comments}">
+                <div  th:if="${not #lists.isEmpty(comments)}" class="comment">
+                    <th:block th:each="comment : ${comments}">
                         <div class="comment_box">
                             <input type="hidden" th:value="${comment.comment_id}">
                             <span class="comment_content"><p th:text="${comment.content}">댓글입니다</p><p th:text="${comment.insertDate}">2023. 12. 24. 23:14</p></span>
