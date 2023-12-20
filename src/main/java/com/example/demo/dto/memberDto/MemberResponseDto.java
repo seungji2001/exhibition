@@ -46,4 +46,12 @@ public class MemberResponseDto {
         private Long id;
         private String name;
     }
+
+    @Builder
+    @Data
+    public static class getMemberVersion2{
+        private Long id;
+        private String name;
+        private String img_url;
+    }
 }

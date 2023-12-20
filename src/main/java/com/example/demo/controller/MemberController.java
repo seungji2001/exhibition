@@ -84,6 +84,12 @@ public class MemberController {
         return ResponseEntity.ok().body(participantService.getAllParticipants(exhibition_id));
     }
 
+    //모든 작가를 조회하였을때 - v2
+    @GetMapping(value = "/artist/{exhibition_id}")
+    public String getAllSupporters(@PathVariable("exhibition_id")Long exhibition_id, Model model){
+        model.addAttribute("artist_list",supporterService.getAllMembers(exhibition_id));
+        return "exhibition/album";
+    }
     //한 멤버의 모든 작품들을 조회 --v1
 //    @GetMapping(value = "/member/{id}/works")
 //    public String getWorksByMemberId(Model model, @PathVariable("id") Long id) {

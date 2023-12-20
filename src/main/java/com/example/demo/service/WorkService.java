@@ -189,6 +189,10 @@ public class WorkService {
                         .map(ViewRecord::getMember)
                         .collect(Collectors.toList());
 
+        String topic = null;
+        if(work.getTemplateNum() == 3){
+            topic = work.getTopic();
+        }
         return WorkResponseDto.getWork.builder()
                 .work_id(work_id)
                 .title(work.getTitle())
@@ -198,6 +202,7 @@ public class WorkService {
                 .view(work.getView())
                 .viewList(memberViewList)
                 .likeCount(work.getLikeCount())
+                .topic(topic)
                 .templateNum(work.getTemplateNum())
                 .build();
     }

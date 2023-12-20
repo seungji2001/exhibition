@@ -74,7 +74,7 @@ public class WorkController {
         } else if (tempateNum == 2) {
             return "exhibition/template2";
         }
-        return "exhibition";
+        return "exhibition/template3";
     }
 
     //서포터 작품 좋아요 수 추가하기 -> 테이블에 칼람 추가 필요
@@ -86,6 +86,6 @@ public class WorkController {
     public String getAllWork(@PathVariable("exhibition_id")Long exhibition_id, Model model){
 //        return ResponseEntity.ok().body(workService.getAllWork(exhibition_id));
         model.addAttribute("workList", workService.getAllWork(exhibition_id));
-        return "exhibition/index4";
+        return "exhibition/album";
     }
 }

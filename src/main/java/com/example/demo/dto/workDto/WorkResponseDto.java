@@ -42,6 +42,7 @@ public class WorkResponseDto {
         private Long view;
         private List<Member> viewList;
         private int likeCount;
+        private String topic;
         private int templateNum;
     }
 
