@@ -52,8 +52,8 @@
 									<span class="image">
 										<img th:src="${artist.img_url}" alt="" />
 									</span>
-										<a>
-											<p th:text="${artist.getName()}"></p>
+										<a th:href="@{/artist/{artistId}/exhibition/{exhibitionId}(artistId=${artist.id}, exhibitionId=2)}">
+											<p th:text="${artist.name}"></p>
 										</a>
 									</article>
 								</th:block>

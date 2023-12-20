@@ -21,4 +21,6 @@ public interface MemberRepository  extends JpaRepository<Member, Long> {
     List<Member> findAllByExhibitionAndMemberRole(Exhibition exhibition, MemberRole memberRole);
     Optional<Member> findMemberByIdAndMemberRole(Long memberId, MemberRole memberRole);
 
+    Optional<Member> findByIdAndExhibition(Long id, Exhibition exhibition);
+
 }
