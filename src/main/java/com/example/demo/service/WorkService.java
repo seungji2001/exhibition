@@ -198,6 +198,7 @@ public class WorkService {
                 .view(work.getView())
                 .viewList(memberViewList)
                 .likeCount(work.getLikeCount())
+                .templateNum(work.getTemplateNum())
                 .build();
     }
 

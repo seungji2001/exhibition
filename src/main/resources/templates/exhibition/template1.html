@@ -199,11 +199,13 @@
            margin: auto;
        }
        .comment_content{
-           display: flex;
+           /*display: flex;*/
            width: 100%;
            margin: 0;
-           /* display: inline-block; */
-           justify-content: space-between;
+           display: inline-block;
+           /*justify-content: space-between;*/
+           overflow-wrap: break-word;
+           word-break: break-all;
        }
        .replyCommentBox{
            padding: 3% 3% 0 3%;
@@ -340,20 +342,19 @@
                     <p class="major content_font"  th:text="${work.contents}">A (modular, highly tweakable) responsive one-page template designed by <a href="https://html5up.net">HTML5 UP</a> and released for free under the <a href="https://html5up.net/license">Creative Commons</a>.</p>
                 </div>
             </div>
-
             <div class="comment_container">
                 <div class="input_comment">
 
-                <div class="field">
-                    <textarea name="message" class="comment_textarea" id="message" placeholder="Message"></textarea>
-                </div>
-                <input class="send_comment" style="box-shadow: none" onclick="sendMessage(this)" type="button" value="등록">
+                    <div class="field">
+                        <textarea name="message" class="comment_textarea" id="message" placeholder="Message"></textarea>
+                    </div>
+                    <input class="send_comment" style="box-shadow: none" onclick="sendMessage(this)" type="button" value="등록">
                 </div>
                 <div  th:if="${not #lists.isEmpty(comments)}" class="comment">
                     <th:block th:each="comment : ${comments}">
                         <div class="comment_box">
                             <input type="hidden" th:value="${comment.comment_id}">
-                            <span class="comment_content"><p th:text="${comment.content}">댓글입니다</p><p th:text="${comment.insertDate}">2023. 12. 24. 23:14</p></span>
+                            <span class="comment_content"><p th:text="${comment.content}" style="text-align: left">댓글입니다</p><p th:text="${comment.insertDate}" style="text-align: right">2023. 12. 24. 23:14</p></span>
                             <p style="display: flex; margin:0" onclick="findReplyComment(this)"><span>대댓글보기</span>&#40;<span th:text="${comment.replyCommentCount}" class="countReplyComment"></span>&#41;</p>
                             <span class="reply"></span>
                             <hr class="comment_line">

@@ -64,8 +64,17 @@ public class WorkController {
     @GetMapping(value = "/work/{work_id}")
     public String getWork(@PathVariable("work_id")Long work_id,Model model){
         model.addAttribute("comments", commentService.getComments(work_id));
-        model.addAttribute("work", workService.getWork(work_id));
-        return "exhibition/comment";
+
+        WorkResponseDto.getWork work = workService.getWork(work_id);
+        int tempateNum = work.getTemplateNum();
+        model.addAttribute("work", work);
+
+        if(tempateNum == 1){
+            return "exhibition/template1";
+        } else if (tempateNum == 2) {
+            return "exhibition/template2";
+        }
+        return "exhibition";
     }
 
     //서포터 작품 좋아요 수 추가하기 -> 테이블에 칼람 추가 필요
