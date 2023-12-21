@@ -67,4 +67,11 @@ public class ExhibitionController {
     public String home(){
         return "exhibition/comment";
     }
+
+    @GetMapping(value = "/test2/{exhibition_id}")
+    public String intro(Model model, @PathVariable("exhibition_id") Long exhibition_id){
+        model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
+
+        return "/exhibition/index5";
+    }
 }
