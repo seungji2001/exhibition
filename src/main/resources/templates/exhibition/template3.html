@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Phantom by HTML5 UP</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="/exhibition/assets/main.css" />
+  <!--    <link rel="stylesheet" href="/assets/css/main.css" />-->
+  <noscript><link rel="stylesheet" href="/exhibition/assets/noscript.css" /></noscript>
+  <style>
+    @media screen and (max-width: 1200px) {
+      .reply {
+        display: flex;
+        text-align: left;
+      }
+      p {
+        font-size: 12px
+      }
+      .comment_line {
+        border: 0;
+        border-bottom: solid 1px #c9c9c9;
+        margin: 0.3em 0;
+      }
+      .comment_box{
+        padding: 2%;}
+      .comment {
+        padding: 2% 2% 0% 2%;
+        border:1px solid rgba(255, 255, 255, 1);
+        background-color:rgba(255, 255, 255, 0.10000000149011612);
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+        border-bottom-left-radius:10px;
+        border-bottom-right-radius:10px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 8%;
+      }
+      textarea::placeholder {
+        font-size: 12px;
+      }
+      textarea {
+        font-size: 12px;
+        padding: 3%;
+        margin-left: 3%;
+      }
+      .work_container{
+        padding: 10%;
+      }
+      .work_title {
+        text-align: center;
+      }
+      .author {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .comment_container {
+        padding: 10%;
+      }
+      .input_comment {
+        background-color: rgba(255, 255, 255, 0.10000000149011612);
+        display: flex;
+        position: relative;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        /* border-radius: 10%; */
+        border: solid 1px white;
+        margin-bottom: 10%;
+      }
+      .send_comment {
+        box-shadow: none;
+        font-size: 10px;
+      }
+    }
+    @media screen and (max-width: 2500px) and (min-width: 1200px) {
+      .send_comment {
+        box-shadow: none;
+        font-size: 20px;
+      }
+      .reply {
+        display: flex;
+        text-align: left;
+      }
+      .comment_line{
+        border: 0;
+        border-bottom: solid 1px #c9c9c9;
+        margin: 1em 0;
+      }
+      .comment{
+        padding: 2% 2% 0% 2%;
+        border:2px solid rgba(255, 255, 255, 1);
+        background-color:rgba(255, 255, 255, 0.10000000149011612);
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+        border-bottom-left-radius:10px;
+        border-bottom-right-radius:10px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 10%;
+      }
+      .input_comment {
+        border: solid 2px white;
+      }
+      .work_container {
+        moz-align-items: -moz-stretch;
+        -webkit-align-items: -webkit-stretch;
+        -ms-align-items: -ms-stretch;
+        align-items: stretch;
+        display: -webkit-flex;
+        display: flex;
+        -moz-flex-direction: row;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -moz-justify-content: -moz-flex-end;
+        -webkit-justify-content: -webkit-flex-end;
+        -ms-justify-content: -ms-flex-end;
+        justify-content: flex-end;
+        position: relative;
+        text-align: left;
+        overflow-x: hidden;
+      }
+
+      .work_image {
+        width: 40%;
+        aspect-ratio: 1 / 1;
+        border-radius: 4px;
+        border: 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .work_content {
+        margin-top: 2%;
+        margin-left: 5%;
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+      }
+
+      .author {
+        text-align: right;
+      }
+
+      .work_title {
+        font-size: 24px;
+        letter-spacing: 0;
+      }
+      .author_font {
+        font-weight: bold;
+        display: inline-block;
+        font-size: 20px;
+      }
+      .content_font{
+        font-size: 20px;
+      }
+      .comment_container{
+        margin-top: 10%;
+      }
+      .topic {
+        padding-top: 9%;
+        font-size: 25px;
+      }
+    }
+    .comment_textarea{
+      padding: 1%;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
+      border: none;
+      border-radius: 0;
+      display: block;
+      outline: 0;
+      text-decoration: none;
+      color: white;
+    }
+    textarea:focus {
+      /* border-bottom-color: #f2849e; */
+      /* box-shadow: inset 0 -1px 0 0 #f2849e; */
+    }
+    .field{
+      width: 90%;
+    }
+    .input_comment {
+      background-color: rgba(255, 255, 255, 0.10000000149011612);
+      display: flex;
+      position: relative;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      margin-bottom: 10%;
+    }
+    .send_comment{
+      box-shadow: none;
+      margin: auto;
+    }
+    .comment_content{
+      /*display: flex;*/
+      width: 100%;
+      margin: 0;
+      display: inline-block;
+      /*justify-content: space-between;*/
+      overflow-wrap: break-word;
+      word-break: break-all;
+    }
+    .replyCommentBox{
+      padding: 3% 3% 0 3%;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Pretendard&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>function sendMessage(message) {
+    console.log(message)
+    let parentDiv = message.parentElement;
+    if(parentDiv.querySelector('#message').value.length === 0){
+      console.log("Element is null or empty");
+      return;
+    }
+    let messageText = parentDiv.querySelector('#message').value
+    console.log(messageText)
+
+    let work_id = [[${work.work_id}]]
+    let data = {
+      work_id: work_id,
+      member_id: 0,
+      content: messageText
+    };
+    fetch('/comment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+            .then(function (response) {
+              if (response.ok) {
+                return response.json()
+              } else {
+                alert('Error sending another API request')
+              }
+            })
+            .then(function(data) {
+              location.reload();
+            })
+            .catch(error => {
+              console.log(error);
+            });
+  }
+
+  function findReplyComment(comment) {
+    if(comment.querySelector('.countReplyComment').innerText === '0'){
+      return;
+    }
+    let parentDiv = comment.parentElement;
+
+    // Get the hidden input field inside the parent div
+    let hiddenInput = parentDiv.querySelector('input[type="hidden"]');
+
+    // Get the value of the hidden input field
+    let commentId = hiddenInput.value;
+
+    //commentId로 replyComments가져오기
+    fetch("/replyComments/" + commentId)
+            .then(response =>{
+              return response.json();
+            })
+            .then(data => {
+              //댓글 아래 박스로 달기
+              let html = '   <div class="replyCommentBox">\n'
+              data.forEach(function(item) {
+                html +='<p>ㄴ ' + item.content +  '</p>\n'
+              });
+              html += '</div>'
+              let reply = parentDiv.querySelector('.reply');
+              reply.innerHTML = html
+            })
+            .catch(error =>{
+              console.log(error);
+            })
+  }
+
+  $(document).ready(function() {
+    // fetch("/comments/2")
+    //     .then(response =>{
+    //         return response.json();
+    //     })
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    //     .catch(error =>{
+    //         console.log(error);
+    //     })
+  })
+  </script>
+</head>
+<body class="is-preload" style="background-color: black">
+<!-- Wrapper -->
+<div id="wrapper">
+
+  <!-- Header -->
+  <header id="header">
+    <div class="inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <span class="symbol"><img src="/images/logo.svg" alt="" /></span><span class="title">Phantom</span>
+      </a>
+
+
+    </div>
+  </header>
+
+  <!-- Main -->
+  <div id="main">
+    <div class="inner">
+      <!--            <section class="tiles">-->
+      <!--                <th:block th:if="${not #lists.isEmpty(workList)}" th:each="work : ${workList}">-->
+      <!--                    <article class="style1">-->
+      <!--									<span class="image">-->
+      <!--										<img th:src="${work.getImgUrl()}" alt="" />-->
+      <!--									</span>-->
+      <!--                        <a th:href="@{/member/{id}(id=${work.memberId})}">-->
+      <!--                            <h2 th:text="${work.getTitle()}"></h2>-->
+      <!--                        </a>-->
+      <!--                    </article>-->
+      <!--                </th:block>-->
+      <!--            </section>-->
+      <div class="work_container">
+        <div class="work_image">
+          <img style="    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}" th:src="${work.imgUrl}" alt="">
+        </div>
+        <div class="work_content">
+          <p class="work_title" th:text="${work.title}"></p>
+          <span class="author"><p class="author_font" th:text="${work.supporter_name}">백승지</p> &nbsp;<p class="author_font" >작가</p></span>
+          <p class="major content_font"  th:text="${work.contents}">A (modular, highly tweakable) responsive one-page template designed by <a href="https://html5up.net">HTML5 UP</a> and released for free under the <a href="https://html5up.net/license">Creative Commons</a>.</p>
+        </div>
+        </div>
+      <div class="topic" th:text="${work.topic}">
+      </div>
+      <div class="comment_container">
+        <div class="input_comment">
+
+          <div class="field">
+            <textarea name="message" class="comment_textarea" id="message" placeholder="Message"></textarea>
+          </div>
+          <input class="send_comment" style="box-shadow: none" onclick="sendMessage(this)" type="button" value="등록">
+        </div>
+        <div  th:if="${not #lists.isEmpty(comments)}" class="comment">
+          <th:block th:each="comment : ${comments}">
+            <div class="comment_box">
+              <input type="hidden" th:value="${comment.comment_id}">
+              <span class="comment_content"><p th:text="${comment.content}" style="text-align: left">댓글입니다</p><p th:text="${comment.insertDate}" style="text-align: right">2023. 12. 24. 23:14</p></span>
+              <p style="display: flex; margin:0" onclick="findReplyComment(this)"><span>대댓글보기</span>&#40;<span th:text="${comment.replyCommentCount}" class="countReplyComment"></span>&#41;</p>
+              <span class="reply"></span>
+              <hr class="comment_line">
+            </div>
+          </th:block>
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/browser.min.js"></script>
+  <script src="/assets/js/breakpoints.min.js"></script>
+  <script src="/assets/js/util.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+</body>
+</html>

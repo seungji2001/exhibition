@@ -41,6 +41,7 @@ public class Member {
     private String cellphone;
 
     private Long likeCount;
+    private String img_url;
 
     @OneToMany(mappedBy = "receiver")
     private List<Message> messageList;

@@ -72,4 +72,19 @@ public class SupporterService {
                 )
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public List<MemberResponseDto.getMemberVersion2> getAllMembers(Long exhibitionId) {
+        Exhibition exhibition = exhibitionRepository.findById(exhibitionId).orElseThrow(() -> new IllegalArgumentException("존재하는 전시가 없습니다."));
+        List<Member> members = memberRepository.findAllByExhibitionAndMemberRole(exhibition, MemberRole.SUPPORTER);
+        return members.stream()
+                .map(member -> {
+                    return MemberResponseDto.getMemberVersion2
+                            .builder()
+                            .name(member.getName())
+                            .img_url(member.getImg_url())
+                            .build();
+                })
+                .collect(Collectors.toList());
+    }
 }

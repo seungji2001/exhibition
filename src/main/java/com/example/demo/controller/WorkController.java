@@ -4,6 +4,7 @@ import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.workDto.GetAllWork;
 import com.example.demo.dto.workDto.WorkRequestDto;
 import com.example.demo.dto.workDto.WorkResponseDto;
+import com.example.demo.service.CommentService;
 import com.example.demo.service.WorkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,8 @@ public class WorkController {
 
     @Autowired
     WorkService workService;
-
+    @Autowired
+    CommentService commentService;
 
     //멤버별 작품 등록하기 -v1
     @PostMapping(value = "/work/version1")
@@ -60,8 +62,19 @@ public class WorkController {
 
     //서포터 작품 조회하기
     @GetMapping(value = "/work/{work_id}")
-    public ResponseEntity<WorkResponseDto.getWork> getWork(@PathVariable("work_id")Long work_id){
-        return ResponseEntity.ok().body(workService.getWork(work_id));
+    public String getWork(@PathVariable("work_id")Long work_id,Model model){
+        model.addAttribute("comments", commentService.getComments(work_id));
+
+        WorkResponseDto.getWork work = workService.getWork(work_id);
+        int tempateNum = work.getTemplateNum();
+        model.addAttribute("work", work);
+
+        if(tempateNum == 1){
+            return "exhibition/template1";
+        } else if (tempateNum == 2) {
+            return "exhibition/template2";
+        }
+        return "exhibition/template3";
     }
 
     //서포터 작품 좋아요 수 추가하기 -> 테이블에 칼람 추가 필요
@@ -73,6 +86,6 @@ public class WorkController {
     public String getAllWork(@PathVariable("exhibition_id")Long exhibition_id, Model model){
 //        return ResponseEntity.ok().body(workService.getAllWork(exhibition_id));
         model.addAttribute("workList", workService.getAllWork(exhibition_id));
-        return "exhibition/index4";
+        return "exhibition/album";
     }
 }

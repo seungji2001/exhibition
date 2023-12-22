@@ -34,6 +34,7 @@ public class WorkResponseDto {
     @Builder
     @Data
     public static class getWork{
+        private Long work_id;
         private String title;
         private String imgUrl;
         private String contents;
@@ -41,6 +42,8 @@ public class WorkResponseDto {
         private Long view;
         private List<Member> viewList;
         private int likeCount;
+        private String topic;
+        private int templateNum;
     }
 
     @Builder

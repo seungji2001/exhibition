@@ -30,6 +30,7 @@ public class CommentResponseDto {
         LocalDateTime insertDate;
         LocalDateTime modifiedDate;
         int modified;
+        int replyCommentCount;
     }
 
     @Builder

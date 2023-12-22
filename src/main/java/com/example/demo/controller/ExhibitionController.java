@@ -62,7 +62,6 @@ public class ExhibitionController {
         exhibitionService.deleteExhibition(exhibition_id);
         return ResponseEntity.ok().body(exhibition_id);
     }
-
     @GetMapping(value = "/test")
     public String home(){
         return "exhibition/comment";
