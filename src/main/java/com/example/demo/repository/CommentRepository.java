@@ -12,5 +12,5 @@ import java.util.Optional;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    Page<Comment> findAllByWorkOrderByInsertDateDesc(Work work, Pageable pageable);
+    List<Comment> findAllByWorkOrderByInsertDateDesc(Work work);
 }

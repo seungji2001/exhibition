@@ -35,7 +35,7 @@ public class CommentController {
     //댓글 불러오기
     @GetMapping(value = "/comments/{work_id}")
     public ResponseEntity<List<CommentResponseDto.GetCommentsResponse>> getComments(@PathVariable("work_id")Long work_id, @PageableDefault(page = 0, size = 5, sort = "insertDate", direction = Sort.Direction.ASC) Pageable pageable){
-        return ResponseEntity.ok().body(commentService.getComments(work_id,pageable));
+        return ResponseEntity.ok().body(commentService.getComments(work_id));
     }
 
     //대댓글 등록
@@ -52,8 +52,8 @@ public class CommentController {
 
     // 대댓글 불러오기
     @GetMapping(value = "/replyComments/{comment_id}")
-    public ResponseEntity<List<CommentResponseDto.GetReplyCommentsResponse>> getReplyComment(@PathVariable("comment_id")Long comment_id, @PageableDefault(page = 0, size = 5, sort = "insertDate", direction = Sort.Direction.DESC)Pageable pageable){
-        return ResponseEntity.ok().body(commentService.getReplyComment(comment_id,pageable));
+    public ResponseEntity<List<CommentResponseDto.GetReplyCommentsResponse>> getReplyComment(@PathVariable("comment_id")Long comment_id){
+        return ResponseEntity.ok().body(commentService.getReplyComment(comment_id));
     }
 
 }

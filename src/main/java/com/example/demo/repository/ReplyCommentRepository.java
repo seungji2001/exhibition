@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface ReplyCommentRepository extends JpaRepository<ReplyComment, Long> {
-    Page<ReplyComment> findAllByComment(Comment comment, Pageable pageable);
+    List<ReplyComment> findAllByComment(Comment comment);
 
     @Override
     Optional<ReplyComment> findById(Long aLong);

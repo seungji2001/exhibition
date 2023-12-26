@@ -69,9 +69,9 @@ public class CommentService {
     }
 
     @Transactional
-    public List<CommentResponseDto.GetCommentsResponse> getComments(Long work_id, Pageable pageable){
+    public List<CommentResponseDto.GetCommentsResponse> getComments(Long work_id){
         Work work = workRepository.findById(work_id).orElseThrow();
-        Page<Comment> comments = commentRepository.findAllByWorkOrderByInsertDateDesc(work,pageable);
+        List<Comment> comments = commentRepository.findAllByWorkOrderByInsertDateDesc(work);
         List<CommentResponseDto.GetCommentsResponse> getCommentsResponses = new ArrayList<>();
 
         if(comments.isEmpty()){
