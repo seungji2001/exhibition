@@ -56,7 +56,7 @@ public class ExhibitionController {
 //        return ResponseEntity.ok().body(exhibition_id);
 //    }
 
-    @GetMapping(value = "/test2/{exhibition_id}")
+    @GetMapping(value = "/exhibition/locate/date/{exhibition_id}")
     public String intro(Model model, @PathVariable("exhibition_id") Long exhibition_id){
         model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
 
