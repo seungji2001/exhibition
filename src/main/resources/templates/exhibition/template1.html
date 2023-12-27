@@ -354,9 +354,7 @@
                     <th:block th:each="comment : ${comments}">
                         <div class="comment_box">
                             <input type="hidden" th:value="${comment.comment_id}">
-                            <span class="comment_content"><p th:text="${comment.content}" style="text-align: left">댓글입니다</p><p th:text="${comment.insertDate}" style="text-align: right">2023. 12. 24. 23:14</p></span>
-                            <p style="display: flex; margin:0" onclick="findReplyComment(this)"><span>대댓글보기</span>&#40;<span th:text="${comment.replyCommentCount}" class="countReplyComment"></span>&#41;</p>
-                            <span class="reply"></span>
+                            <span class="comment_content"><p th:text="${comment.content}" style="text-align: left;">댓글입니다</p><p th:text="${comment.insertDate}" style="text-align: right; margin-bottom: 2px;">2023. 12. 24. 23:14</p></span>
                             <hr class="comment_line">
                         </div>
                     </th:block>
