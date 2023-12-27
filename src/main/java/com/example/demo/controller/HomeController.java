@@ -39,6 +39,14 @@ public class HomeController {
         return "home/index";
     }
 
+
+    //메인페이지 들어가기
+    @GetMapping(value = "/exhibition")
+    public String mainPage(Model model){
+//        model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
+        return "/exhibition/home";
+    }
+
     @PostMapping(value = "/record")
     public String sendRecord(@ModelAttribute("requestDto") RequestDto requestDto){
         recordService.saveRecord(requestDto);

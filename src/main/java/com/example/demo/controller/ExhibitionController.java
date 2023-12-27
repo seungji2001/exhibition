@@ -21,13 +21,6 @@ public class ExhibitionController {
     @Autowired
     WorkService workService;
 
-    //메인페이지 들어가기
-    @GetMapping(value = "/exhibition")
-    public String mainPage(Model model){
-//        model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
-        return "/exhibition/mainpage";
-    }
-
     //exhibition 가져오기
     @GetMapping(value = "/exhibition/{exhibition_id}")
     public String getExhibition(Model model, @PathVariable("exhibition_id") Long exhibition_id){
