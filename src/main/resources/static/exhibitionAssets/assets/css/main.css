@@ -2592,7 +2592,7 @@ input, select, textarea {
 		justify-content: space-between;
 		background-color: #1f1815;
 		background-attachment: scroll,								scroll;
-		background-image: url("/exhibitionAssets/images/image-1.png");
+		background-image: url("/exhibitionAssets/images/main_poster.jpg");
 		background-position: top left,							top left;
 		background-repeat: repeat,								no-repeat;
 		background-size: auto,								150%;
@@ -3026,9 +3026,9 @@ input, select, textarea {
 
 			#main {
 				margin-left: 50%;
-				max-width: none;
-				padding: 6em 3em 3em 3em;
-				width: calc(100% - 30%);
+				max-width: 54em;
+				padding: 4em 4em 4em;
+				width: calc(100% - 35%);
 			}
 
 	}

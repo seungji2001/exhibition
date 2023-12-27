@@ -21,13 +21,6 @@ public class ExhibitionController {
     @Autowired
     WorkService workService;
 
-    //메인페이지 들어가기
-    @GetMapping(value = "/exhibition")
-    public String mainPage(Model model){
-//        model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
-        return "/exhibition/mainpage";
-    }
-
     //exhibition 가져오기
     @GetMapping(value = "/exhibition/{exhibition_id}")
     public String getExhibition(Model model, @PathVariable("exhibition_id") Long exhibition_id){
@@ -39,33 +32,29 @@ public class ExhibitionController {
     }
 
     //exhibition 등록
-    @PostMapping(value="/exhibition")
-    public ResponseEntity<Long> registrationExhibition(@Valid @RequestBody ExhibitionRequestDto.registrationExhibition registrationExhibition){
-        return ResponseEntity.ok().body(exhibitionService.registrationExhibition(registrationExhibition));
-    }
+//    @PostMapping(value="/exhibition")
+//    public ResponseEntity<Long> registrationExhibition(@Valid @RequestBody ExhibitionRequestDto.registrationExhibition registrationExhibition){
+//        return ResponseEntity.ok().body(exhibitionService.registrationExhibition(registrationExhibition));
+//    }
 
     //exhibition 모두 가져오기
-    @GetMapping(value = "/exhibitions")
-    public ResponseEntity<List<ExhibitionResponseDto.getExhibition>> getExhibitions(){
-        return ResponseEntity.ok().body(exhibitionService.getExhibitions());
-    }
+//    @GetMapping(value = "/exhibitions")
+//    public ResponseEntity<List<ExhibitionResponseDto.getExhibition>> getExhibitions(){
+//        return ResponseEntity.ok().body(exhibitionService.getExhibitions());
+//    }
 
     //exhibition 수정하기
-    @PutMapping(value = "/exhibition/{exhibition_id}")
-    public ResponseEntity<ExhibitionResponseDto.getExhibition> updateExhibition(@PathVariable("exhibition_id")Long exhibition_id,@RequestBody ExhibitionRequestDto.updateExhibition updateExhibition){
-         return ResponseEntity.ok().body(exhibitionService.updateExhibition(exhibition_id, updateExhibition));
-    }
+//    @PutMapping(value = "/exhibition/{exhibition_id}")
+//    public ResponseEntity<ExhibitionResponseDto.getExhibition> updateExhibition(@PathVariable("exhibition_id")Long exhibition_id,@RequestBody ExhibitionRequestDto.updateExhibition updateExhibition){
+//         return ResponseEntity.ok().body(exhibitionService.updateExhibition(exhibition_id, updateExhibition));
+//    }
 
     //exhibition 삭제하기
-    @DeleteMapping(value = "/exhibition/{exhibition_id}")
-    public ResponseEntity<Long> deleteExhibition(@PathVariable("exhibition_id")Long exhibition_id){
-        exhibitionService.deleteExhibition(exhibition_id);
-        return ResponseEntity.ok().body(exhibition_id);
-    }
-    @GetMapping(value = "/test")
-    public String home(){
-        return "exhibition/comment";
-    }
+//    @DeleteMapping(value = "/exhibition/{exhibition_id}")
+//    public ResponseEntity<Long> deleteExhibition(@PathVariable("exhibition_id")Long exhibition_id){
+//        exhibitionService.deleteExhibition(exhibition_id);
+//        return ResponseEntity.ok().body(exhibition_id);
+//    }
 
     @GetMapping(value = "/test2/{exhibition_id}")
     public String intro(Model model, @PathVariable("exhibition_id") Long exhibition_id){

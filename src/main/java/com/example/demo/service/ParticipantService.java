@@ -122,4 +122,19 @@ public class ParticipantService {
                 .name(member.getName())
                 .build();
     }
+
+    @Transactional //-v2
+    public MemberResponseDto.getMemberVersion2 getMemberVersion2(Long member_id, Long exhibition_id){
+        Exhibition exhibition = exhibitionRepository.findById(exhibition_id).orElseThrow(() -> new IllegalArgumentException("해당하는 전시가 없습니다."));
+        Member member = memberRepository.findByIdAndExhibition(member_id, exhibition).orElseThrow();
+
+        return MemberResponseDto.getMemberVersion2
+                .builder()
+                .id(member.getId())
+                .name(member.getName())
+                .introduction(member.getIntroduction())
+                .img_url(member.getImg_url())
+                .build();
+
+    }
 }
