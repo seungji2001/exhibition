@@ -44,7 +44,7 @@ public class HomeController {
     @GetMapping(value = "/exhibition")
     public String mainPage(Model model){
 //        model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
-        return "/exhibition/home";
+        return "exhibition/home";
     }
 
     @PostMapping(value = "/record")

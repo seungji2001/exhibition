@@ -3026,9 +3026,9 @@ input, select, textarea {
 
 			#main {
 				margin-left: 50%;
-				max-width: none;
-				padding: 6em 3em 3em 3em;
-				width: calc(100% - 30%);
+				max-width: 54em;
+				padding: 4em 4em 4em;
+				width: calc(100% - 35%);
 			}
 
 	}
