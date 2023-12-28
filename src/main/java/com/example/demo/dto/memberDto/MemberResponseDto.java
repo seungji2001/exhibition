@@ -49,9 +49,19 @@ public class MemberResponseDto {
 
     @Builder
     @Data
-    public static class getMemberVersion2{
+    public static class getMembersVersion2 {
         private Long id;
         private String name;
         private String img_url;
     }
+
+    @Builder
+    @Data
+    public static class getMemberVersion2{
+        private Long id;
+        private String name;
+        private String introduction;
+        private String img_url;
+    }
+
 }

@@ -78,6 +78,13 @@ public class MemberController {
         return ResponseEntity.ok().body(participantService.getParticipant(participant_id, exhibition_id));
     }
 
+
+    //한 멤버를 조회하였을때 - v2
+    @GetMapping(value = "/artist/{member_id}/exhibition/{exhibition_id}")
+    public String getMemberVersion2(@PathVariable("member_id")Long member_id, @PathVariable("exhibition_id")Long exhibition_id, Model model){
+        model.addAttribute("artist", participantService.getMemberVersion2(member_id, exhibition_id));
+        return "exhibition/member";
+    }
     //모든 참가자(전시 관람자) 조회하였을때
     @GetMapping(value = "/participants/exhibition/{exhibition_id}")
     public ResponseEntity<List<MemberResponseDto.getParticipants>> getAllParticipants(@PathVariable("exhibition_id")Long exhibition_id){
