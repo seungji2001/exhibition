@@ -40,7 +40,9 @@
 								<th:block th:if="${not #lists.isEmpty(workList)}" th:each="work : ${workList}">
 									<article class="style1">
 									<span class="image">
+										<a th:href="@{/work/{id}(id=${work.work_id})}">
 										<img th:src="${work.getImgUrl()}" alt="" />
+										</a>
 									</span>
 										<a th:href="@{/work/{id}(id=${work.work_id})}">
 											<p th:text="${work.getTitle()}"></p>
@@ -50,7 +52,9 @@
 								<th:block th:if="${not #lists.isEmpty(artist_list)}" th:each="artist : ${artist_list}">
 									<article class="style1">
 									<span class="image">
-										<img th:src="${artist.img_url}" alt="" />
+										<a th:href="@{/artist/{artistId}/exhibition/{exhibitionId}(artistId=${artist.id}, exhibitionId=2)}">
+											<img th:src="${artist.img_url}" alt="" />
+										</a>
 									</span>
 										<a th:href="@{/artist/{artistId}/exhibition/{exhibitionId}(artistId=${artist.id}, exhibitionId=2)}">
 											<p th:text="${artist.name}"></p>

@@ -60,6 +60,6 @@ public class ExhibitionController {
     public String intro(Model model, @PathVariable("exhibition_id") Long exhibition_id){
         model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
 
-        return "/exhibition/index5";
+        return "exhibition/index5";
     }
 }
