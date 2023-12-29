@@ -2595,7 +2595,8 @@ input, select, textarea {
 		background-image: url("/exhibitionAssets/images/main_poster.jpg");
 		background-position: top left,							top left;
 		background-repeat: repeat,								no-repeat;
-		background-size: auto,								150%;
+		/*background-size: auto,								150%;*/
+		background-size: cover;
 		color: rgba(255, 255, 255, 0.5);
 		height: 100%;
 		left: 0;
@@ -3201,7 +3202,7 @@ input, select, textarea {
 		/* Header */
 
 			#header {
-				padding: 4.5em 1.5em;
+				padding: 18.5em 1.5em
 			}
 
 				#header h1 br {
