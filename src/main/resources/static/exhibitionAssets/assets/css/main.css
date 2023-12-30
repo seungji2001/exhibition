@@ -2216,7 +2216,7 @@ input, select, textarea {
 
 		ul.labeled-icons li {
 			line-height: 1.75em;
-			margin: 1.5em 0 0 0;
+			margin: 3.5em 0 0 0;
 			padding-left: 2.25em;
 			position: relative;
 		}
@@ -2573,6 +2573,10 @@ input, select, textarea {
 
 /* Header */
 
+@media screen and (max-width: 1800px){
+	padding:11em 20em;
+	background-position: left -27.1px;
+}
 	#header {
 		display: -moz-flex;
 		display: -webkit-flex;
@@ -2685,7 +2689,7 @@ input, select, textarea {
 		margin-left: 50%;
 		max-width: 54em;
 		padding: 4em 4em 4em;
-		width: calc(100% - 35%);
+		/*width: calc(100% - 35%);*/
 	}
 
 		#main > section {
@@ -3029,7 +3033,7 @@ input, select, textarea {
 				margin-left: 50%;
 				max-width: 54em;
 				padding: 4em 4em 4em;
-				width: calc(100% - 35%);
+				/*width: calc(100% - 35%);*/
 			}
 
 	}
