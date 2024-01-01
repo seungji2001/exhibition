@@ -50,6 +50,29 @@ public class ExhibitionController {
 //    }
 
     //exhibition 삭제하기
+
+    @DeleteMapping(value = "/exhibition/{exhibition_id}")
+    public ResponseEntity<Long> deleteExhibition(@PathVariable("exhibition_id")Long exhibition_id){
+        exhibitionService.deleteExhibition(exhibition_id);
+        return ResponseEntity.ok().body(exhibition_id);
+    }
+    @GetMapping(value = "/test")
+    public String home(){
+        return "exhibition/comment";
+    }
+
+//    @DeleteMapping(value = "/exhibition/{exhibition_id}")
+//    public ResponseEntity<Long> deleteExhibition(@PathVariable("exhibition_id")Long exhibition_id){
+//        exhibitionService.deleteExhibition(exhibition_id);
+//        return ResponseEntity.ok().body(exhibition_id);
+//    }
+
+    @GetMapping(value = "/test2/{exhibition_id}")
+    public String intro(Model model, @PathVariable("exhibition_id") Long exhibition_id){
+        model.addAttribute("getExhibition",exhibitionService.getExhibition(exhibition_id));
+
+        return "/exhibition/index5";
+    }
 //    @DeleteMapping(value = "/exhibition/{exhibition_id}")
 //    public ResponseEntity<Long> deleteExhibition(@PathVariable("exhibition_id")Long exhibition_id){
 //        exhibitionService.deleteExhibition(exhibition_id);
