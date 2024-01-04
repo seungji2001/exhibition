@@ -150,9 +150,9 @@ input, select, textarea {
 	}
 
 		a:hover {
-			border-bottom-color: transparent;
-			color: #ffffff;
-			text-shadow: 2px 2px 6px #0FEF4E;
+			/*border-bottom-color: transparent;*/
+			/*color: #ffffff;*/
+			/*text-shadow: 2px 2px 6px #0FEF4E;*/
 		}
 
 	strong, b {
