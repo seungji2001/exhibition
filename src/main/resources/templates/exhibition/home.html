@@ -242,7 +242,6 @@
                 font-weight: 400;
                 color: #ffffff;
                 text-align: center;
-                text-shadow: 2px 2px 6px #0FEF4E;
                 line-height: 6;
             }
 
@@ -256,9 +255,18 @@
                 filter: blur(0.4px);
             }
 
+            .main_text_6 {
+                font-family: "Arial Black", sans-serif;
+                font-size: 13px;
+                font-weight: 400;
+                color: #c9c9c9;
+                text-align: center;
+            }
+
             #one > .container_1 {
                 display: flex;
                 flex-direction: column;
+                margin: 0 auto;
             }
             .option_text{
                 font-weight: bold; font-size: 25px;
@@ -901,7 +909,6 @@
                 font-weight: 400;
                 color: #ffffff;
                 text-align: center;
-                text-shadow: 2px 2px 6px #0FEF4E;
                 line-height: 6;
             }
 
@@ -915,9 +922,18 @@
                 filter: blur(0.4px);
             }
 
+            .main_text_6 {
+                font-family: "Arial Black", sans-serif;
+                font-size: 20px;
+                font-weight: 400;
+                color: #c9c9c9;
+                text-align: center;
+            }
+
             #one > .container_1 {
                 display: flex;
                 flex-direction: column;
+                margin: 0 auto;
             }
 
             .container_2 {
@@ -964,24 +980,12 @@
     <!-- One -->
     <section id="one">
         <div class="container_1">
-        <span class="main_text_1">A는 문이 닫힌 서로 같은 두 방 앞에 서 있다</span>
+        <span class="main_text_6">A는 문이 닫힌 서로 같은 두 방 앞에 서 있다.</span><br>
+        <span class="main_text_6">각각의 방 안에는 서로 다른 B와 B가 있다.</span><br>
+        <span class="main_text_6">A는 그 중 하나의 문을 열고 방으로 들어갔다.</span>
         <br>
-        <span class="main_text_2">
-            각각의 방 안에는
-        <br>B와 B
-            <br>가 있다</span>
-            <br>
-            <div class="container_2">
-                <div class="main_text_1">A는 그 중</div>
-                <div class="main_text_5">하나의 문</div>
-                <div class="main_text_1">을 열고 방으로 들어갔다</div>
-            </div>
-            <br>
-            <br>
-            <br>
-            <span class="main_text_4">
-                A가 들어간 방과 들어가지 않은 방에서는 각각 어떤 일이 일어날까
-            </span>
+        <br>
+        <span class="main_text_5">A가 들어간 방과 들어가지 않은 방에서는 각각 어떤 일이 일어날까?</span>
         </div>
     </section>
     <section id="three" class="sectionThree">
@@ -990,22 +994,17 @@
                 <ul class="labeled-icons">
                     <li>
                         <span class="option_text">
-                             <a th:href="@{/exhibition/locate/date/502}">LOCATION</a>
-                        </span><br />
-                    </li>
-                    <li>
-                        <span class="option_text option_text_left">
-                            <a th:href="@{/exhibition/locate/date/502}">DATE</a>
-                        </span><br />
-                    </li>
-                    <li>
-                        <span class="option_text">
-                              <a th:href="@{/artist/2}">ARTIST INFO</a>
+                              <a th:href="@{/artist/2}">ARTIST</a>
                         </span><br />
                     </li>
                     <li>
                         <span class="option_text option_text_left">
                             <a th:href="@{/work/getAll/1}">ARTWORK</a>
+                        </span><br />
+                    </li>
+                    <li>
+                        <span class="option_text option_text_left">
+                            <a th:href="@{/exhibition/locate/date/502}">INFO</a>
                         </span><br />
                     </li>
                 </ul>
