@@ -33,7 +33,14 @@
 					<div id="main">
 						<div class="inner">
 							<header>
-								<h1> <a>ARTWORK</a></h1>
+								<h1>
+									<th:block th:if="${not #lists.isEmpty(workList)}">
+										<a>ARTWORK</a>
+									</th:block>
+									<th:block th:if="${not #lists.isEmpty(artist_list)}">
+										<a>ARTIST</a>
+									</th:block>
+								</h1>
 							</header>
 							</header>
 							<section class="tiles">
@@ -52,11 +59,11 @@
 								<th:block th:if="${not #lists.isEmpty(artist_list)}" th:each="artist : ${artist_list}">
 									<article class="style1">
 									<span class="image">
-										<a th:href="@{/artist/{artistId}/exhibition/{exhibitionId}(artistId=${artist.id}, exhibitionId=2)}">
+										<a th:href="@{/artist/{artistId}/exhibition/{exhibitionId}(artistId=${artist.id}, exhibitionId=502)}">
 											<img th:src="${artist.img_url}" alt="" />
 										</a>
 									</span>
-										<a th:href="@{/artist/{artistId}/exhibition/{exhibitionId}(artistId=${artist.id}, exhibitionId=2)}">
+										<a th:href="@{/artist/{artistId}/exhibition/{exhibitionId}(artistId=${artist.id}, exhibitionId=502)}">
 											<p th:text="${artist.name}"></p>
 										</a>
 									</article>

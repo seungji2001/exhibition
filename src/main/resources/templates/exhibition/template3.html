@@ -346,7 +346,7 @@
         <div class="work_content">
           <p class="work_title" th:text="${work.title}"></p>
           <span class="author"><p class="author_font" th:text="${work.supporter_name}">백승지</p> &nbsp;<p class="author_font" >작가</p></span>
-          <p class="major content_font"  th:text="${work.contents}"></p>
+          <p class="major content_font"  th:utext="${work.contents}"></p>
         </div>
         </div>
       <div class="topic" th:text="${work.topic}">
