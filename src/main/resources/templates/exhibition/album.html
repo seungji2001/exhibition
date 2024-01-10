@@ -52,7 +52,7 @@
 										</a>
 									</span>
 										<a th:href="@{/work/{id}(id=${work.work_id})}">
-											<p th:text="${work.getTitle()}"></p>
+											<p th:utext="${work.getTitle()}"></p>
 										</a>
 									</article>
 								</th:block>
