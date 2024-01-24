@@ -22,7 +22,7 @@ public class client_exhibition {
     private client client;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "exhitbition_id")
+    @JoinColumn(name = "exhibition_id")
     private Exhibition exhibition;
 
     private MemberRole memberRole;
