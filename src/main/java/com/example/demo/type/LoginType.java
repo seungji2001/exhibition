@@ -8,7 +8,8 @@ import lombok.RequiredArgsConstructor;
 public enum LoginType {
 
     KKO("kakao"),
-    GGL("google");
+    GGL("google"),
+    NORMAL("none");
 
     private final String value;
 }

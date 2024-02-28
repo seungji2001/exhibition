@@ -24,7 +24,7 @@ public class client {
 
     private String name;
 
-    private String login_id;
+    private String login;
 
     private String password;
 

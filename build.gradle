@@ -26,6 +26,7 @@ repositories {
 
 ext {
     set('springShellVersion', "3.1.2")
+//    set('springCloudVersion', "3.1.2")
 }
 
 dependencies {
@@ -46,13 +47,14 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 //    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.google.code.gson:gson:2.10.1'
-
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 }
 
 dependencyManagement {
     imports {
         mavenBom "org.springframework.shell:spring-shell-dependencies:${springShellVersion}"
         mavenBom 'org.springframework.modulith:spring-modulith-bom:1.0.0-M1'
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2020.0.3"
     }
 }
 
