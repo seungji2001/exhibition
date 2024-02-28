@@ -1,6 +1,6 @@
 package com.example.demo.domain;
 
-import com.example.demo.Enum.LoginType;
+import com.example.demo.type.LoginType;
 import jakarta.persistence.*;
 import jdk.jfr.Description;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.security.Provider;
 import java.util.List;
 
 @Builder

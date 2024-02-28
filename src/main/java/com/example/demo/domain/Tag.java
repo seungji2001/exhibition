@@ -1,6 +1,6 @@
 package com.example.demo.domain;
 
-import com.example.demo.Enum.UtilType;
+import com.example.demo.type.UtilType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

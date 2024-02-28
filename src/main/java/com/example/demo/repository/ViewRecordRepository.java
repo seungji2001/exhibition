@@ -1,8 +1,5 @@
 package com.example.demo.repository;
 
-import com.example.demo.Enum.MemberRole;
-import com.example.demo.domain.Exhibition;
-import com.example.demo.domain.Member;
 import com.example.demo.domain.ViewRecord;
 import com.example.demo.domain.Work;
 import org.springframework.data.jpa.repository.JpaRepository;

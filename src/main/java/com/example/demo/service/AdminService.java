@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.Enum.MemberRole;
+import com.example.demo.type.MemberRole;
 import com.example.demo.domain.Member;
 import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.repository.MemberRepository;

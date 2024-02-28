@@ -1,6 +1,6 @@
 package com.example.demo.domain;
 
-import com.example.demo.Enum.MemberRole;
+import com.example.demo.type.MemberRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

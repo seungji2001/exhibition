@@ -1,12 +1,11 @@
 package com.example.demo.service;
 
-import com.example.demo.Enum.MemberRole;
+import com.example.demo.type.MemberRole;
 import com.example.demo.domain.Exhibition;
 import com.example.demo.domain.Member;
 import com.example.demo.domain.Work;
 import com.example.demo.dto.memberDto.MemberRequestDto;
 import com.example.demo.dto.memberDto.MemberResponseDto;
-import com.example.demo.dto.workDto.WorkResponseDto;
 import com.example.demo.repository.ExhibitionRepository;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.WorkRepository;
