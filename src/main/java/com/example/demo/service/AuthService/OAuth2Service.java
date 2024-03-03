@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.AuthService;
 
 import com.example.demo.type.LoginType;
 import com.example.demo.util.OAuth2Util;

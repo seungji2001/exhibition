@@ -1,11 +1,10 @@
-package com.example.demo.service.AuthService;
+package com.example.demo.service.FeignAuthService;
 
 
 import com.example.demo.dto.authDto.GoogleLoginResponse;
 import com.example.demo.dto.authDto.GoogleRequestAccessTokenDto;
 import com.example.demo.dto.authDto.SocialAuthResponse;
 import com.example.demo.dto.authDto.SocialUserResponse;
-import com.example.demo.service.SocialLoginService;
 import com.example.demo.type.LoginType;
 import com.example.demo.util.GsonLocalDateTimeAdapter;
 import com.google.gson.Gson;

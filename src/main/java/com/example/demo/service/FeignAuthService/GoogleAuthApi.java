@@ -1,9 +1,8 @@
-package com.example.demo.service.AuthService;
+package com.example.demo.service.FeignAuthService;
 
 import com.example.demo.config.AuthConfig.FeignConfiguration;
 import com.example.demo.dto.authDto.GoogleRequestAccessTokenDto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

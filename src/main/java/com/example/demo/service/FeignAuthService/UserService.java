@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.FeignAuthService;
 
 import com.example.demo.domain.User;
 import com.example.demo.dto.authDto.*;
