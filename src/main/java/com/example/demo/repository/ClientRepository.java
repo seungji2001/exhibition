@@ -1,13 +1,13 @@
 package com.example.demo.repository;
 
-import com.example.demo.domain.client;
+import com.example.demo.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface ClientRepository extends JpaRepository<client,Long> {
+public interface ClientRepository extends JpaRepository<User,Long> {
 
-    Optional<client> findByLogin(String loginId);
+    Optional<User> findByLogin(String loginId);
 }

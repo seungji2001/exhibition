@@ -14,11 +14,11 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "client")
-public class client {
+@Entity(name = "tb_user")
+public class User {
 
     @Id
-    @Column(name = "client_id")
+    @Column(name = "tb_user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -34,6 +34,6 @@ public class client {
     private LoginType provider;
 
     @Description("client가 어떤 전시들에 연관이 있는지 보여줌")
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "user")
     private List<client_exhibition> exhibitions;
 }

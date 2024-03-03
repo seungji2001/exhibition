@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.client;
+import com.example.demo.domain.User;
 import com.example.demo.dto.authDto.*;
 import com.example.demo.repository.ClientRepository;
 import com.example.demo.type.LoginType;
@@ -36,11 +36,11 @@ public class UserService {
             );
         }
 
-        client client = clientRepository.findByLogin(socialUserResponse.getId())
+        User User = clientRepository.findByLogin(socialUserResponse.getId())
                 .orElseThrow(() -> new IllegalArgumentException("유저 정보를 찾을 수 없습니다."));
 
         return LoginResponse.builder()
-                .id(client.getId())
+                .id(User.getId())
                 .build();
     }
 
@@ -54,8 +54,8 @@ public class UserService {
 //
 //    private String email;
     private UserJoinResponse joinUser(UserJoinRequest userJoinRequest) {
-        client client = clientRepository.save(
-                com.example.demo.domain.client.builder()
+        User user = clientRepository.save(
+                User.builder()
                         .login(userJoinRequest.getUserId())
                         .provider(userJoinRequest.getUserType())
                         .email(userJoinRequest.getUserEmail())
@@ -64,7 +64,7 @@ public class UserService {
         );
 
         return UserJoinResponse.builder()
-                .id(client.getId())
+                .id(user.getId())
                 .build();
     }
 
@@ -79,14 +79,14 @@ public class UserService {
     }
 
     public UserResponse getUser(Long id) {
-        client client = clientRepository.findById(id)
+        User User = clientRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유저 정보를 찾을 수 없습니다."));
 
         return UserResponse.builder()
-                .id(client.getId())
-                .userId(client.getLogin())
-                .userEmail(client.getEmail())
-                .userName(client.getName())
+                .id(User.getId())
+                .userId(User.getLogin())
+                .userEmail(User.getEmail())
+                .userName(User.getName())
                 .build();
     }
 }
