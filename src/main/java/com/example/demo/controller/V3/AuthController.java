@@ -1,7 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.controller.V3;
 
 import com.example.demo.service.AuthService.OAuth2Service;
-import com.example.demo.service.FeignAuthService.UserService;
 import com.example.demo.type.LoginType;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ public class AuthController {
 
     @Autowired
     OAuth2Service oAuth2Service;
-    @Autowired
-    UserService userService;
 
 
     //callback url 정보 담아오기

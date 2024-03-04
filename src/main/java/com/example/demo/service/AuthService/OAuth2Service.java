@@ -1,7 +1,7 @@
 package com.example.demo.service.AuthService;
 
 import com.example.demo.constant.Constants;
-import com.example.demo.domain.User;
+import com.example.demo.domain.V3.User;
 import com.example.demo.dto.jwtDto.JwtTokenDto;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.jwt.JwtProvider;
@@ -10,7 +10,6 @@ import com.example.demo.type.LoginType;
 import com.example.demo.util.CookieUtil;
 import com.example.demo.util.JwtUtil;
 import com.example.demo.util.OAuth2Util;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,14 +24,10 @@ import java.util.UUID;
 @Transactional
 public class OAuth2Service {
 
-    @Autowired
-    OAuth2Util oAuth2Util;
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    JwtProvider jwtProvider;
-    @Autowired
-    JwtUtil jwtUtil;
+    private final OAuth2Util oAuth2Util;
+    private final UserRepository userRepository;
+    private final JwtProvider jwtProvider;
+    private final JwtUtil jwtUtil;
 
     public String getRedirectUrl(LoginType loginType){
         if(loginType == LoginType.GGL){

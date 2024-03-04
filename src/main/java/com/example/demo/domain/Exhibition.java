@@ -46,10 +46,6 @@ public class Exhibition {
 
     private Date endTime;
 
-    @Description("해당 전시에 참여자, 관람자, 기획자가 누구인지 보여주는 client list")
-    @OneToMany(mappedBy = "exhibition")
-    private List<client_exhibition> clients;
-
     public void updateView(){
         viewCounts += 1;
     }

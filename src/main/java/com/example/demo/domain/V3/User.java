@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.V3;
 
 import com.example.demo.type.EUserType;
 import com.example.demo.type.LoginType;
@@ -41,10 +41,6 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private EUserType eUserType;
-
-    @Description("client가 어떤 전시들에 연관이 있는지 보여줌")
-    @OneToMany(mappedBy = "user")
-    private List<client_exhibition> exhibitions;
 
     public void updateRefreshToken(String refreshToken) {
         this.isLogin = true;
