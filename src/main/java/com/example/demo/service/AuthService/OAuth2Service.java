@@ -3,7 +3,7 @@ package com.example.demo.service.AuthService;
 import com.example.demo.constant.Constants;
 import com.example.demo.domain.V3.User;
 import com.example.demo.dto.jwtDto.JwtTokenDto;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.V3.UserRepository;
 import com.example.demo.security.jwt.JwtProvider;
 import com.example.demo.type.EUserType;
 import com.example.demo.type.LoginType;
@@ -12,14 +12,15 @@ import com.example.demo.util.JwtUtil;
 import com.example.demo.util.OAuth2Util;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 @RequiredArgsConstructor
 @Transactional
 public class OAuth2Service {

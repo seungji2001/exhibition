@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.repository.V3;
 
 import com.example.demo.domain.V3.User;
 import com.example.demo.type.LoginType;

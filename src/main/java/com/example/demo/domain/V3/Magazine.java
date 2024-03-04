@@ -24,9 +24,16 @@ public class Magazine {
 
     private String introduction;
 
+    @Description("발매여부")
+    private Boolean isPublish;
+
     @Description("기획자 이름")
     private String plannerName;
 
     @Description("기획자 한 줄 소개")
     private String plannerIntroduction;
+
+    public void publish(){
+        this.isPublish=true;
+    }
 }

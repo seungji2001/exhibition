@@ -3,7 +3,7 @@ package com.example.demo.security.jwt;
 
 import com.example.demo.constant.Constants;
 import com.example.demo.dto.jwtDto.JwtTokenDto;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.V3.UserRepository;
 import com.example.demo.util.JwtUtil;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
