@@ -1,8 +1,14 @@
 package com.example.demo.service.AuthService;
 
+import com.example.demo.constant.Constants;
 import com.example.demo.domain.User;
+import com.example.demo.dto.jwtDto.JwtTokenDto;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.security.jwt.JwtProvider;
+import com.example.demo.type.EUserType;
 import com.example.demo.type.LoginType;
+import com.example.demo.util.CookieUtil;
+import com.example.demo.util.JwtUtil;
 import com.example.demo.util.OAuth2Util;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -22,6 +29,10 @@ public class OAuth2Service {
     OAuth2Util oAuth2Util;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    JwtProvider jwtProvider;
+    @Autowired
+    JwtUtil jwtUtil;
 
     public String getRedirectUrl(LoginType loginType){
         if(loginType == LoginType.GGL){
@@ -39,7 +50,7 @@ public class OAuth2Service {
         return accessToken;
     }
 
-    public void login(HttpServletResponse response,String accessToken, LoginType loginType){
+    public void login(HttpServletResponse response,String accessToken, LoginType loginType) throws IOException {
         String tempId = null;
         //만약 로그인 할 경우 로그인 타입이 구글인 경우
         if(loginType == LoginType.GGL){
@@ -63,5 +74,25 @@ public class OAuth2Service {
                                 .build()
                 )
         );
+
+        //JwtToken만들기
+        JwtTokenDto jwtToken = jwtProvider.createTokens(user.getLogin());
+        user.updateRefreshToken(jwtToken.refreshToken());
+
+        sendAccessTokenAndRefreshToken(user, response, jwtToken.accessToken(), jwtToken.refreshToken());
+    }
+
+    public void sendAccessTokenAndRefreshToken(User user, HttpServletResponse response, String accessToken, String refreshToken) throws IOException, IOException {
+        response.setStatus(HttpServletResponse.SC_OK);
+
+        CookieUtil.addCookie(response, Constants.AUTHORIZATION, accessToken);
+        CookieUtil.addSecureCookie(response, Constants.REAUTHORIZATION, refreshToken, jwtUtil.getRefreshTokenExpiration());
+
+        if (user.getEUserType() == EUserType.GUEST) {
+            //이동시킬 페이지 주소
+            response.sendRedirect("SIGNUP_URL");
+        } else {
+            response.sendRedirect("MAIN_URL");
+        }
     }
 }
