@@ -87,12 +87,24 @@ HttpEntity(@Nullable T body, @Nullable MultiValueMap<String, String> headers): �
         return JsonParser.parseString(Objects.requireNonNull(response.getBody())).getAsJsonObject().get("access_token").getAsString();
     }
 
+    //발급받은 토큰으로 로그인한 사용자 정보 받아오기
     public String getGoogleUserInfo(String accessToken) {
         HttpHeaders httpHeaders = new HttpHeaders();
 
+        /*
+        httpHeaders.add("Authorization", "Bearer " + accessToken); 코드는 Http 요청 헤더에
+        "Authorization"키를 사용하여 Bearer토큰을 추가하는 과정을 나타냅니다.
+        여기서 accessToken은 이전에 받은 엑세스토큰입니다.
+        Bearer토큰은 인증 메커니즘 중 하나로, 클라이언트가 요청을 보낼 때 토큰을 포함시켜 서버에게 자신의
+        신원을 인증합니다..
+         */
         httpHeaders.add("Authorization", "Bearer " + accessToken);
         httpHeaders.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
+        /*
+        HttpEntity<MultiValueMap<String, String>> 은 body의 타입을 MultiValueMap<String, String>으로 설정한것이지만
+        new HttpEntity<>(headers)에서 header만 정의 해주었으므로 body는 null로 들어간다.
+         */
         HttpEntity<MultiValueMap<String, String>> googleUserInfoRequest = new HttpEntity<>(httpHeaders);
 
         ResponseEntity<String> response = restTemplate.exchange(

@@ -2,7 +2,7 @@ package com.example.demo.service.FeignAuthService;
 
 import com.example.demo.domain.User;
 import com.example.demo.dto.authDto.*;
-import com.example.demo.repository.ClientRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.type.LoginType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class UserService {
     private final List<SocialLoginService> loginServices;
-    private final ClientRepository clientRepository;
+    private final UserRepository userRepository;
 
     public LoginResponse doSocialLogin(SocialLoginRequestDto request) {
         SocialLoginService loginService = this.getLoginService(request.getLoginType());
@@ -25,7 +25,7 @@ public class UserService {
         SocialUserResponse socialUserResponse = loginService.getUserInfo(socialAuthResponse.getAccess_token());
         log.info("socialUserResponse {} ", socialUserResponse.toString());
 
-        if (clientRepository.findByLogin(socialUserResponse.getId()).isEmpty()) {
+        if (userRepository.findByLogin(socialUserResponse.getId()).isEmpty()) {
             this.joinUser(
                     UserJoinRequest.builder()
                             .userId(socialUserResponse.getId())
@@ -36,7 +36,7 @@ public class UserService {
             );
         }
 
-        User User = clientRepository.findByLogin(socialUserResponse.getId())
+        User User = userRepository.findByLogin(socialUserResponse.getId())
                 .orElseThrow(() -> new IllegalArgumentException("유저 정보를 찾을 수 없습니다."));
 
         return LoginResponse.builder()
@@ -54,7 +54,7 @@ public class UserService {
 //
 //    private String email;
     private UserJoinResponse joinUser(UserJoinRequest userJoinRequest) {
-        User user = clientRepository.save(
+        User user = userRepository.save(
                 User.builder()
                         .login(userJoinRequest.getUserId())
                         .provider(userJoinRequest.getUserType())
@@ -79,7 +79,7 @@ public class UserService {
     }
 
     public UserResponse getUser(Long id) {
-        User User = clientRepository.findById(id)
+        User User = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유저 정보를 찾을 수 없습니다."));
 
         return UserResponse.builder()

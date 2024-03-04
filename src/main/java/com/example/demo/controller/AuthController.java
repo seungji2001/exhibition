@@ -29,7 +29,7 @@ public class AuthController {
     @GetMapping("/google/callback")
     public void getGoogleAccessToken(String code, HttpServletResponse response) throws IOException {
         String accessToken = oAuth2Service.getAccessToken(code, LoginType.GGL);
-        oAuth2Service.login(response, accessToken, ELoginProvider.GOOGLE);
+        oAuth2Service.login(response, accessToken, LoginType.GGL);
     }
 
     /*

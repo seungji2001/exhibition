@@ -24,6 +24,7 @@ public class User {
 
     private String name;
 
+    //여기서 login은 소셜 로그인으로 받아온 temp_id이다.
     private String login;
 
     private String password;
