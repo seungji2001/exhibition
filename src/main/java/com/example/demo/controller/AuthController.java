@@ -26,11 +26,11 @@ public class AuthController {
         return ResponseEntity.ok().body(oAuth2Service.getRedirectUrl(LoginType.GGL));
     }
 
-//    @GetMapping("/google/callback")
-//    public void getGoogleAccessToken(String code, HttpServletResponse response) throws IOException {
-//        String accessToken = oAuth2Service.getAccessToken(code, ELoginProvider.GOOGLE);
-//        oAuth2Service.login(response, accessToken, ELoginProvider.GOOGLE);
-//    }
+    @GetMapping("/google/callback")
+    public void getGoogleAccessToken(String code, HttpServletResponse response) throws IOException {
+        String accessToken = oAuth2Service.getAccessToken(code, LoginType.GGL);
+        oAuth2Service.login(response, accessToken, ELoginProvider.GOOGLE);
+    }
 
     /*
     SocialLoginRequestDto안에 @NotNull 유효성 검사가 있으므로 해당 dto불러올때 앞에 @Valid를 설정함으로써

@@ -21,4 +21,13 @@ public class OAuth2Service {
         }
         return null;
     }
+
+    public String getAccessToken(String code, LoginType loginType){
+        String accessToken = null;
+        if(loginType == LoginType.GGL){
+            //token 가지고 오기
+            accessToken = oAuth2Util.getGoogleAccessToken(code);
+        }
+        return accessToken;
+    }
 }
