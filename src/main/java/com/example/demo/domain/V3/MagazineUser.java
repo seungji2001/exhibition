@@ -25,4 +25,10 @@ public class MagazineUser {
     private User user;
 
     private MUserType mUserType;
+
+    private String applicant;
+
+    public void updateApplicant(String applicant){
+        this.applicant = applicant;
+    }
 }
