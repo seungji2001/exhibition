@@ -30,10 +30,12 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getApplicants(magazineId));
     }
 
+    //지원서 보기
     @GetMapping("/applicant/{userId}")
     public ResponseEntity<UserDto.getApplicant> getApplicant(@PathVariable Long userId, Long magazineId){
         return ResponseEntity.ok().body(userService.getApplicant(userId, magazineId));
     }
+
     //기획자가 해당 작가 application보고 승낙
     @PutMapping("/participants/{userId}")
     public void acceptApplication(@PathVariable Long userId, Long magazineId){
